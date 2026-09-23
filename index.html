@@ -1,1780 +1,2502 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#070503">
-
-  <title>El Enigma del Manuscrito Perdido | RISE</title>
-
-  <style>
-    :root {
-      --bg: #050403;
-      --panel: rgba(25, 17, 9, 0.96);
-      --gold: #d8ad58;
-      --gold-light: #f5d58d;
-      --gold-dark: #79531f;
-      --text: #f3ead8;
-      --muted: #bcae95;
-      --danger: #c64e4e;
-      --success: #86bd78;
-      --border: rgba(216, 173, 88, .32);
-      --shadow: 0 25px 80px rgba(0,0,0,.65);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      min-height: 100%;
-      background: var(--bg);
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      color: var(--text);
-      font-family: Georgia, "Times New Roman", serif;
-
-      background:
-        radial-gradient(circle at 50% 0%, rgba(156,100,34,.18), transparent 30%),
-        radial-gradient(circle at 10% 70%, rgba(110,61,20,.10), transparent 28%),
-        radial-gradient(circle at 90% 80%, rgba(110,61,20,.10), transparent 28%),
-        linear-gradient(180deg,#120d07 0%,#060403 50%,#020201 100%);
-
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .2;
-      z-index: 999;
-
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.015) 0,
-          rgba(255,255,255,.015) 1px,
-          transparent 1px,
-          transparent 4px
-        );
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    button {
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .screen {
-      display: none;
-      min-height: 100vh;
-      padding: 20px 14px 45px;
-      animation: fade .35s ease;
-    }
-
-    .screen.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    @keyframes fade {
-      from {
-        opacity: 0;
-        transform: translateY(7px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .container {
-      width: 100%;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    .manuscript {
-      position: relative;
-      overflow: hidden;
-      padding: 48px 26px;
-
-      border: 1px solid var(--border);
-      border-radius: 14px;
-
-      background:
-        radial-gradient(circle at top,rgba(239,188,88,.13),transparent 40%),
-        linear-gradient(145deg,#382512,#130d07);
-
-      box-shadow: var(--shadow);
-    }
-
-    .manuscript::before,
-    .manuscript::after {
-      content: "";
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      pointer-events: none;
-    }
-
-    .manuscript::before {
-      top: 15px;
-      left: 15px;
-      border-top: 1px solid var(--gold-dark);
-      border-left: 1px solid var(--gold-dark);
-    }
-
-    .manuscript::after {
-      right: 15px;
-      bottom: 15px;
-      border-right: 1px solid var(--gold-dark);
-      border-bottom: 1px solid var(--gold-dark);
-    }
-
-    .eyebrow {
-      margin-bottom: 14px;
-      text-align: center;
-      color: var(--gold);
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 4px;
-    }
-
-    h1 {
-      margin: 0 0 22px;
-      text-align: center;
-      color: var(--gold-light);
-      font-size: clamp(34px,8vw,61px);
-      line-height: 1.05;
-      text-transform: uppercase;
-      text-shadow: 0 4px 22px #000;
-    }
-
-    h2 {
-      margin: 0 0 12px;
-      text-align: center;
-      color: var(--gold-light);
-      font-size: clamp(27px,6vw,40px);
-    }
-
-    .intro {
-      max-width: 590px;
-      margin: 0 auto 22px;
-      text-align: center;
-      color: #eadfc9;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      max-width: 420px;
-      margin: 22px auto;
-      color: var(--gold);
-    }
-
-    .divider::before,
-    .divider::after {
-      content: "";
-      height: 1px;
-      flex: 1;
-      background: linear-gradient(90deg,transparent,var(--gold-dark),transparent);
-    }
-
-    .seal-logo {
-      width: 82px;
-      height: 82px;
-      margin: 22px auto;
-
-      display: grid;
-      place-items: center;
-
-      border: 5px double #45100e;
-      border-radius: 50%;
-
-      color: #d7a96c;
-      font-size: 35px;
-      font-weight: bold;
-
-      background:
-        radial-gradient(circle at 35% 30%,#a73a2d,#541413 72%);
-
-      box-shadow:
-        0 12px 30px #000,
-        inset 0 0 16px rgba(255,190,100,.15);
-    }
-
-    .btn {
-      width: 100%;
-      padding: 16px 18px;
-
-      border: 1px solid rgba(245,211,140,.55);
-      border-radius: 9px;
-
-      cursor: pointer;
-
-      color: #201507;
-      font-weight: 900;
-
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
-
-      background:
-        linear-gradient(180deg,#f1d083,#b78235);
-
-      box-shadow:
-        0 8px 25px rgba(0,0,0,.38);
-
-      transition: .18s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(1.06);
-    }
-
-    .btn:active {
-      transform: scale(.985);
-    }
-
-    .btn:disabled {
-      opacity: .45;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .btn.secondary {
-      color: var(--gold-light);
-      background: rgba(0,0,0,.3);
-      border-color: var(--border);
-    }
-
-    .btn.small {
-      width: auto;
-      padding: 10px 14px;
-      font-size: 11px;
-    }
-
-    .button-stack {
-      display: grid;
-      gap: 12px;
-      max-width: 500px;
-      margin: 25px auto 0;
-    }
-
-    .card {
-      padding: 30px 23px;
-
-      border: 1px solid var(--border);
-      border-radius: 13px;
-
-      background:
-        radial-gradient(circle at top,rgba(216,173,88,.07),transparent 40%),
-        var(--panel);
-
-      box-shadow: var(--shadow);
-    }
-
-    .field {
-      margin: 20px 0;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 8px;
-
-      color: var(--gold-light);
-      font-size: 14px;
-    }
-
-    .input {
-      width: 100%;
-      padding: 16px 14px;
-
-      outline: none;
-
-      border: 1px solid var(--border);
-      border-radius: 8px;
-
-      color: white;
-
-      background:
-        rgba(0,0,0,.4);
-    }
-
-    .input:focus {
-      border-color: var(--gold);
-      box-shadow:
-        0 0 0 3px rgba(216,173,88,.1);
-    }
-
-    .code-team-input {
-      text-transform: uppercase;
-      text-align: center;
-
-      font-family:
-        "Courier New",
-        monospace;
-
-      font-size: 26px;
-      font-weight: bold;
-      letter-spacing: 5px;
-    }
-
-    .note {
-      color: var(--muted);
-      text-align: center;
-      font-size: 14px;
-      line-height: 1.55;
-    }
-
-    .error-box,
-    .success-box {
-      display: none;
-      margin-top: 15px;
-      padding: 13px;
-      border-radius: 7px;
-      text-align: center;
-      line-height: 1.4;
-    }
-
-    .error-box {
-      color: #ffbaba;
-
-      border:
-        1px solid rgba(198,78,78,.35);
-
-      background:
-        rgba(125,30,30,.25);
-    }
-
-    .success-box {
-      color: #ccebc4;
-
-      border:
-        1px solid rgba(134,189,120,.35);
-
-      background:
-        rgba(50,95,43,.25);
-    }
-
-    .connection {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-
-      margin:
-        0 auto 18px;
-
-      color: #8d806c;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 10px;
-      font-weight: bold;
-      letter-spacing: 1.2px;
-    }
-
-    .connection-dot {
-      width: 8px;
-      height: 8px;
-
-      border-radius: 50%;
-
-      background:
-        #806f5b;
-    }
-
-    .connection.online {
-      color: #8db983;
-    }
-
-    .connection.online .connection-dot {
-      background: #71b766;
-
-      box-shadow:
-        0 0 10px rgba(113,183,102,.7);
-    }
-
-    .connection.offline {
-      color: #d17777;
-    }
-
-    .connection.offline .connection-dot {
-      background: #c34d4d;
-    }
-
-    .connection.checking {
-      color: #d8ad58;
-    }
-
-    .connection.checking .connection-dot {
-      background: #d8ad58;
-      animation: pulse 1s infinite;
-    }
-
-    @keyframes pulse {
-      0% {
-        opacity: .3;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
-      100% {
-        opacity: .3;
-      }
-    }
-
-    /* =====================================================
-       GAME
-    ====================================================== */
-
-    .game-container {
-      width: 100%;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .game-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 13px;
-    }
-
-    .team-title {
-      color: var(--gold-light);
-      font-size: 21px;
-      font-weight: bold;
-    }
-
-    .team-code {
-      margin-top: 3px;
-      color: var(--muted);
-      font-family: Arial,sans-serif;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-
-    .lives {
-      white-space: nowrap;
-      font-size: 24px;
-    }
-
-    .heart.off {
-      opacity: .17;
-      filter: grayscale(1);
-    }
-
-    .status-grid {
-      display: grid;
-      grid-template-columns: repeat(2,1fr);
-      gap: 9px;
-      margin-bottom: 17px;
-    }
-
-    .status-box {
-      padding: 12px;
-      text-align: center;
-
-      border: 1px solid var(--border);
-      border-radius: 8px;
-
-      background:
-        rgba(24,16,8,.85);
-    }
-
-    .status-box span {
-      display: block;
-      margin-bottom: 4px;
-
-      color: var(--muted);
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 9px;
-      letter-spacing: 1.3px;
-      text-transform: uppercase;
-    }
-
-    .status-box strong {
-      color: var(--gold-light);
-      font-size: 17px;
-    }
-
-    .map-card {
-      position: relative;
-      overflow: hidden;
-
-      padding:
-        29px 18px 25px;
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 14px;
-
-      background:
-        radial-gradient(circle at 50% 45%,rgba(183,123,42,.12),transparent 25%),
-        linear-gradient(145deg,#281a0c,#0c0805);
-
-      box-shadow:
-        var(--shadow);
-    }
-
-    .map-title {
-      text-align: center;
-      color: var(--gold-light);
-      font-size: 27px;
-      margin-bottom: 5px;
-    }
-
-    .map-subtitle {
-      max-width: 590px;
-      margin: 0 auto 25px;
-
-      color: var(--muted);
-
-      text-align: center;
-      line-height: 1.5;
-      font-size: 14px;
-    }
-
-    .central-manuscript {
-      width: 135px;
-      height: 100px;
-
-      margin:
-        0 auto 27px;
-
-      display: grid;
-      place-items: center;
-
-      position: relative;
-
-      border:
-        1px solid #785420;
-
-      border-radius: 8px;
-
-      color: #c79c55;
-
-      background:
-        linear-gradient(145deg,#463019,#1d130a);
-
-      box-shadow:
-        0 10px 30px #000;
-
-      font-size: 45px;
-    }
-
-    .central-manuscript::after {
-      content:
-        attr(data-progress);
-
-      position: absolute;
-      bottom: -12px;
-
-      padding:
-        4px 9px;
-
-      border-radius: 20px;
-
-      color: #201507;
-      background: var(--gold);
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 10px;
-      font-weight: bold;
-    }
-
-    .seals-grid {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 12px;
-
-      max-width: 680px;
-      margin: auto;
-    }
-
-    .station-seal {
-      min-height: 132px;
-
-      padding:
-        13px 8px;
-
-      cursor: pointer;
-
-      border:
-        1px solid rgba(216,173,88,.26);
-
-      border-radius: 10px;
-
-      color: var(--text);
-
-      background:
-        radial-gradient(circle at top,rgba(216,173,88,.06),transparent 50%),
-        rgba(0,0,0,.28);
-
-      transition:
-        .2s ease;
-    }
-
-    .station-seal:hover {
-      transform:
-        translateY(-2px);
-
-      border-color:
-        rgba(216,173,88,.6);
-    }
-
-    .station-seal.done {
-      border-color:
-        rgba(116,176,99,.55);
-
-      background:
-        radial-gradient(circle at top,rgba(111,170,96,.17),transparent 55%),
-        rgba(28,62,25,.24);
-    }
-
-    .seal-icon {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 31px;
-    }
-
-    .seal-number {
-      display: block;
-
-      color:
-        var(--gold);
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 10px;
-      font-weight: bold;
-      letter-spacing: 2px;
-    }
-
-    .seal-name {
-      display: block;
-      margin-top: 6px;
-      font-size: 13px;
-      line-height: 1.25;
-    }
-
-    .map-footer {
-      display: flex;
-      justify-content: center;
-      gap: 9px;
-      flex-wrap: wrap;
-
-      margin-top:
-        18px;
-    }
-
-    /* =====================================================
-       STATION
-    ====================================================== */
-
-    .station-header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .station-big-icon {
-      font-size: 52px;
-      margin-bottom: 9px;
-    }
-
-    .station-number {
-      color: var(--gold);
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 4px;
-    }
-
-    .station-description {
-      max-width: 580px;
-
-      margin:
-        0 auto 22px;
-
-      color: #d7ccb9;
-
-      text-align: center;
-      line-height: 1.6;
-    }
-
-    .code-input {
-      width: 100%;
-
-      padding:
-        18px 12px;
-
-      outline: none;
-
-      border:
-        1px solid rgba(216,173,88,.42);
-
-      border-radius: 8px;
-
-      color: #fff0c9;
-      background: #070503;
-
-      text-align: center;
-
-      font-family:
-        "Courier New",
-        monospace;
-
-      font-size:
-        clamp(20px,6vw,31px);
-
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
-
-    .code-input:focus {
-      border-color:
-        var(--gold-light);
-
-      box-shadow:
-        0 0 25px rgba(216,173,88,.1);
-    }
-
-    .station-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-
-      margin-top:
-        12px;
-    }
-
-    .hint-box {
-      display: none;
-
-      margin-top:
-        16px;
-
-      padding:
-        15px;
-
-      border-left:
-        3px solid var(--gold);
-
-      color:
-        #eadfc9;
-
-      background:
-        rgba(216,173,88,.08);
-
-      line-height:
-        1.5;
-
-      white-space:
-        pre-line;
-    }
-
-    .hint-box.show {
-      display: block;
-    }
-
-    .message {
-      min-height: 24px;
-
-      margin-top:
-        14px;
-
-      text-align: center;
-      font-weight: bold;
-      line-height: 1.45;
-    }
-
-    .message.error {
-      color: #e99090;
-    }
-
-    .message.success {
-      color: #a8d69c;
-    }
-
-    /* =====================================================
-       GUARDIAN
-    ====================================================== */
-
-    .guardian-card {
-      text-align: center;
-
-      border-color:
-        rgba(171,54,54,.4);
-
-      background:
-        radial-gradient(circle at top,rgba(154,38,38,.15),transparent 40%),
-        linear-gradient(145deg,#25100d,#090504);
-    }
-
-    .guardian-icon {
-      font-size: 70px;
-      margin-bottom: 13px;
-      filter: grayscale(.3);
-    }
-
-    .guardian-warning {
-      color: #d98b8b;
-
-      font-family:
-        Arial,
-        sans-serif;
-
-      font-size: 11px;
-      font-weight: bold;
-      letter-spacing: 3px;
-    }
-
-    /* =====================================================
-       MODALS
-    ====================================================== */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-
-      display: none;
-      align-items: center;
-      justify-content: center;
-
-      padding: 18px;
-
-      background:
-        rgba(0,0,0,.88);
-
-      backdrop-filter:
-        blur(6px);
-    }
-
-    .modal.show {
-      display: flex;
-    }
-
-    .modal-card {
-      width: 100%;
-      max-width: 510px;
-
-      padding:
-        31px 23px;
-
-      text-align: center;
-
-      border:
-        1px solid var(--border);
-
-      border-radius:
-        13px;
-
-      background:
-        linear-gradient(145deg,#301f0f,#0f0a06);
-
-      box-shadow:
-        0 30px 100px #000;
-
-      animation:
-        pop .35s ease;
-    }
-
-    @keyframes pop {
-      from {
-        opacity: 0;
-        transform: scale(.9);
-      }
+<meta charset="UTF-8">
 
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .modal-icon {
-      font-size: 63px;
-      margin-bottom: 13px;
-    }
-
-    .modal-card h2 {
-      font-size: 31px;
-    }
-
-    .modal-card p {
-      color: #d7ccb8;
-      line-height: 1.55;
-    }
-
-    .team-code-display {
-      margin:
-        18px 0;
-
-      padding:
-        18px 10px;
-
-      border:
-        1px dashed var(--gold);
-
-      border-radius:
-        9px;
-
-      color:
-        var(--gold-light);
-
-      background:
-        rgba(0,0,0,.3);
-
-      font-family:
-        "Courier New",
-        monospace;
-
-      font-size:
-        35px;
-
-      font-weight:
-        bold;
-
-      letter-spacing:
-        7px;
-    }
-
-    /* =====================================================
-       FINAL
-    ====================================================== */
-
-    .final-card {
-      text-align: center;
-    }
-
-    .final-icon {
-      font-size: 75px;
-      margin-bottom: 15px;
-    }
-
-    .verse {
-      max-width: 570px;
-
-      margin:
-        24px auto;
-
-      padding:
-        19px;
-
-      color:
-        #dfcfb0;
-
-      border-top:
-        1px solid var(--border);
-
-      border-bottom:
-        1px solid var(--border);
-
-      font-style:
-        italic;
-
-      line-height:
-        1.65;
-    }
-
-    .hidden {
-      display:
-        none !important;
-    }
-
-    @media (max-width:600px) {
-
-      .screen {
-        padding:
-          13px 11px 30px;
-      }
-
-      .manuscript,
-      .card {
-        padding-left:
-          17px;
-
-        padding-right:
-          17px;
-      }
-
-      .seals-grid {
-        grid-template-columns:
-          repeat(2,1fr);
-      }
-
-      .station-actions {
-        grid-template-columns:
-          1fr;
-      }
-
-      .station-seal {
-        min-height:
-          125px;
-      }
-
-      .team-code-display {
-        font-size:
-          29px;
-
-        letter-spacing:
-          5px;
-      }
-    }
-  </style>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+>
+
+<meta
+  name="theme-color"
+  content="#070503"
+>
+
+<title>
+El Enigma del Manuscrito Perdido | RISE
+</title>
+
+<style>
+
+:root {
+
+  --bg:#050403;
+
+  --panel:
+    rgba(25,17,9,.96);
+
+  --gold:#d8ad58;
+
+  --gold-light:#f5d58d;
+
+  --gold-dark:#79531f;
+
+  --text:#f3ead8;
+
+  --muted:#bcae95;
+
+  --danger:#c64e4e;
+
+  --success:#86bd78;
+
+  --border:
+    rgba(216,173,88,.32);
+
+  --shadow:
+    0 25px 80px rgba(0,0,0,.65);
+
+}
+
+* {
+  box-sizing:border-box;
+}
+
+html {
+  min-height:100%;
+  background:var(--bg);
+}
+
+body {
+
+  margin:0;
+
+  min-height:100vh;
+
+  color:var(--text);
+
+  font-family:
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(156,100,34,.18),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 10% 70%,
+      rgba(110,61,20,.10),
+      transparent 28%
+    ),
+
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(110,61,20,.10),
+      transparent 28%
+    ),
+
+    linear-gradient(
+      180deg,
+      #120d07 0%,
+      #060403 50%,
+      #020201 100%
+    );
+
+  overflow-x:hidden;
+}
+
+body::before {
+
+  content:"";
+
+  position:fixed;
+
+  inset:0;
+
+  pointer-events:none;
+
+  opacity:.2;
+
+  z-index:999;
+
+  background-image:
+
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.015) 0,
+      rgba(255,255,255,.015) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+
+}
+
+button,
+input {
+  font:inherit;
+}
+
+button {
+  -webkit-tap-highlight-color:
+    transparent;
+}
+
+.screen {
+
+  display:none;
+
+  min-height:100vh;
+
+  padding:
+    20px 14px 45px;
+
+  animation:
+    fade .35s ease;
+
+}
+
+.screen.active {
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+@keyframes fade {
+
+  from {
+    opacity:0;
+    transform:
+      translateY(7px);
+  }
+
+  to {
+    opacity:1;
+    transform:
+      translateY(0);
+  }
+
+}
+
+.container {
+
+  width:100%;
+
+  max-width:800px;
+
+  margin:auto;
+
+}
+
+.manuscript {
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:
+    48px 26px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:14px;
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(239,188,88,.13),
+      transparent 40%
+    ),
+
+    linear-gradient(
+      145deg,
+      #382512,
+      #130d07
+    );
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+.manuscript::before,
+.manuscript::after {
+
+  content:"";
+
+  position:absolute;
+
+  width:100px;
+
+  height:100px;
+
+  pointer-events:none;
+
+}
+
+.manuscript::before {
+
+  top:15px;
+
+  left:15px;
+
+  border-top:
+    1px solid var(--gold-dark);
+
+  border-left:
+    1px solid var(--gold-dark);
+
+}
+
+.manuscript::after {
+
+  right:15px;
+
+  bottom:15px;
+
+  border-right:
+    1px solid var(--gold-dark);
+
+  border-bottom:
+    1px solid var(--gold-dark);
+
+}
+
+.eyebrow {
+
+  margin-bottom:14px;
+
+  text-align:center;
+
+  color:var(--gold);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:11px;
+
+  font-weight:800;
+
+  letter-spacing:4px;
+
+}
+
+h1 {
+
+  margin:
+    0 0 22px;
+
+  text-align:center;
+
+  color:
+    var(--gold-light);
+
+  font-size:
+    clamp(34px,8vw,61px);
+
+  line-height:1.05;
+
+  text-transform:
+    uppercase;
+
+  text-shadow:
+    0 4px 22px #000;
+
+}
+
+h2 {
+
+  margin:
+    0 0 12px;
+
+  text-align:center;
+
+  color:
+    var(--gold-light);
+
+  font-size:
+    clamp(27px,6vw,40px);
+
+}
+
+.intro {
+
+  max-width:590px;
+
+  margin:
+    0 auto 22px;
+
+  text-align:center;
+
+  color:#eadfc9;
+
+  font-size:18px;
+
+  line-height:1.6;
+
+}
+
+.divider {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:12px;
+
+  max-width:420px;
+
+  margin:
+    22px auto;
+
+  color:
+    var(--gold);
+
+}
+
+.divider::before,
+.divider::after {
+
+  content:"";
+
+  height:1px;
+
+  flex:1;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--gold-dark),
+      transparent
+    );
+
+}
+
+.seal-logo {
+
+  width:82px;
+
+  height:82px;
+
+  margin:
+    22px auto;
+
+  display:grid;
+
+  place-items:center;
+
+  border:
+    5px double #45100e;
+
+  border-radius:50%;
+
+  color:#d7a96c;
+
+  font-size:35px;
+
+  font-weight:bold;
+
+  background:
+
+    radial-gradient(
+      circle at 35% 30%,
+      #a73a2d,
+      #541413 72%
+    );
+
+  box-shadow:
+
+    0 12px 30px #000,
+
+    inset
+    0 0 16px
+    rgba(255,190,100,.15);
+
+}
+
+.btn {
+
+  width:100%;
+
+  padding:
+    16px 18px;
+
+  border:
+    1px solid
+    rgba(245,211,140,.55);
+
+  border-radius:9px;
+
+  cursor:pointer;
+
+  color:#201507;
+
+  font-weight:900;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:1.3px;
+
+  background:
+
+    linear-gradient(
+      180deg,
+      #f1d083,
+      #b78235
+    );
+
+  box-shadow:
+
+    0 8px 25px
+    rgba(0,0,0,.38);
+
+  transition:
+    .18s ease;
+
+}
+
+.btn:hover {
+
+  transform:
+    translateY(-1px);
+
+  filter:
+    brightness(1.06);
+
+}
+
+.btn:active {
+
+  transform:
+    scale(.985);
+
+}
+
+.btn:disabled {
+
+  opacity:.45;
+
+  cursor:not-allowed;
+
+  transform:none;
+
+}
+
+.btn.secondary {
+
+  color:
+    var(--gold-light);
+
+  background:
+    rgba(0,0,0,.3);
+
+  border-color:
+    var(--border);
+
+}
+
+.btn.small {
+
+  width:auto;
+
+  padding:
+    10px 14px;
+
+  font-size:11px;
+
+}
+
+.button-stack {
+
+  display:grid;
+
+  gap:12px;
+
+  max-width:500px;
+
+  margin:
+    25px auto 0;
+
+}
+
+.card {
+
+  padding:
+    30px 23px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:13px;
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(216,173,88,.07),
+      transparent 40%
+    ),
+
+    var(--panel);
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+.field {
+
+  margin:
+    20px 0;
+
+}
+
+.field label {
+
+  display:block;
+
+  margin-bottom:8px;
+
+  color:
+    var(--gold-light);
+
+  font-size:14px;
+
+}
+
+.input {
+
+  width:100%;
+
+  padding:
+    16px 14px;
+
+  outline:none;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:8px;
+
+  color:white;
+
+  background:
+    rgba(0,0,0,.4);
+
+}
+
+.input:focus {
+
+  border-color:
+    var(--gold);
+
+  box-shadow:
+
+    0 0 0 3px
+    rgba(216,173,88,.1);
+
+}
+
+.code-team-input {
+
+  text-transform:
+    uppercase;
+
+  text-align:center;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:26px;
+
+  font-weight:bold;
+
+  letter-spacing:5px;
+
+}
+
+.note {
+
+  color:
+    var(--muted);
+
+  text-align:center;
+
+  font-size:14px;
+
+  line-height:1.55;
+
+}
+
+.error-box,
+.success-box {
+
+  display:none;
+
+  margin-top:15px;
+
+  padding:13px;
+
+  border-radius:7px;
+
+  text-align:center;
+
+  line-height:1.4;
+
+}
+
+.error-box {
+
+  color:#ffbaba;
+
+  border:
+    1px solid
+    rgba(198,78,78,.35);
+
+  background:
+    rgba(125,30,30,.25);
+
+}
+
+.success-box {
+
+  color:#ccebc4;
+
+  border:
+    1px solid
+    rgba(134,189,120,.35);
+
+  background:
+    rgba(50,95,43,.25);
+
+}
+
+.connection {
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:7px;
+
+  margin:
+    0 auto 18px;
+
+  color:#8d806c;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:10px;
+
+  font-weight:bold;
+
+  letter-spacing:1.2px;
+
+}
+
+.connection-dot {
+
+  width:8px;
+
+  height:8px;
+
+  border-radius:50%;
+
+  background:#806f5b;
+
+}
+
+.connection.online {
+
+  color:#8db983;
+
+}
+
+.connection.online
+.connection-dot {
+
+  background:#71b766;
+
+  box-shadow:
+    0 0 10px
+    rgba(113,183,102,.7);
+
+}
+
+.connection.offline {
+
+  color:#d17777;
+
+}
+
+.connection.offline
+.connection-dot {
+
+  background:#c34d4d;
+
+}
+
+.connection.checking {
+
+  color:#d8ad58;
+
+}
+
+.connection.checking
+.connection-dot {
+
+  background:#d8ad58;
+
+  animation:
+    pulse 1s infinite;
+
+}
+
+@keyframes pulse {
+
+  0% {
+    opacity:.3;
+  }
+
+  50% {
+    opacity:1;
+  }
+
+  100% {
+    opacity:.3;
+  }
+
+}
+
+
+/* ============================================================
+   JUEGO
+============================================================ */
+
+.game-container {
+
+  width:100%;
+
+  max-width:900px;
+
+  margin:auto;
+
+}
+
+.game-header {
+
+  display:grid;
+
+  grid-template-columns:
+    1fr auto;
+
+  gap:12px;
+
+  align-items:center;
+
+  margin-bottom:13px;
+
+}
+
+.team-title {
+
+  color:
+    var(--gold-light);
+
+  font-size:21px;
+
+  font-weight:bold;
+
+}
+
+.team-code {
+
+  margin-top:3px;
+
+  color:
+    var(--muted);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:11px;
+
+  letter-spacing:1px;
+
+}
+
+.lives {
+
+  white-space:nowrap;
+
+  font-size:24px;
+
+}
+
+.heart.off {
+
+  opacity:.17;
+
+  filter:
+    grayscale(1);
+
+}
+
+.status-grid {
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:9px;
+
+  margin-bottom:17px;
+
+}
+
+.status-box {
+
+  padding:12px;
+
+  text-align:center;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:8px;
+
+  background:
+    rgba(24,16,8,.85);
+
+}
+
+.status-box span {
+
+  display:block;
+
+  margin-bottom:4px;
+
+  color:
+    var(--muted);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:9px;
+
+  letter-spacing:1.3px;
+
+  text-transform:
+    uppercase;
+
+}
+
+.status-box strong {
+
+  color:
+    var(--gold-light);
+
+  font-size:17px;
+
+}
+
+.map-card {
+
+  position:relative;
+
+  overflow:hidden;
+
+  padding:
+    29px 18px 25px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:14px;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(183,123,42,.12),
+      transparent 25%
+    ),
+
+    linear-gradient(
+      145deg,
+      #281a0c,
+      #0c0805
+    );
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+.map-title {
+
+  text-align:center;
+
+  color:
+    var(--gold-light);
+
+  font-size:27px;
+
+  margin-bottom:5px;
+
+}
+
+.map-subtitle {
+
+  max-width:590px;
+
+  margin:
+    0 auto 25px;
+
+  color:
+    var(--muted);
+
+  text-align:center;
+
+  line-height:1.5;
+
+  font-size:14px;
+
+}
+
+.central-manuscript {
+
+  width:135px;
+
+  height:100px;
+
+  margin:
+    0 auto 27px;
+
+  display:grid;
+
+  place-items:center;
+
+  position:relative;
+
+  border:
+    1px solid #785420;
+
+  border-radius:8px;
+
+  color:#c79c55;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #463019,
+      #1d130a
+    );
+
+  box-shadow:
+    0 10px 30px #000;
+
+  font-size:45px;
+
+}
+
+.central-manuscript::after {
+
+  content:
+    attr(data-progress);
+
+  position:absolute;
+
+  bottom:-12px;
+
+  padding:
+    4px 9px;
+
+  border-radius:20px;
+
+  color:#201507;
+
+  background:
+    var(--gold);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:10px;
+
+  font-weight:bold;
+
+}
+
+.seals-grid {
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:12px;
+
+  max-width:680px;
+
+  margin:auto;
+
+}
+
+.station-seal {
+
+  min-height:132px;
+
+  padding:
+    13px 8px;
+
+  cursor:pointer;
+
+  border:
+    1px solid
+    rgba(216,173,88,.26);
+
+  border-radius:10px;
+
+  color:
+    var(--text);
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(216,173,88,.06),
+      transparent 50%
+    ),
+
+    rgba(0,0,0,.28);
+
+  transition:
+    .2s ease;
+
+}
+
+.station-seal:hover {
+
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(216,173,88,.6);
+
+}
+
+.station-seal.done {
+
+  border-color:
+    rgba(116,176,99,.55);
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(111,170,96,.17),
+      transparent 55%
+    ),
+
+    rgba(28,62,25,.24);
+
+}
+
+.seal-icon {
+
+  display:block;
+
+  margin-bottom:7px;
+
+  font-size:31px;
+
+}
+
+.seal-number {
+
+  display:block;
+
+  color:
+    var(--gold);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:10px;
+
+  font-weight:bold;
+
+  letter-spacing:2px;
+
+}
+
+.seal-name {
+
+  display:block;
+
+  margin-top:6px;
+
+  font-size:13px;
+
+  line-height:1.25;
+
+}
+
+.map-footer {
+
+  display:flex;
+
+  justify-content:center;
+
+  gap:9px;
+
+  flex-wrap:wrap;
+
+  margin-top:18px;
+
+}
+
+
+/* ============================================================
+   ESTACIÓN
+============================================================ */
+
+.station-header {
+
+  text-align:center;
+
+  margin-bottom:20px;
+
+}
+
+.station-big-icon {
+
+  font-size:52px;
+
+  margin-bottom:9px;
+
+}
+
+.station-number {
+
+  color:
+    var(--gold);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:11px;
+
+  font-weight:bold;
+
+  letter-spacing:4px;
+
+}
+
+.station-description {
+
+  max-width:580px;
+
+  margin:
+    0 auto 22px;
+
+  color:#d7ccb9;
+
+  text-align:center;
+
+  line-height:1.6;
+
+}
+
+.code-input {
+
+  width:100%;
+
+  padding:
+    18px 12px;
+
+  outline:none;
+
+  border:
+    1px solid
+    rgba(216,173,88,.42);
+
+  border-radius:8px;
+
+  color:#fff0c9;
+
+  background:#070503;
+
+  text-align:center;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:
+    clamp(20px,6vw,31px);
+
+  font-weight:bold;
+
+  letter-spacing:3px;
+
+}
+
+.code-input:focus {
+
+  border-color:
+    var(--gold-light);
+
+  box-shadow:
+
+    0 0 25px
+    rgba(216,173,88,.1);
+
+}
+
+.station-actions {
+
+  display:grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap:10px;
+
+  margin-top:12px;
+
+}
+
+.hint-box {
+
+  display:none;
+
+  margin-top:16px;
+
+  padding:17px;
+
+  border-left:
+    3px solid var(--gold);
+
+  border-top:
+    1px solid rgba(216,173,88,.16);
+
+  border-right:
+    1px solid rgba(216,173,88,.16);
+
+  border-bottom:
+    1px solid rgba(216,173,88,.16);
+
+  border-radius:
+    0 7px 7px 0;
+
+  color:#eadfc9;
+
+  background:
+    rgba(216,173,88,.09);
+
+  line-height:1.55;
+
+  white-space:
+    pre-line;
+
+}
+
+.hint-box.show {
+
+  display:block;
+
+}
+
+.hint-title {
+
+  display:block;
+
+  margin-bottom:8px;
+
+  color:
+    var(--gold-light);
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:10px;
+
+  font-weight:900;
+
+  letter-spacing:2px;
+
+}
+
+.message {
+
+  min-height:24px;
+
+  margin-top:14px;
+
+  text-align:center;
+
+  font-weight:bold;
+
+  line-height:1.45;
+
+}
+
+.message.error {
+
+  color:#e99090;
+
+}
+
+.message.success {
+
+  color:#a8d69c;
+
+}
+
+
+/* ============================================================
+   GUARDIÁN
+============================================================ */
+
+.guardian-card {
+
+  text-align:center;
+
+  border-color:
+    rgba(171,54,54,.4);
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(154,38,38,.15),
+      transparent 40%
+    ),
+
+    linear-gradient(
+      145deg,
+      #25100d,
+      #090504
+    );
+
+}
+
+.guardian-icon {
+
+  font-size:70px;
+
+  margin-bottom:13px;
+
+  filter:
+    grayscale(.3);
+
+}
+
+.guardian-warning {
+
+  color:#d98b8b;
+
+  font-family:
+    Arial,
+    sans-serif;
+
+  font-size:11px;
+
+  font-weight:bold;
+
+  letter-spacing:3px;
+
+}
+
+
+/* ============================================================
+   MODAL
+============================================================ */
+
+.modal {
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:2000;
+
+  display:none;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:18px;
+
+  background:
+    rgba(0,0,0,.88);
+
+  backdrop-filter:
+    blur(6px);
+
+}
+
+.modal.show {
+
+  display:flex;
+
+}
+
+.modal-card {
+
+  width:100%;
+
+  max-width:510px;
+
+  padding:
+    31px 23px;
+
+  text-align:center;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:13px;
+
+  background:
+
+    linear-gradient(
+      145deg,
+      #301f0f,
+      #0f0a06
+    );
+
+  box-shadow:
+    0 30px 100px #000;
+
+  animation:
+    pop .35s ease;
+
+}
+
+@keyframes pop {
+
+  from {
+
+    opacity:0;
+
+    transform:
+      scale(.9);
+
+  }
+
+  to {
+
+    opacity:1;
+
+    transform:
+      scale(1);
+
+  }
+
+}
+
+.modal-icon {
+
+  font-size:63px;
+
+  margin-bottom:13px;
+
+}
+
+.modal-card h2 {
+
+  font-size:31px;
+
+}
+
+.modal-card p {
+
+  color:#d7ccb8;
+
+  line-height:1.55;
+
+}
+
+.team-code-display {
+
+  margin:
+    18px 0;
+
+  padding:
+    18px 10px;
+
+  border:
+    1px dashed var(--gold);
+
+  border-radius:9px;
+
+  color:
+    var(--gold-light);
+
+  background:
+    rgba(0,0,0,.3);
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:35px;
+
+  font-weight:bold;
+
+  letter-spacing:7px;
+
+}
+
+
+/* ============================================================
+   FINAL
+============================================================ */
+
+.final-card {
+
+  text-align:center;
+
+}
+
+.final-icon {
+
+  font-size:75px;
+
+  margin-bottom:15px;
+
+}
+
+.verse {
+
+  max-width:570px;
+
+  margin:
+    24px auto;
+
+  padding:19px;
+
+  color:#dfcfb0;
+
+  border-top:
+    1px solid var(--border);
+
+  border-bottom:
+    1px solid var(--border);
+
+  font-style:italic;
+
+  line-height:1.65;
+
+}
+
+.hidden {
+
+  display:none !important;
+
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media
+(max-width:600px) {
+
+  .screen {
+
+    padding:
+      13px 11px 30px;
+
+  }
+
+  .manuscript,
+  .card {
+
+    padding-left:17px;
+
+    padding-right:17px;
+
+  }
+
+  .seals-grid {
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+  .station-actions {
+
+    grid-template-columns:
+      1fr;
+
+  }
+
+  .station-seal {
+
+    min-height:125px;
+
+  }
+
+  .team-code-display {
+
+    font-size:29px;
+
+    letter-spacing:5px;
+
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-<!-- =========================================================
+
+<!-- ============================================================
      PORTADA
-========================================================== -->
+============================================================ -->
 
-<section id="screenIntro" class="screen active">
+<section
+  id="screenIntro"
+  class="screen active"
+>
 
-  <div class="container">
+<div class="container">
 
-    <div class="manuscript">
+<div class="manuscript">
 
-      <div class="eyebrow">
-        RISE PRESENTA
-      </div>
+<div class="eyebrow">
+RISE PRESENTA
+</div>
 
-      <h1>
-        El Enigma del<br>
-        Manuscrito Perdido
-      </h1>
+<h1>
+EL ENIGMA DEL<br>
+MANUSCRITO<br>
+PERDIDO
+</h1>
 
-      <div class="divider">
-        ✦
-      </div>
+<div class="divider">
+✦
+</div>
 
-      <p class="intro">
-        Un antiguo manuscrito con las promesas de Dios para
-        <strong>RISE</strong>
-        ha sido cerrado por un enemigo silencioso:
-        <strong>la duda y la apatía.</strong>
-      </p>
+<p class="intro">
 
-      <p class="intro">
-        Seis sellos protegen su mensaje.
-        Solo quienes trabajen juntos podrán recuperarlo.
-      </p>
+Un antiguo manuscrito con las promesas de Dios
+para <strong>RISE</strong> ha sido cerrado por
+un enemigo silencioso:
+<strong>la duda y la apatía.</strong>
 
-      <div class="seal-logo">
-        R
-      </div>
+</p>
 
-      <div
-        id="connectionIntro"
-        class="connection checking"
-      >
+<p class="intro">
 
-        <span class="connection-dot"></span>
+Seis sellos protegen su mensaje.
+Solo quienes trabajen juntos podrán recuperarlo.
 
-        <span>
-          BUSCANDO EL MANUSCRITO...
-        </span>
+</p>
 
-      </div>
+<div class="seal-logo">
+R
+</div>
 
-      <div class="button-stack">
+<div
+  id="connectionIntro"
+  class="connection checking"
+>
 
-        <button
-          class="btn"
-          onclick="openCreateTeam()"
-        >
-          Crear equipo
-        </button>
+<span class="connection-dot"></span>
 
-        <button
-          class="btn secondary"
-          onclick="openJoinTeam()"
-        >
-          Unirme a un equipo
-        </button>
+<span>
+BUSCANDO EL MANUSCRITO...
+</span>
 
-      </div>
+</div>
 
-    </div>
 
-  </div>
+<div class="button-stack">
+
+<button
+  class="btn"
+  onclick="openCreateTeam()"
+>
+CREAR EQUIPO
+</button>
+
+<button
+  class="btn secondary"
+  onclick="openJoinTeam()"
+>
+UNIRME A UN EQUIPO
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =========================================================
+<!-- ============================================================
      CREAR EQUIPO
-========================================================== -->
+============================================================ -->
 
-<section id="screenCreate" class="screen">
+<section
+  id="screenCreate"
+  class="screen"
+>
 
-  <div class="container">
+<div class="container">
 
-    <div class="card">
+<div class="card">
 
-      <div class="eyebrow">
-        NUEVA EXPEDICIÓN
-      </div>
+<div class="eyebrow">
+NUEVA EXPEDICIÓN
+</div>
 
-      <h2>
-        Forma tu equipo
-      </h2>
+<h2>
+Forma tu equipo
+</h2>
 
-      <p class="note">
-        Un integrante crea el equipo.
-        Los demás podrán entrar utilizando
-        el código que recibirán.
-      </p>
+<p class="note">
 
-      <div class="field">
+Un integrante crea el equipo.
+Los demás podrán entrar utilizando
+el código que recibirán.
 
-        <label>
-          Nombre del equipo
-        </label>
-
-        <input
-          id="createTeamName"
-          class="input"
-          type="text"
-          maxlength="30"
-          placeholder="Ej. Los Valientes"
-          autocomplete="off"
-        >
-
-      </div>
-
-      <button
-        id="createTeamButton"
-        class="btn"
-        onclick="createTeam()"
-      >
-        Crear equipo
-      </button>
-
-      <div
-        id="createError"
-        class="error-box"
-      ></div>
-
-      <br>
-
-      <button
-        class="btn secondary"
-        onclick="showScreen('screenIntro')"
-      >
-        Volver
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
+</p>
 
 
-<!-- =========================================================
-     UNIRSE A EQUIPO
-========================================================== -->
+<div class="field">
 
-<section id="screenJoin" class="screen">
+<label>
+Nombre del equipo
+</label>
 
-  <div class="container">
+<input
+  id="createTeamName"
+  class="input"
+  type="text"
+  maxlength="30"
+  placeholder="Ej. Los Valientes"
+  autocomplete="off"
+>
 
-    <div class="card">
+</div>
 
-      <div class="eyebrow">
-        UNIRSE A LA MISIÓN
-      </div>
 
-      <h2>
-        Código del equipo
-      </h2>
+<button
+  id="createTeamButton"
+  class="btn"
+  onclick="createTeam()"
+>
+CREAR EQUIPO
+</button>
 
-      <p class="note">
-        Introduce el código que aparece
-        en el celular del integrante que creó el equipo.
-      </p>
 
-      <div class="field">
+<div
+  id="createError"
+  class="error-box"
+></div>
 
-        <input
-          id="joinTeamCode"
-          class="input code-team-input"
-          type="text"
-          maxlength="6"
-          placeholder="ABC123"
-          autocomplete="off"
-        >
+<br>
 
-      </div>
+<button
+  class="btn secondary"
+  onclick="showScreen('screenIntro')"
+>
+VOLVER
+</button>
 
-      <button
-        id="joinButton"
-        class="btn"
-        onclick="joinTeam()"
-      >
-        Entrar al equipo
-      </button>
+</div>
 
-      <div
-        id="joinError"
-        class="error-box"
-      ></div>
-
-      <br>
-
-      <button
-        class="btn secondary"
-        onclick="showScreen('screenIntro')"
-      >
-        Volver
-      </button>
-
-    </div>
-
-  </div>
+</div>
 
 </section>
 
 
-<!-- =========================================================
+<!-- ============================================================
+     UNIRSE
+============================================================ -->
+
+<section
+  id="screenJoin"
+  class="screen"
+>
+
+<div class="container">
+
+<div class="card">
+
+<div class="eyebrow">
+UNIRSE A LA MISIÓN
+</div>
+
+<h2>
+Código del equipo
+</h2>
+
+<p class="note">
+
+Introduce el código que aparece
+en el celular del integrante que creó el equipo.
+
+</p>
+
+
+<div class="field">
+
+<input
+  id="joinTeamCode"
+  class="input code-team-input"
+  type="text"
+  maxlength="6"
+  placeholder="ABC123"
+  autocomplete="off"
+>
+
+</div>
+
+
+<button
+  id="joinButton"
+  class="btn"
+  onclick="joinTeam()"
+>
+ENTRAR AL EQUIPO
+</button>
+
+
+<div
+  id="joinError"
+  class="error-box"
+></div>
+
+<br>
+
+
+<button
+  class="btn secondary"
+  onclick="showScreen('screenIntro')"
+>
+VOLVER
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ============================================================
      MAPA
-========================================================== -->
+============================================================ -->
 
-<section id="screenMap" class="screen">
+<section
+  id="screenMap"
+  class="screen"
+>
 
-  <div class="game-container">
-
-    <div class="game-header">
-
-      <div>
-
-        <div
-          id="gameTeamName"
-          class="team-title"
-        >
-          Equipo
-        </div>
-
-        <div
-          id="gameTeamCode"
-          class="team-code"
-        >
-          CÓDIGO ------
-        </div>
-
-      </div>
-
-      <div
-        id="livesDisplay"
-        class="lives"
-      >
-        ❤️ ❤️ ❤️
-      </div>
-
-    </div>
+<div class="game-container">
 
 
-    <div
-      id="connectionGame"
-      class="connection online"
-    >
+<div class="game-header">
 
-      <span class="connection-dot"></span>
+<div>
 
-      <span>
-        CONECTADO AL MANUSCRITO
-      </span>
+<div
+  id="gameTeamName"
+  class="team-title"
+>
+Equipo
+</div>
 
-    </div>
+<div
+  id="gameTeamCode"
+  class="team-code"
+>
+CÓDIGO ------
+</div>
 
-
-    <div class="status-grid">
-
-      <div class="status-box">
-
-        <span>
-          Fragmentos recuperados
-        </span>
-
-        <strong id="progressText">
-          0 / 6
-        </strong>
-
-      </div>
+</div>
 
 
-      <div class="status-box">
+<div
+  id="livesDisplay"
+  class="lives"
+>
+❤️ ❤️ ❤️
+</div>
 
-        <span>
-          Llamas de fe
-        </span>
-
-        <strong id="livesText">
-          3 / 3
-        </strong>
-
-      </div>
-
-    </div>
+</div>
 
 
-    <div class="map-card">
+<div
+  id="connectionGame"
+  class="connection online"
+>
 
-      <div class="eyebrow">
-        MAPA DEL MANUSCRITO
-      </div>
+<span class="connection-dot"></span>
 
-      <div class="map-title">
-        Los Seis Sellos
-      </div>
+<span>
+CONECTADO AL MANUSCRITO
+</span>
 
-      <p class="map-subtitle">
-        No existe un orden obligatorio.
-        Diríjanse a la estación indicada por sus líderes,
-        superen el reto y recuperen la palabra secreta.
-      </p>
+</div>
 
-      <div
-        id="centralManuscript"
-        class="central-manuscript"
-        data-progress="0 / 6"
-      >
-        📜
-      </div>
 
-      <div
-        id="sealsGrid"
-        class="seals-grid"
-      ></div>
+<div class="status-grid">
 
-      <div class="map-footer">
+<div class="status-box">
 
-        <button
-          id="refreshButton"
-          class="btn secondary small"
-          onclick="manualRefresh()"
-        >
-          ↻ Actualizar
-        </button>
+<span>
+Fragmentos recuperados
+</span>
 
-        <button
-          class="btn secondary small"
-          onclick="leaveDevice()"
-        >
-          Salir de este equipo
-        </button>
+<strong id="progressText">
+0 / 6
+</strong>
 
-      </div>
+</div>
 
-    </div>
 
-  </div>
+<div class="status-box">
+
+<span>
+Llamas de Fe
+</span>
+
+<strong id="livesText">
+3 / 3
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="map-card">
+
+<div class="eyebrow">
+MAPA DEL MANUSCRITO
+</div>
+
+<div class="map-title">
+Los Seis Sellos
+</div>
+
+<p class="map-subtitle">
+
+No existe un orden obligatorio.
+Diríjanse a la estación indicada por sus líderes,
+superen el reto y recuperen la palabra secreta.
+
+</p>
+
+
+<div
+  id="centralManuscript"
+  class="central-manuscript"
+  data-progress="0 / 6"
+>
+📜
+</div>
+
+
+<div
+  id="sealsGrid"
+  class="seals-grid"
+></div>
+
+
+<div class="map-footer">
+
+<button
+  id="refreshButton"
+  class="btn secondary small"
+  onclick="manualRefresh()"
+>
+↻ ACTUALIZAR
+</button>
+
+
+<button
+  class="btn secondary small"
+  onclick="leaveDevice()"
+>
+SALIR DE ESTE EQUIPO
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =========================================================
+<!-- ============================================================
      ESTACIÓN
-========================================================== -->
+============================================================ -->
 
-<section id="screenStation" class="screen">
+<section
+  id="screenStation"
+  class="screen"
+>
 
-  <div class="container">
+<div class="container">
 
-    <div class="card">
-
-      <div class="station-header">
-
-        <div
-          id="stationBigIcon"
-          class="station-big-icon"
-        >
-          🔒
-        </div>
-
-        <div
-          id="stationNumber"
-          class="station-number"
-        >
-          SELLO I
-        </div>
-
-        <h2 id="stationTitle">
-          El Primer Sello
-        </h2>
-
-      </div>
+<div class="card">
 
 
-      <p
-        id="stationDescription"
-        class="station-description"
-      >
-        Superen el desafío físico de esta estación.
-      </p>
+<div class="station-header">
+
+<div
+  id="stationBigIcon"
+  class="station-big-icon"
+>
+🔒
+</div>
+
+<div
+  id="stationNumber"
+  class="station-number"
+>
+SELLO I
+</div>
+
+<h2 id="stationTitle">
+El Primer Sello
+</h2>
+
+</div>
 
 
-      <div id="stationLockedContent">
-
-        <p class="note">
-          Cuando el líder de la estación les entregue
-          la <strong>palabra secreta</strong>,
-          utilicen la hoja impresa para convertir
-          cada letra en un número.
-        </p>
+<p
+  id="stationDescription"
+  class="station-description"
+>
+Superen el desafío físico de esta estación.
+</p>
 
 
-        <div class="field">
+<div id="stationLockedContent">
 
-          <input
-            id="stationCodeInput"
-            class="code-input"
-            type="text"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            placeholder="CÓDIGO"
-            autocomplete="off"
-          >
+<p class="note">
 
-        </div>
+Cuando el líder de la estación les entregue
+la <strong>palabra secreta</strong>,
+utilicen la hoja impresa para convertir
+cada letra en un número.
+
+</p>
 
 
-        <div class="station-actions">
+<div class="field">
 
-          <button
-            id="validateButton"
-            class="btn"
-            onclick="validateStationCode()"
-          >
-            Romper el sello
-          </button>
+<input
+  id="stationCodeInput"
+  class="code-input"
+  type="text"
+  inputmode="numeric"
+  pattern="[0-9]*"
+  placeholder="CÓDIGO"
+  autocomplete="off"
+>
 
-          <button
-            id="hintButton"
-            class="btn secondary"
-            onclick="useHint()"
-          >
-            Solicitar pista · ❤️
-          </button>
-
-        </div>
+</div>
 
 
-        <div
-          id="hintBox"
-          class="hint-box"
-        ></div>
+<div class="station-actions">
 
-        <div
-          id="stationMessage"
-          class="message"
-        ></div>
-
-      </div>
+<button
+  id="validateButton"
+  class="btn"
+  onclick="validateStationCode()"
+>
+ROMPER EL SELLO
+</button>
 
 
-      <div
-        id="stationCompletedContent"
-        class="hidden"
-      >
+<button
+  id="hintButton"
+  class="btn secondary"
+  onclick="useHint()"
+>
+SOLICITAR PISTA · ❤️
+</button>
 
-        <div
-          class="success-box"
-          style="display:block;"
-        >
-          ✨ Este fragmento ya fue recuperado
-          por tu equipo.
-        </div>
-
-      </div>
+</div>
 
 
-      <br>
+<div
+  id="hintBox"
+  class="hint-box"
+></div>
 
-      <button
-        class="btn secondary"
-        onclick="backToMap()"
-      >
-        Volver al mapa
-      </button>
 
-    </div>
+<div
+  id="stationMessage"
+  class="message"
+></div>
 
-  </div>
+</div>
+
+
+<div
+  id="stationCompletedContent"
+  class="hidden"
+>
+
+<div
+  class="success-box"
+  style="display:block;"
+>
+
+✨ Este fragmento ya fue recuperado
+por tu equipo.
+
+</div>
+
+</div>
+
+
+<br>
+
+
+<button
+  class="btn secondary"
+  onclick="backToMap()"
+>
+VOLVER AL MAPA
+</button>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =========================================================
+<!-- ============================================================
      GUARDIÁN
-========================================================== -->
+============================================================ -->
 
-<section id="screenGuardian" class="screen">
+<section
+  id="screenGuardian"
+  class="screen"
+>
 
-  <div class="container">
+<div class="container">
 
-    <div class="card guardian-card">
-
-      <div class="guardian-warning">
-        LAS LLAMAS SE HAN APAGADO
-      </div>
-
-      <div class="guardian-icon">
-        🕯️
-      </div>
-
-      <h2>
-        Busquen al Guardián
-      </h2>
-
-      <p class="intro">
-        La duda ha debilitado a su equipo.
-        Ya no pueden intentar romper más sellos.
-      </p>
-
-      <p class="intro">
-        Pero la misión aún no ha terminado.
-      </p>
-
-      <div class="divider">
-        ✦
-      </div>
-
-      <p class="intro">
-        Busquen físicamente a uno de los
-        <strong>Guardianes del Manuscrito</strong>.
-        Superen el desafío que les indique
-        y recibirán un código para restaurar
-        una Llama de Fe.
-      </p>
+<div class="card guardian-card">
 
 
-      <div class="field">
-
-        <input
-          id="guardianCodeInput"
-          class="input code-team-input"
-          type="text"
-          maxlength="20"
-          placeholder="CÓDIGO"
-          autocomplete="off"
-        >
-
-      </div>
+<div class="guardian-warning">
+LAS LLAMAS SE HAN APAGADO
+</div>
 
 
-      <button
-        id="guardianButton"
-        class="btn"
-        onclick="redeemGuardianCode()"
-      >
-        Restaurar la llama
-      </button>
+<div class="guardian-icon">
+🕯️
+</div>
 
 
-      <div
-        id="guardianMessage"
-        class="message"
-      ></div>
+<h2>
+Busquen al Guardián
+</h2>
 
-    </div>
 
-  </div>
+<p class="intro">
+
+La duda ha debilitado a su equipo.
+Ya no pueden intentar romper más sellos.
+
+</p>
+
+
+<p class="intro">
+
+Pero la misión aún no ha terminado.
+
+</p>
+
+
+<div class="divider">
+✦
+</div>
+
+
+<p class="intro">
+
+Busquen físicamente a uno de los
+<strong>Guardianes del Manuscrito</strong>.
+
+Superen el desafío que les indique
+y recibirán un código para restaurar
+una Llama de Fe.
+
+</p>
+
+
+<div class="field">
+
+<input
+  id="guardianCodeInput"
+  class="input code-team-input"
+  type="text"
+  maxlength="20"
+  placeholder="CÓDIGO"
+  autocomplete="off"
+>
+
+</div>
+
+
+<button
+  id="guardianButton"
+  class="btn"
+  onclick="redeemGuardianCode()"
+>
+RESTAURAR LA LLAMA
+</button>
+
+
+<div
+  id="guardianMessage"
+  class="message"
+></div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =========================================================
+<!-- ============================================================
      FINAL
-========================================================== -->
+============================================================ -->
 
-<section id="screenFinal" class="screen">
+<section
+  id="screenFinal"
+  class="screen"
+>
 
-  <div class="container">
+<div class="container">
 
-    <div class="manuscript final-card">
+<div class="manuscript final-card">
 
-      <div class="final-icon">
-        📜
-      </div>
 
-      <div class="eyebrow">
-        LOS SEIS SELLOS HAN SIDO ROTOS
-      </div>
+<div class="final-icon">
+📜
+</div>
 
-      <h1>
-        El Manuscrito<br>
-        ha sido recuperado
-      </h1>
 
-      <div class="divider">
-        ✦
-      </div>
+<div class="eyebrow">
+LOS SEIS SELLOS HAN SIDO ROTOS
+</div>
 
-      <p class="intro">
-        <strong id="finalTeamName"></strong>,
-        superaron los seis desafíos.
-      </p>
 
-      <p class="intro">
-        Trabajaron juntos, perseveraron
-        y recuperaron cada fragmento perdido.
-      </p>
+<h1>
+EL MANUSCRITO<br>
+HA SIDO RECUPERADO
+</h1>
 
-      <div class="verse">
-        “Me buscarán y me encontrarán,
-        cuando me busquen de todo corazón.”
-        <br><br>
-        <strong>
-          Jeremías 29:13
-        </strong>
-      </div>
 
-      <p class="intro">
-        Pero el verdadero mensaje del manuscrito
-        aún está por ser revelado...
-      </p>
+<div class="divider">
+✦
+</div>
 
-      <div class="seal-logo">
-        ✦
-      </div>
 
-    </div>
+<p class="intro">
 
-  </div>
+<strong id="finalTeamName"></strong>,
+superaron los seis desafíos.
+
+</p>
+
+
+<p class="intro">
+
+Trabajaron juntos, perseveraron
+y recuperaron cada fragmento perdido.
+
+</p>
+
+
+<div class="verse">
+
+“Me buscarán y me encontrarán,
+cuando me busquen de todo corazón.”
+
+<br><br>
+
+<strong>
+Jeremías 29:13
+</strong>
+
+</div>
+
+
+<p class="intro">
+
+Pero el verdadero mensaje del manuscrito
+aún está por ser revelado...
+
+</p>
+
+
+<div class="seal-logo">
+✦
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<!-- =========================================================
+<!-- ============================================================
      MODAL EQUIPO CREADO
-========================================================== -->
+============================================================ -->
 
 <div
   id="teamCreatedModal"
   class="modal"
 >
 
-  <div class="modal-card">
+<div class="modal-card">
 
-    <div class="modal-icon">
-      🔑
-    </div>
 
-    <div class="eyebrow">
-      EQUIPO CREADO
-    </div>
+<div class="modal-icon">
+🔑
+</div>
 
-    <h2 id="createdTeamName">
-      Los Valientes
-    </h2>
 
-    <p>
-      Este es el código secreto de su equipo.
-      Los demás integrantes pueden utilizarlo
-      para entrar desde otro celular.
-    </p>
+<div class="eyebrow">
+EQUIPO CREADO
+</div>
 
-    <div
-      id="createdTeamCode"
-      class="team-code-display"
-    >
-      ABC123
-    </div>
 
-    <p class="note">
-      Guárdenlo.
-      Todos los celulares que utilicen este código
-      compartirán las mismas vidas
-      y el mismo progreso.
-    </p>
+<h2 id="createdTeamName">
+Los Valientes
+</h2>
 
-    <button
-      class="btn"
-      onclick="enterCreatedTeam()"
-    >
-      Entrar a la misión
-    </button>
 
-  </div>
+<p>
+
+Este es el código secreto de su equipo.
+Los demás integrantes pueden utilizarlo
+para entrar desde otro celular.
+
+</p>
+
+
+<div
+  id="createdTeamCode"
+  class="team-code-display"
+>
+ABC123
+</div>
+
+
+<p class="note">
+
+Guárdenlo.
+
+Todos los celulares que utilicen este código
+compartirán las mismas vidas
+y el mismo progreso.
+
+</p>
+
+
+<button
+  class="btn"
+  onclick="enterCreatedTeam()"
+>
+ENTRAR A LA MISIÓN
+</button>
+
+</div>
 
 </div>
 
 
-<!-- =========================================================
-     MODAL SELLO ABIERTO
-========================================================== -->
+<!-- ============================================================
+     MODAL SELLO
+============================================================ -->
 
 <div
   id="sealOpenedModal"
   class="modal"
 >
 
-  <div class="modal-card">
+<div class="modal-card">
 
-    <div class="modal-icon">
-      🔓
-    </div>
 
-    <div class="eyebrow">
-      EL SELLO HA CEDIDO
-    </div>
+<div class="modal-icon">
+🔓
+</div>
 
-    <h2>
-      Fragmento recuperado
-    </h2>
 
-    <p id="sealOpenedText">
-      Una nueva parte del manuscrito
-      ha sido recuperada.
-    </p>
+<div class="eyebrow">
+EL SELLO HA CEDIDO
+</div>
 
-    <button
-      class="btn"
-      onclick="closeSealModal()"
-    >
-      Regresar al manuscrito
-    </button>
 
-  </div>
+<h2>
+Fragmento recuperado
+</h2>
+
+
+<p id="sealOpenedText">
+
+Una nueva parte del manuscrito
+ha sido recuperada.
+
+</p>
+
+
+<button
+  class="btn"
+  onclick="closeSealModal()"
+>
+REGRESAR AL MANUSCRITO
+</button>
+
+</div>
 
 </div>
 
@@ -1782,77 +2504,87 @@
 <script>
 
 /* ============================================================
-   CONFIGURACIÓN SUPABASE
-
-   Esta es una PUBLISHABLE KEY.
-   Los códigos secretos de las estaciones NO están aquí.
+   SUPABASE
 ============================================================ */
 
 const SUPABASE_URL =
   "https://wdbbubvmofmyhdtwcsry.supabase.co";
+
 
 const SUPABASE_KEY =
   "sb_publishable_NwnpwizxXFft8Ohh1F_n9Q_E5g-Yzla";
 
 
 /* ============================================================
-   ESTACIONES
+   ESTACIONES VISUALES
 
-   SOLO información visual.
-   NO contiene respuestas.
+   NO CONTIENEN RESPUESTAS.
+   NO CONTIENEN PISTAS.
 ============================================================ */
 
 const STATIONS = [
 
   {
-    number: 1,
-    roman: "I",
-    name: "El Primer Sello",
+    number:1,
+    roman:"I",
+
+    name:
+      "El Primer Sello",
 
     description:
       "Superen el desafío preparado en esta estación. Cuando lo consigan, el líder les entregará una palabra secreta."
   },
 
   {
-    number: 2,
-    roman: "II",
-    name: "El Sello del Espíritu",
+    number:2,
+    roman:"II",
+
+    name:
+      "El Sello del Espíritu",
 
     description:
       "Una nueva prueba protege este fragmento. Trabajen juntos hasta obtener la palabra que abre este sello."
   },
 
   {
-    number: 3,
-    roman: "III",
-    name: "El Sello de la Búsqueda",
+    number:3,
+    roman:"III",
+
+    name:
+      "El Sello de la Búsqueda",
 
     description:
       "El manuscrito no se entrega fácilmente. Superen el reto y recuperen la palabra oculta."
   },
 
   {
-    number: 4,
-    roman: "IV",
-    name: "El Sello de la Vida",
+    number:4,
+    roman:"IV",
+
+    name:
+      "El Sello de la Vida",
 
     description:
       "Este fragmento espera a quienes perseveran. Completen el desafío de la estación para recibir la palabra."
   },
 
   {
-    number: 5,
-    roman: "V",
-    name: "La Piedra Angular",
+    number:5,
+    roman:"V",
+
+    name:
+      "La Piedra Angular",
 
     description:
       "El quinto sello protege otra parte del manuscrito. La cooperación será indispensable."
   },
 
   {
-    number: 6,
-    roman: "VI",
-    name: "El Último Sello",
+    number:6,
+    roman:"VI",
+
+    name:
+      "El Último Sello",
 
     description:
       "Uno de los sellos más antiguos del manuscrito. Superen el desafío y descifren la palabra recibida."
@@ -1866,26 +2598,35 @@ const STATIONS = [
 ============================================================ */
 
 let currentTeamCode =
-  localStorage.getItem("rise_team_code") || "";
+  localStorage.getItem(
+    "rise_team_code"
+  ) || "";
 
-let teamState = null;
 
-let selectedStation = null;
+let teamState =
+  null;
 
-let syncTimer = null;
+
+let selectedStation =
+  null;
+
+
+let syncTimer =
+  null;
 
 
 /* ============================================================
-   PETICIONES A SUPABASE
-
-   IMPORTANTE:
-   La publishable key se envía mediante "apikey".
+   RPC
 ============================================================ */
 
-async function supabaseRPC(functionName, params = {}) {
+async function supabaseRPC(
+  functionName,
+  params = {}
+) {
 
   const controller =
     new AbortController();
+
 
   const timeout =
     setTimeout(
@@ -1893,17 +2634,26 @@ async function supabaseRPC(functionName, params = {}) {
       12000
     );
 
+
   try {
 
     const response =
       await fetch(
-        `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
-        {
-          method: "POST",
 
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": SUPABASE_KEY
+        `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
+
+        {
+
+          method:"POST",
+
+          headers:{
+
+            "Content-Type":
+              "application/json",
+
+            "apikey":
+              SUPABASE_KEY
+
           },
 
           body:
@@ -1911,7 +2661,9 @@ async function supabaseRPC(functionName, params = {}) {
 
           signal:
             controller.signal
+
         }
+
       );
 
 
@@ -1919,7 +2671,8 @@ async function supabaseRPC(functionName, params = {}) {
       await response.text();
 
 
-    let data = null;
+    let data =
+      null;
 
 
     if (rawText) {
@@ -1929,11 +2682,15 @@ async function supabaseRPC(functionName, params = {}) {
         data =
           JSON.parse(rawText);
 
-      } catch {
+      }
+
+      catch {
 
         data =
           rawText;
+
       }
+
     }
 
 
@@ -1954,20 +2711,28 @@ async function supabaseRPC(functionName, params = {}) {
           data.details ||
           message;
 
-      } else if (data) {
+      }
+
+      else if (data) {
 
         message =
           String(data);
+
       }
 
 
-      throw new Error(message);
+      throw new Error(
+        message
+      );
+
     }
 
 
     return data;
 
-  } catch (error) {
+  }
+
+  catch(error) {
 
     if (
       error.name ===
@@ -1977,15 +2742,22 @@ async function supabaseRPC(functionName, params = {}) {
       throw new Error(
         "La conexión con Supabase tardó demasiado."
       );
+
     }
 
 
     throw error;
 
-  } finally {
-
-    clearTimeout(timeout);
   }
+
+  finally {
+
+    clearTimeout(
+      timeout
+    );
+
+  }
+
 }
 
 
@@ -1996,39 +2768,53 @@ async function supabaseRPC(functionName, params = {}) {
 function showScreen(id) {
 
   document
-    .querySelectorAll(".screen")
+    .querySelectorAll(
+      ".screen"
+    )
     .forEach(
       screen => {
 
         screen
           .classList
-          .remove("active");
+          .remove(
+            "active"
+          );
+
       }
     );
 
 
   const target =
-    document.getElementById(id);
+    document.getElementById(
+      id
+    );
 
 
   if (target) {
 
     target
       .classList
-      .add("active");
+      .add(
+        "active"
+      );
+
   }
 
 
   window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+    top:0,
+    behavior:"smooth"
   });
+
 }
 
 
 function openCreateTeam() {
 
-  clearBox("createError");
+  clearBox(
+    "createError"
+  );
+
 
   showScreen(
     "screenCreate"
@@ -2047,12 +2833,16 @@ function openCreateTeam() {
     },
     200
   );
+
 }
 
 
 function openJoinTeam() {
 
-  clearBox("joinError");
+  clearBox(
+    "joinError"
+  );
+
 
   showScreen(
     "screenJoin"
@@ -2071,6 +2861,7 @@ function openJoinTeam() {
     },
     200
   );
+
 }
 
 
@@ -2104,6 +2895,7 @@ async function createTeam() {
     );
 
     return;
+
   }
 
 
@@ -2116,6 +2908,7 @@ async function createTeam() {
   button.disabled =
     true;
 
+
   button.textContent =
     "CREANDO EQUIPO...";
 
@@ -2124,10 +2917,13 @@ async function createTeam() {
 
     const result =
       await supabaseRPC(
+
         "crear_equipo",
+
         {
-          p_nombre: name
+          p_nombre:name
         }
+
       );
 
 
@@ -2141,6 +2937,7 @@ async function createTeam() {
           result?.error
         )
       );
+
     }
 
 
@@ -2175,7 +2972,9 @@ async function createTeam() {
         "teamCreatedModal"
       )
       .classList
-      .add("show");
+      .add(
+        "show"
+      );
 
 
     setConnectionState(
@@ -2183,11 +2982,11 @@ async function createTeam() {
       "CONECTADO AL MANUSCRITO"
     );
 
+  }
 
-  } catch (error) {
+  catch(error) {
 
     console.error(
-      "Error creando equipo:",
       error
     );
 
@@ -2198,21 +2997,19 @@ async function createTeam() {
       error.message
     );
 
+  }
 
-    setConnectionState(
-      false,
-      "ERROR DE CONEXIÓN"
-    );
-
-
-  } finally {
+  finally {
 
     button.disabled =
       false;
 
+
     button.textContent =
       "CREAR EQUIPO";
+
   }
+
 }
 
 
@@ -2223,15 +3020,18 @@ async function enterCreatedTeam() {
       "teamCreatedModal"
     )
     .classList
-    .remove("show");
+    .remove(
+      "show"
+    );
 
 
   await loadTeamAndEnter();
+
 }
 
 
 /* ============================================================
-   UNIRSE A EQUIPO
+   UNIRSE
 ============================================================ */
 
 async function joinTeam() {
@@ -2261,6 +3061,7 @@ async function joinTeam() {
     );
 
     return;
+
   }
 
 
@@ -2273,6 +3074,7 @@ async function joinTeam() {
   button.disabled =
     true;
 
+
   button.textContent =
     "BUSCANDO EQUIPO...";
 
@@ -2281,10 +3083,14 @@ async function joinTeam() {
 
     const result =
       await supabaseRPC(
+
         "obtener_equipo",
+
         {
-          p_codigo_equipo: code
+          p_codigo_equipo:
+            code
         }
+
       );
 
 
@@ -2298,6 +3104,7 @@ async function joinTeam() {
           result?.error
         )
       );
+
     }
 
 
@@ -2315,41 +3122,36 @@ async function joinTeam() {
       result;
 
 
-    setConnectionState(
-      true,
-      "CONECTADO AL MANUSCRITO"
-    );
-
-
     renderTeam();
+
 
     startSync();
 
+
     decideTeamScreen();
 
+  }
 
-  } catch (error) {
-
-    console.error(
-      "Error entrando al equipo:",
-      error
-    );
-
+  catch(error) {
 
     showError(
       "joinError",
       error.message
     );
 
+  }
 
-  } finally {
+  finally {
 
     button.disabled =
       false;
 
+
     button.textContent =
       "ENTRAR AL EQUIPO";
+
   }
+
 }
 
 
@@ -2366,6 +3168,7 @@ async function loadTeamAndEnter() {
     );
 
     return;
+
   }
 
 
@@ -2373,11 +3176,14 @@ async function loadTeamAndEnter() {
 
     const result =
       await supabaseRPC(
+
         "obtener_equipo",
+
         {
           p_codigo_equipo:
             currentTeamCode
         }
+
       );
 
 
@@ -2395,15 +3201,22 @@ async function loadTeamAndEnter() {
           "rise_team_code"
         );
 
-        currentTeamCode = "";
 
-        teamState = null;
+        currentTeamCode =
+          "";
+
+
+        teamState =
+          null;
+
 
         showScreen(
           "screenIntro"
         );
 
+
         return;
+
       }
 
 
@@ -2412,6 +3225,7 @@ async function loadTeamAndEnter() {
           result?.error
         )
       );
+
     }
 
 
@@ -2427,15 +3241,17 @@ async function loadTeamAndEnter() {
 
     renderTeam();
 
+
     startSync();
+
 
     decideTeamScreen();
 
+  }
 
-  } catch (error) {
+  catch(error) {
 
     console.error(
-      "Error cargando equipo:",
       error
     );
 
@@ -2449,12 +3265,14 @@ async function loadTeamAndEnter() {
     showScreen(
       "screenIntro"
     );
+
   }
+
 }
 
 
 /* ============================================================
-   SINCRONIZACIÓN ENTRE DISPOSITIVOS
+   SINCRONIZACIÓN
 ============================================================ */
 
 function startSync() {
@@ -2466,11 +3284,14 @@ function startSync() {
     setInterval(
       () => {
 
-        refreshTeam(false);
+        refreshTeam(
+          false
+        );
 
       },
       4000
     );
+
 }
 
 
@@ -2482,8 +3303,12 @@ function stopSync() {
       syncTimer
     );
 
-    syncTimer = null;
+
+    syncTimer =
+      null;
+
   }
+
 }
 
 
@@ -2500,11 +3325,14 @@ async function refreshTeam(
 
     const result =
       await supabaseRPC(
+
         "obtener_equipo",
+
         {
           p_codigo_equipo:
             currentTeamCode
         }
+
       );
 
 
@@ -2514,6 +3342,7 @@ async function refreshTeam(
     ) {
 
       return;
+
     }
 
 
@@ -2541,15 +3370,20 @@ async function refreshTeam(
 
 
       if (
-        !modal.classList.contains(
-          "show"
-        )
+        !modal
+          .classList
+          .contains(
+            "show"
+          )
       ) {
 
         showFinal();
+
       }
 
+
       return;
+
     }
 
 
@@ -2573,11 +3407,15 @@ async function refreshTeam(
         showScreen(
           "screenGuardian"
         );
+
       }
+
     }
 
 
-    if (showFeedback) {
+    if (
+      showFeedback
+    ) {
 
       const button =
         document.getElementById(
@@ -2600,14 +3438,16 @@ async function refreshTeam(
           },
           900
         );
+
       }
+
     }
 
+  }
 
-  } catch (error) {
+  catch(error) {
 
     console.error(
-      "Error sincronizando:",
       error
     );
 
@@ -2616,7 +3456,9 @@ async function refreshTeam(
       false,
       "SIN CONEXIÓN"
     );
+
   }
+
 }
 
 
@@ -2633,8 +3475,10 @@ async function manualRefresh() {
     button.disabled =
       true;
 
+
     button.textContent =
       "ACTUALIZANDO...";
+
   }
 
 
@@ -2654,12 +3498,14 @@ async function manualRefresh() {
       },
       1000
     );
+
   }
+
 }
 
 
 /* ============================================================
-   DECIDIR PANTALLA
+   PANTALLA SEGÚN ESTADO
 ============================================================ */
 
 function decideTeamScreen() {
@@ -2676,6 +3522,7 @@ function decideTeamScreen() {
     showFinal();
 
     return;
+
   }
 
 
@@ -2689,17 +3536,19 @@ function decideTeamScreen() {
     );
 
     return;
+
   }
 
 
   showScreen(
     "screenMap"
   );
+
 }
 
 
 /* ============================================================
-   RENDER EQUIPO
+   RENDER
 ============================================================ */
 
 function renderTeam() {
@@ -2723,7 +3572,10 @@ function renderTeam() {
       "gameTeamCode"
     )
     .textContent =
-      `CÓDIGO DE EQUIPO: ${teamState.codigo_equipo || currentTeamCode}`;
+      `CÓDIGO DE EQUIPO: ${
+        teamState.codigo_equipo ||
+        currentTeamCode
+      }`;
 
 
   renderLives();
@@ -2765,7 +3617,9 @@ function renderTeam() {
   if (selectedStation) {
 
     renderSelectedStation();
+
   }
+
 }
 
 
@@ -2815,7 +3669,9 @@ function renderLives() {
     container.appendChild(
       span
     );
+
   }
+
 }
 
 
@@ -2829,6 +3685,7 @@ function getCompletedCount() {
   ) {
 
     return 0;
+
   }
 
 
@@ -2839,6 +3696,7 @@ function getCompletedCount() {
         item.completada === true
     )
     .length;
+
 }
 
 
@@ -2854,6 +3712,7 @@ function getStationProgress(
   ) {
 
     return null;
+
   }
 
 
@@ -2864,11 +3723,12 @@ function getStationProgress(
         Number(item.numero) ===
         Number(number)
     ) || null;
+
 }
 
 
 /* ============================================================
-   MAPA DE SELLOS
+   SELLOS
 ============================================================ */
 
 function renderSeals() {
@@ -2919,19 +3779,29 @@ function renderSeals() {
       button.innerHTML = `
 
         <span class="seal-icon">
-          ${completed ? "✨" : "🔒"}
+
+          ${
+            completed
+              ? "✨"
+              : "🔒"
+          }
+
         </span>
 
         <span class="seal-number">
+
           SELLO ${station.roman}
+
         </span>
 
         <span class="seal-name">
+
           ${
             completed
               ? "Fragmento recuperado"
               : station.name
           }
+
         </span>
 
       `;
@@ -2944,6 +3814,7 @@ function renderSeals() {
           openStation(
             station.number
           );
+
         }
       );
 
@@ -2951,13 +3822,15 @@ function renderSeals() {
       grid.appendChild(
         button
       );
+
     }
   );
+
 }
 
 
 /* ============================================================
-   ESTACIONES
+   ABRIR ESTACIÓN
 ============================================================ */
 
 function openStation(
@@ -2979,6 +3852,7 @@ function openStation(
     );
 
     return;
+
   }
 
 
@@ -3016,32 +3890,14 @@ function openStation(
     "screenStation"
   );
 
-
-  setTimeout(
-    () => {
-
-      const progress =
-        getStationProgress(
-          number
-        );
-
-
-      if (
-        !progress?.completada
-      ) {
-
-        document
-          .getElementById(
-            "stationCodeInput"
-          )
-          .focus();
-      }
-
-    },
-    200
-  );
 }
 
+
+/* ============================================================
+   RENDER ESTACIÓN
+
+   AQUÍ ESTÁ LA CORRECCIÓN DE PISTAS PERSISTENTES.
+============================================================ */
 
 function renderSelectedStation() {
 
@@ -3129,35 +3985,97 @@ function renderSelectedStation() {
     );
 
 
+  /*
+    Si la pista ya fue comprada,
+    Supabase nos devuelve el texto.
+
+    Por lo tanto permanece visible
+    incluso después de recargar
+    o abrir desde otro celular.
+  */
+
   if (
     progress?.pista_usada ===
     true
   ) {
 
-    hintBox.textContent =
-      "La pista de esta estación ya fue utilizada.";
-
-    hintBox
-      .classList
-      .add("show");
-
-
     hintButton.disabled =
       true;
 
-  } else {
 
-    hintBox.textContent =
-      "";
+    hintButton.textContent =
+      "PISTA REVELADA ✓";
+
+
+    if (
+      progress.pista
+    ) {
+
+      hintBox.innerHTML = `
+
+        <span class="hint-title">
+
+          ✦ PISTA DEL MANUSCRITO ✦
+
+        </span>
+
+        ${escapeHTML(
+          progress.pista
+        )}
+
+      `;
+
+    }
+
+    else {
+
+      hintBox.innerHTML = `
+
+        <span class="hint-title">
+
+          ✦ PISTA DEL MANUSCRITO ✦
+
+        </span>
+
+        La pista fue utilizada.
+        Actualicen el manuscrito
+        para recuperarla.
+
+      `;
+
+    }
+
 
     hintBox
       .classList
-      .remove("show");
+      .add(
+        "show"
+      );
 
+  }
+
+  else {
 
     hintButton.disabled =
       false;
+
+
+    hintButton.textContent =
+      "SOLICITAR PISTA · ❤️";
+
+
+    hintBox.innerHTML =
+      "";
+
+
+    hintBox
+      .classList
+      .remove(
+        "show"
+      );
+
   }
+
 }
 
 
@@ -3184,13 +4102,12 @@ function backToMap() {
   showScreen(
     "screenMap"
   );
+
 }
 
 
 /* ============================================================
-   VALIDAR CÓDIGO DE ESTACIÓN
-
-   Las respuestas correctas NO están aquí.
+   VALIDAR CÓDIGO
 ============================================================ */
 
 async function validateStationCode() {
@@ -3201,6 +4118,7 @@ async function validateStationCode() {
   ) {
 
     return;
+
   }
 
 
@@ -3226,6 +4144,7 @@ async function validateStationCode() {
     );
 
     return;
+
   }
 
 
@@ -3247,7 +4166,9 @@ async function validateStationCode() {
 
     const result =
       await supabaseRPC(
+
         "validar_codigo",
+
         {
 
           p_codigo_equipo:
@@ -3258,7 +4179,9 @@ async function validateStationCode() {
 
           p_codigo:
             code
+
         }
+
       );
 
 
@@ -3281,7 +4204,9 @@ async function validateStationCode() {
           "screenGuardian"
         );
 
+
         return;
+
       }
 
 
@@ -3290,6 +4215,7 @@ async function validateStationCode() {
           result?.error
         )
       );
+
     }
 
 
@@ -3311,9 +4237,11 @@ async function validateStationCode() {
           "sealOpenedText"
         )
         .innerHTML =
+
           `El <strong>Sello ${stationRoman}</strong>
           ha sido roto.<br><br>
-          Una nueva parte del manuscrito ha sido recuperada.`;
+          Una nueva parte del manuscrito
+          ha sido recuperada.`;
 
 
       document
@@ -3321,10 +4249,13 @@ async function validateStationCode() {
           "sealOpenedModal"
         )
         .classList
-        .add("show");
+        .add(
+          "show"
+        );
 
 
       return;
+
     }
 
 
@@ -3356,15 +4287,23 @@ async function validateStationCode() {
     ) {
 
       setStationMessage(
-        `El código es incorrecto. Una Llama de Fe se ha apagado. Quedan ${teamState.vidas}.`,
+
+        `El código es incorrecto.
+        Una Llama de Fe se ha apagado.
+        Quedan ${teamState.vidas}.`,
+
         "error"
+
       );
 
-    } else {
+    }
+
+    else {
 
       const failed =
         Number(
-          result.intentos_fallidos || 0
+          result.intentos_fallidos ||
+          0
         );
 
 
@@ -3380,17 +4319,30 @@ async function validateStationCode() {
       ) {
 
         setStationMessage(
-          `El sello no responde. Revisen el código. Todavía tienen ${remainingFree} intento gratuito en esta estación.`,
+
+          `El sello no responde.
+          Revisen el código.
+          Todavía tienen ${remainingFree}
+          intento gratuito en esta estación.`,
+
           "error"
+
         );
 
-      } else {
+      }
+
+      else {
 
         setStationMessage(
+
           "El sello no responde. ⚠️ El próximo error consumirá una Llama de Fe.",
+
           "error"
+
         );
+
       }
+
     }
 
 
@@ -3412,25 +4364,30 @@ async function validateStationCode() {
         },
         1700
       );
+
     }
 
+  }
 
-  } catch (error) {
+  catch(error) {
 
     console.error(
-      "Error validando código:",
       error
     );
 
 
     setStationMessage(
+
       "No pudimos consultar el manuscrito. " +
       error.message,
+
       "error"
+
     );
 
+  }
 
-  } finally {
+  finally {
 
     button.disabled =
       false;
@@ -3438,7 +4395,9 @@ async function validateStationCode() {
 
     button.textContent =
       "ROMPER EL SELLO";
+
   }
+
 }
 
 
@@ -3454,12 +4413,15 @@ async function useHint() {
   ) {
 
     return;
+
   }
 
 
   const accepted =
     confirm(
+
       "Solicitar una pista apagará 1 Llama de Fe.\n\n¿El equipo desea continuar?"
+
     );
 
 
@@ -3479,14 +4441,16 @@ async function useHint() {
 
 
   button.textContent =
-    "BUSCANDO PISTA...";
+    "REVELANDO PISTA...";
 
 
   try {
 
     const result =
       await supabaseRPC(
+
         "usar_pista",
+
         {
 
           p_codigo_equipo:
@@ -3494,7 +4458,9 @@ async function useHint() {
 
           p_estacion:
             selectedStation.number
+
         }
+
       );
 
 
@@ -3517,7 +4483,9 @@ async function useHint() {
           "screenGuardian"
         );
 
+
         return;
+
       }
 
 
@@ -3526,8 +4494,14 @@ async function useHint() {
           result?.error
         )
       );
+
     }
 
+
+    /*
+      Primero mostramos inmediatamente
+      la pista devuelta por usar_pista().
+    */
 
     const hintBox =
       document.getElementById(
@@ -3535,20 +4509,45 @@ async function useHint() {
       );
 
 
-    hintBox.textContent =
-      "✦ PISTA DEL MANUSCRITO ✦\n\n" +
-      result.pista;
+    hintBox.innerHTML = `
+
+      <span class="hint-title">
+
+        ✦ PISTA DEL MANUSCRITO ✦
+
+      </span>
+
+      ${escapeHTML(
+        result.pista
+      )}
+
+    `;
 
 
     hintBox
       .classList
-      .add("show");
+      .add(
+        "show"
+      );
+
+
+    button.textContent =
+      "PISTA REVELADA ✓";
+
+
+    button.disabled =
+      true;
 
 
     teamState.vidas =
       Number(
         result.vidas
       );
+
+
+    teamState.bloqueado =
+      result.bloqueado ===
+      true;
 
 
     renderLives();
@@ -3562,9 +4561,21 @@ async function useHint() {
         `${teamState.vidas} / 3`;
 
 
+    /*
+      Luego sincronizamos con Supabase.
+
+      obtener_equipo() devolverá ahora
+      la pista porque pista_usada = true.
+    */
+
+    await refreshTeam(
+      false
+    );
+
+
     if (
-      result.bloqueado === true ||
-      teamState.vidas <= 0
+      teamState.bloqueado === true ||
+      Number(teamState.vidas) <= 0
     ) {
 
       setTimeout(
@@ -3575,15 +4586,16 @@ async function useHint() {
           );
 
         },
-        1800
+        2500
       );
+
     }
 
+  }
 
-  } catch (error) {
+  catch(error) {
 
     console.error(
-      "Error solicitando pista:",
       error
     );
 
@@ -3598,11 +4610,11 @@ async function useHint() {
       false;
 
 
-  } finally {
-
     button.textContent =
       "SOLICITAR PISTA · ❤️";
+
   }
+
 }
 
 
@@ -3627,11 +4639,16 @@ async function redeemGuardianCode() {
   if (!code) {
 
     setGuardianMessage(
+
       "Introduce el código entregado por el Guardián.",
+
       "error"
+
     );
 
+
     return;
+
   }
 
 
@@ -3653,7 +4670,9 @@ async function redeemGuardianCode() {
 
     const result =
       await supabaseRPC(
+
         "usar_codigo_guardian",
+
         {
 
           p_codigo_equipo:
@@ -3661,7 +4680,9 @@ async function redeemGuardianCode() {
 
           p_codigo_guardian:
             code
+
         }
+
       );
 
 
@@ -3675,12 +4696,16 @@ async function redeemGuardianCode() {
           result?.error
         )
       );
+
     }
 
 
     setGuardianMessage(
+
       "✨ LA LLAMA HA SIDO RESTAURADA. +1 VIDA",
+
       "success"
+
     );
 
 
@@ -3704,11 +4729,11 @@ async function redeemGuardianCode() {
       1700
     );
 
+  }
 
-  } catch (error) {
+  catch(error) {
 
     console.error(
-      "Error código guardián:",
       error
     );
 
@@ -3718,8 +4743,9 @@ async function redeemGuardianCode() {
       "error"
     );
 
+  }
 
-  } finally {
+  finally {
 
     button.disabled =
       false;
@@ -3727,7 +4753,9 @@ async function redeemGuardianCode() {
 
     button.textContent =
       "RESTAURAR LA LLAMA";
+
   }
+
 }
 
 
@@ -3742,7 +4770,9 @@ async function closeSealModal() {
       "sealOpenedModal"
     )
     .classList
-    .remove("show");
+    .remove(
+      "show"
+    );
 
 
   selectedStation =
@@ -3762,12 +4792,16 @@ async function closeSealModal() {
 
     showFinal();
 
-  } else {
+  }
+
+  else {
 
     showScreen(
       "screenMap"
     );
+
   }
+
 }
 
 
@@ -3794,18 +4828,21 @@ function showFinal() {
   showScreen(
     "screenFinal"
   );
+
 }
 
 
 /* ============================================================
-   SALIR DEL EQUIPO
+   SALIR
 ============================================================ */
 
 function leaveDevice() {
 
   const accepted =
     confirm(
+
       "Esto solo cerrará el equipo en ESTE dispositivo.\n\nEl progreso guardado en Supabase NO se eliminará.\n\n¿Continuar?"
+
     );
 
 
@@ -3825,8 +4862,10 @@ function leaveDevice() {
   currentTeamCode =
     "";
 
+
   teamState =
     null;
+
 
   selectedStation =
     null;
@@ -3838,11 +4877,12 @@ function leaveDevice() {
 
 
   testConnection();
+
 }
 
 
 /* ============================================================
-   ESTADO DE CONEXIÓN
+   CONEXIÓN
 ============================================================ */
 
 function setConnectionState(
@@ -3886,7 +4926,9 @@ function setConnectionState(
             "checking"
           );
 
-      } else {
+      }
+
+      else {
 
         element
           .classList
@@ -3895,6 +4937,7 @@ function setConnectionState(
               ? "online"
               : "offline"
           );
+
       }
 
 
@@ -3908,21 +4951,17 @@ function setConnectionState(
 
         label.textContent =
           text;
+
       }
+
     }
   );
+
 }
 
 
 /* ============================================================
-   PRUEBA REAL DE CONEXIÓN
-
-   En vez de consultar /rest/v1/ directamente,
-   consultamos una función RPC real de nuestro juego.
-
-   No importa que TEST-CONEXION no sea un equipo válido.
-   Si Supabase ejecuta obtener_equipo y devuelve JSON,
-   la comunicación funciona.
+   TEST CONEXIÓN
 ============================================================ */
 
 async function testConnection() {
@@ -3938,22 +4977,15 @@ async function testConnection() {
 
     const result =
       await supabaseRPC(
+
         "obtener_equipo",
+
         {
           p_codigo_equipo:
             "TEST-CONEXION"
         }
+
       );
-
-
-    /*
-      La función puede responder:
-
-      { ok:false, error:"EQUIPO_NO_ENCONTRADO" }
-
-      Eso ES una respuesta válida de Supabase
-      y confirma que la conexión funciona.
-    */
 
 
     if (
@@ -3969,6 +5001,7 @@ async function testConnection() {
 
 
       return true;
+
     }
 
 
@@ -3976,11 +5009,11 @@ async function testConnection() {
       "Respuesta inesperada."
     );
 
+  }
 
-  } catch (error) {
+  catch(error) {
 
     console.error(
-      "Prueba de conexión:",
       error
     );
 
@@ -3992,7 +5025,9 @@ async function testConnection() {
 
 
     return false;
+
   }
+
 }
 
 
@@ -4017,6 +5052,7 @@ function showError(
 
   box.style.display =
     "block";
+
 }
 
 
@@ -4034,6 +5070,7 @@ function clearBox(id) {
 
   box.style.display =
     "none";
+
 }
 
 
@@ -4059,6 +5096,7 @@ function setStationMessage(
         ? ` ${type}`
         : ""
     );
+
 }
 
 
@@ -4084,14 +5122,45 @@ function setGuardianMessage(
         ? ` ${type}`
         : ""
     );
+
 }
 
 
 /* ============================================================
-   TRADUCIR ERRORES
+   ESCAPAR HTML
+
+   Evita que contenido devuelto por Supabase
+   sea interpretado como HTML.
 ============================================================ */
 
-function translateError(code) {
+function escapeHTML(
+  value
+) {
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+
+  div.textContent =
+    value == null
+      ? ""
+      : String(value);
+
+
+  return div.innerHTML;
+
+}
+
+
+/* ============================================================
+   ERRORES
+============================================================ */
+
+function translateError(
+  code
+) {
 
   const errors = {
 
@@ -4104,11 +5173,20 @@ function translateError(code) {
     EQUIPO_NO_ENCONTRADO:
       "No encontramos un equipo con ese código.",
 
+    EVENTO_NO_ENCONTRADO:
+      "No encontramos el evento.",
+
     EVENTO_NO_ACTIVO:
       "Esta misión no está activa.",
 
     ESTACION_NO_ENCONTRADA:
       "No encontramos esta estación.",
+
+    PROGRESO_NO_ENCONTRADO:
+      "No encontramos el progreso de esta estación.",
+
+    RESPUESTA_NO_CONFIGURADA:
+      "Esta estación todavía no tiene una respuesta configurada.",
 
     SIN_VIDAS:
       "Las Llamas de Fe se han apagado. Busquen al Guardián.",
@@ -4123,7 +5201,10 @@ function translateError(code) {
       "Este sello ya fue recuperado.",
 
     PISTA_YA_USADA:
-      "La pista de esta estación ya fue utilizada."
+      "La pista de esta estación ya fue utilizada.",
+
+    EQUIPO_FINALIZADO:
+      "Este equipo ya recuperó el manuscrito."
 
   };
 
@@ -4133,6 +5214,7 @@ function translateError(code) {
     code ||
     "Ha ocurrido un error."
   );
+
 }
 
 
@@ -4154,6 +5236,7 @@ document
             /\D/g,
             ""
           );
+
     }
   );
 
@@ -4172,13 +5255,15 @@ document
       ) {
 
         validateStationCode();
+
       }
+
     }
   );
 
 
 /* ============================================================
-   INPUT CÓDIGO EQUIPO
+   INPUT EQUIPO
 ============================================================ */
 
 document
@@ -4196,6 +5281,7 @@ document
             /[^A-Z0-9]/g,
             ""
           );
+
     }
   );
 
@@ -4214,13 +5300,15 @@ document
       ) {
 
         joinTeam();
+
       }
+
     }
   );
 
 
 /* ============================================================
-   INPUT NOMBRE EQUIPO
+   NOMBRE EQUIPO
 ============================================================ */
 
 document
@@ -4237,13 +5325,15 @@ document
       ) {
 
         createTeam();
+
       }
+
     }
   );
 
 
 /* ============================================================
-   INPUT GUARDIÁN
+   GUARDIÁN
 ============================================================ */
 
 document
@@ -4257,6 +5347,7 @@ document
       this.value =
         this.value
           .toUpperCase();
+
     }
   );
 
@@ -4275,13 +5366,15 @@ document
       ) {
 
         redeemGuardianCode();
+
       }
+
     }
   );
 
 
 /* ============================================================
-   CONEXIÓN DEL NAVEGADOR
+   INTERNET
 ============================================================ */
 
 window.addEventListener(
@@ -4298,7 +5391,9 @@ window.addEventListener(
       await refreshTeam(
         false
       );
+
     }
+
   }
 );
 
@@ -4311,12 +5406,13 @@ window.addEventListener(
       false,
       "SIN CONEXIÓN A INTERNET"
     );
+
   }
 );
 
 
 /* ============================================================
-   AL VOLVER A LA PESTAÑA
+   VOLVER A LA PESTAÑA
 ============================================================ */
 
 document.addEventListener(
@@ -4332,7 +5428,9 @@ document.addEventListener(
       refreshTeam(
         false
       );
+
     }
+
   }
 );
 
@@ -4348,13 +5446,15 @@ window.addEventListener(
       refreshTeam(
         false
       );
+
     }
+
   }
 );
 
 
 /* ============================================================
-   ARRANQUE
+   INICIO
 ============================================================ */
 
 async function init() {
@@ -4368,12 +5468,16 @@ async function init() {
 
     await loadTeamAndEnter();
 
-  } else {
+  }
+
+  else {
 
     showScreen(
       "screenIntro"
     );
+
   }
+
 }
 
 
