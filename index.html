@@ -11,7 +11,6 @@
     :root {
       --bg: #050403;
       --panel: rgba(25, 17, 9, 0.96);
-      --panel2: rgba(42, 28, 14, 0.94);
       --gold: #d8ad58;
       --gold-light: #f5d58d;
       --gold-dark: #79531f;
@@ -37,11 +36,13 @@
       min-height: 100vh;
       color: var(--text);
       font-family: Georgia, "Times New Roman", serif;
+
       background:
         radial-gradient(circle at 50% 0%, rgba(156,100,34,.18), transparent 30%),
         radial-gradient(circle at 10% 70%, rgba(110,61,20,.10), transparent 28%),
         radial-gradient(circle at 90% 80%, rgba(110,61,20,.10), transparent 28%),
         linear-gradient(180deg,#120d07 0%,#060403 50%,#020201 100%);
+
       overflow-x: hidden;
     }
 
@@ -52,6 +53,7 @@
       pointer-events: none;
       opacity: .2;
       z-index: 999;
+
       background-image:
         repeating-linear-gradient(
           0deg,
@@ -89,6 +91,7 @@
         opacity: 0;
         transform: translateY(7px);
       }
+
       to {
         opacity: 1;
         transform: translateY(0);
@@ -105,11 +108,14 @@
       position: relative;
       overflow: hidden;
       padding: 48px 26px;
+
       border: 1px solid var(--border);
       border-radius: 14px;
+
       background:
         radial-gradient(circle at top,rgba(239,188,88,.13),transparent 40%),
         linear-gradient(145deg,#382512,#130d07);
+
       box-shadow: var(--shadow);
     }
 
@@ -140,7 +146,7 @@
       margin-bottom: 14px;
       text-align: center;
       color: var(--gold);
-      font-family: Arial,sans-serif;
+      font-family: Arial, sans-serif;
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 4px;
@@ -161,10 +167,6 @@
       text-align: center;
       color: var(--gold-light);
       font-size: clamp(27px,6vw,40px);
-    }
-
-    h3 {
-      color: var(--gold-light);
     }
 
     .intro {
@@ -197,29 +199,46 @@
       width: 82px;
       height: 82px;
       margin: 22px auto;
+
       display: grid;
       place-items: center;
+
       border: 5px double #45100e;
       border-radius: 50%;
+
       color: #d7a96c;
       font-size: 35px;
       font-weight: bold;
-      background: radial-gradient(circle at 35% 30%,#a73a2d,#541413 72%);
-      box-shadow: 0 12px 30px #000,inset 0 0 16px rgba(255,190,100,.15);
+
+      background:
+        radial-gradient(circle at 35% 30%,#a73a2d,#541413 72%);
+
+      box-shadow:
+        0 12px 30px #000,
+        inset 0 0 16px rgba(255,190,100,.15);
     }
 
     .btn {
       width: 100%;
       padding: 16px 18px;
+
       border: 1px solid rgba(245,211,140,.55);
       border-radius: 9px;
+
       cursor: pointer;
+
       color: #201507;
       font-weight: 900;
+
       text-transform: uppercase;
       letter-spacing: 1.3px;
-      background: linear-gradient(180deg,#f1d083,#b78235);
-      box-shadow: 0 8px 25px rgba(0,0,0,.38);
+
+      background:
+        linear-gradient(180deg,#f1d083,#b78235);
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,.38);
+
       transition: .18s ease;
     }
 
@@ -244,12 +263,6 @@
       border-color: var(--border);
     }
 
-    .btn.danger {
-      color: #ffd6d6;
-      background: rgba(116,25,25,.55);
-      border-color: rgba(220,80,80,.35);
-    }
-
     .btn.small {
       width: auto;
       padding: 10px 14px;
@@ -265,11 +278,14 @@
 
     .card {
       padding: 30px 23px;
+
       border: 1px solid var(--border);
       border-radius: 13px;
+
       background:
         radial-gradient(circle at top,rgba(216,173,88,.07),transparent 40%),
         var(--panel);
+
       box-shadow: var(--shadow);
     }
 
@@ -280,6 +296,7 @@
     .field label {
       display: block;
       margin-bottom: 8px;
+
       color: var(--gold-light);
       font-size: 14px;
     }
@@ -287,22 +304,32 @@
     .input {
       width: 100%;
       padding: 16px 14px;
+
       outline: none;
+
       border: 1px solid var(--border);
       border-radius: 8px;
+
       color: white;
-      background: rgba(0,0,0,.4);
+
+      background:
+        rgba(0,0,0,.4);
     }
 
     .input:focus {
       border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(216,173,88,.1);
+      box-shadow:
+        0 0 0 3px rgba(216,173,88,.1);
     }
 
     .code-team-input {
       text-transform: uppercase;
       text-align: center;
-      font-family: "Courier New",monospace;
+
+      font-family:
+        "Courier New",
+        monospace;
+
       font-size: 26px;
       font-weight: bold;
       letter-spacing: 5px;
@@ -327,14 +354,22 @@
 
     .error-box {
       color: #ffbaba;
-      border: 1px solid rgba(198,78,78,.35);
-      background: rgba(125,30,30,.25);
+
+      border:
+        1px solid rgba(198,78,78,.35);
+
+      background:
+        rgba(125,30,30,.25);
     }
 
     .success-box {
       color: #ccebc4;
-      border: 1px solid rgba(134,189,120,.35);
-      background: rgba(50,95,43,.25);
+
+      border:
+        1px solid rgba(134,189,120,.35);
+
+      background:
+        rgba(50,95,43,.25);
     }
 
     .connection {
@@ -342,9 +377,16 @@
       align-items: center;
       justify-content: center;
       gap: 7px;
-      margin: 0 auto 18px;
+
+      margin:
+        0 auto 18px;
+
       color: #8d806c;
-      font-family: Arial,sans-serif;
+
+      font-family:
+        Arial,
+        sans-serif;
+
       font-size: 10px;
       font-weight: bold;
       letter-spacing: 1.2px;
@@ -353,8 +395,11 @@
     .connection-dot {
       width: 8px;
       height: 8px;
+
       border-radius: 50%;
-      background: #806f5b;
+
+      background:
+        #806f5b;
     }
 
     .connection.online {
@@ -363,7 +408,9 @@
 
     .connection.online .connection-dot {
       background: #71b766;
-      box-shadow: 0 0 10px rgba(113,183,102,.7);
+
+      box-shadow:
+        0 0 10px rgba(113,183,102,.7);
     }
 
     .connection.offline {
@@ -374,7 +421,32 @@
       background: #c34d4d;
     }
 
-    /* GAME */
+    .connection.checking {
+      color: #d8ad58;
+    }
+
+    .connection.checking .connection-dot {
+      background: #d8ad58;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        opacity: .3;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: .3;
+      }
+    }
+
+    /* =====================================================
+       GAME
+    ====================================================== */
 
     .game-container {
       width: 100%;
@@ -424,16 +496,24 @@
     .status-box {
       padding: 12px;
       text-align: center;
+
       border: 1px solid var(--border);
       border-radius: 8px;
-      background: rgba(24,16,8,.85);
+
+      background:
+        rgba(24,16,8,.85);
     }
 
     .status-box span {
       display: block;
       margin-bottom: 4px;
+
       color: var(--muted);
-      font-family: Arial,sans-serif;
+
+      font-family:
+        Arial,
+        sans-serif;
+
       font-size: 9px;
       letter-spacing: 1.3px;
       text-transform: uppercase;
@@ -447,13 +527,21 @@
     .map-card {
       position: relative;
       overflow: hidden;
-      padding: 29px 18px 25px;
-      border: 1px solid var(--border);
+
+      padding:
+        29px 18px 25px;
+
+      border:
+        1px solid var(--border);
+
       border-radius: 14px;
+
       background:
         radial-gradient(circle at 50% 45%,rgba(183,123,42,.12),transparent 25%),
         linear-gradient(145deg,#281a0c,#0c0805);
-      box-shadow: var(--shadow);
+
+      box-shadow:
+        var(--shadow);
     }
 
     .map-title {
@@ -466,7 +554,9 @@
     .map-subtitle {
       max-width: 590px;
       margin: 0 auto 25px;
+
       color: var(--muted);
+
       text-align: center;
       line-height: 1.5;
       font-size: 14px;
@@ -475,28 +565,50 @@
     .central-manuscript {
       width: 135px;
       height: 100px;
-      margin: 0 auto 27px;
+
+      margin:
+        0 auto 27px;
+
       display: grid;
       place-items: center;
+
       position: relative;
-      border: 1px solid #785420;
+
+      border:
+        1px solid #785420;
+
       border-radius: 8px;
+
       color: #c79c55;
+
       background:
         linear-gradient(145deg,#463019,#1d130a);
-      box-shadow: 0 10px 30px #000;
+
+      box-shadow:
+        0 10px 30px #000;
+
       font-size: 45px;
     }
 
     .central-manuscript::after {
-      content: attr(data-progress);
+      content:
+        attr(data-progress);
+
       position: absolute;
       bottom: -12px;
-      padding: 4px 9px;
+
+      padding:
+        4px 9px;
+
       border-radius: 20px;
+
       color: #201507;
       background: var(--gold);
-      font-family: Arial,sans-serif;
+
+      font-family:
+        Arial,
+        sans-serif;
+
       font-size: 10px;
       font-weight: bold;
     }
@@ -505,30 +617,46 @@
       display: grid;
       grid-template-columns: repeat(3,1fr);
       gap: 12px;
+
       max-width: 680px;
       margin: auto;
     }
 
     .station-seal {
       min-height: 132px;
-      padding: 13px 8px;
+
+      padding:
+        13px 8px;
+
       cursor: pointer;
-      border: 1px solid rgba(216,173,88,.26);
+
+      border:
+        1px solid rgba(216,173,88,.26);
+
       border-radius: 10px;
+
       color: var(--text);
+
       background:
         radial-gradient(circle at top,rgba(216,173,88,.06),transparent 50%),
         rgba(0,0,0,.28);
-      transition: .2s ease;
+
+      transition:
+        .2s ease;
     }
 
     .station-seal:hover {
-      transform: translateY(-2px);
-      border-color: rgba(216,173,88,.6);
+      transform:
+        translateY(-2px);
+
+      border-color:
+        rgba(216,173,88,.6);
     }
 
     .station-seal.done {
-      border-color: rgba(116,176,99,.55);
+      border-color:
+        rgba(116,176,99,.55);
+
       background:
         radial-gradient(circle at top,rgba(111,170,96,.17),transparent 55%),
         rgba(28,62,25,.24);
@@ -542,8 +670,14 @@
 
     .seal-number {
       display: block;
-      color: var(--gold);
-      font-family: Arial,sans-serif;
+
+      color:
+        var(--gold);
+
+      font-family:
+        Arial,
+        sans-serif;
+
       font-size: 10px;
       font-weight: bold;
       letter-spacing: 2px;
@@ -561,10 +695,14 @@
       justify-content: center;
       gap: 9px;
       flex-wrap: wrap;
-      margin-top: 18px;
+
+      margin-top:
+        18px;
     }
 
-    /* STATION */
+    /* =====================================================
+       STATION
+    ====================================================== */
 
     .station-header {
       text-align: center;
@@ -578,7 +716,11 @@
 
     .station-number {
       color: var(--gold);
-      font-family: Arial,sans-serif;
+
+      font-family:
+        Arial,
+        sans-serif;
+
       font-size: 11px;
       font-weight: bold;
       letter-spacing: 4px;
@@ -586,47 +728,85 @@
 
     .station-description {
       max-width: 580px;
-      margin: 0 auto 22px;
+
+      margin:
+        0 auto 22px;
+
       color: #d7ccb9;
+
       text-align: center;
       line-height: 1.6;
     }
 
     .code-input {
       width: 100%;
-      padding: 18px 12px;
+
+      padding:
+        18px 12px;
+
       outline: none;
-      border: 1px solid rgba(216,173,88,.42);
+
+      border:
+        1px solid rgba(216,173,88,.42);
+
       border-radius: 8px;
+
       color: #fff0c9;
       background: #070503;
+
       text-align: center;
-      font-family: "Courier New",monospace;
-      font-size: clamp(20px,6vw,31px);
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size:
+        clamp(20px,6vw,31px);
+
       font-weight: bold;
       letter-spacing: 3px;
     }
 
     .code-input:focus {
-      border-color: var(--gold-light);
-      box-shadow: 0 0 25px rgba(216,173,88,.1);
+      border-color:
+        var(--gold-light);
+
+      box-shadow:
+        0 0 25px rgba(216,173,88,.1);
     }
 
     .station-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
-      margin-top: 12px;
+
+      margin-top:
+        12px;
     }
 
     .hint-box {
       display: none;
-      margin-top: 16px;
-      padding: 15px;
-      border-left: 3px solid var(--gold);
-      color: #eadfc9;
-      background: rgba(216,173,88,.08);
-      line-height: 1.5;
+
+      margin-top:
+        16px;
+
+      padding:
+        15px;
+
+      border-left:
+        3px solid var(--gold);
+
+      color:
+        #eadfc9;
+
+      background:
+        rgba(216,173,88,.08);
+
+      line-height:
+        1.5;
+
+      white-space:
+        pre-line;
     }
 
     .hint-box.show {
@@ -635,7 +815,10 @@
 
     .message {
       min-height: 24px;
-      margin-top: 14px;
+
+      margin-top:
+        14px;
+
       text-align: center;
       font-weight: bold;
       line-height: 1.45;
@@ -649,11 +832,16 @@
       color: #a8d69c;
     }
 
-    /* GUARDIAN */
+    /* =====================================================
+       GUARDIAN
+    ====================================================== */
 
     .guardian-card {
       text-align: center;
-      border-color: rgba(171,54,54,.4);
+
+      border-color:
+        rgba(171,54,54,.4);
+
       background:
         radial-gradient(circle at top,rgba(154,38,38,.15),transparent 40%),
         linear-gradient(145deg,#25100d,#090504);
@@ -667,24 +855,36 @@
 
     .guardian-warning {
       color: #d98b8b;
-      font-family: Arial,sans-serif;
+
+      font-family:
+        Arial,
+        sans-serif;
+
       font-size: 11px;
       font-weight: bold;
       letter-spacing: 3px;
     }
 
-    /* MODAL */
+    /* =====================================================
+       MODALS
+    ====================================================== */
 
     .modal {
       position: fixed;
       inset: 0;
       z-index: 2000;
+
       display: none;
       align-items: center;
       justify-content: center;
+
       padding: 18px;
-      background: rgba(0,0,0,.88);
-      backdrop-filter: blur(6px);
+
+      background:
+        rgba(0,0,0,.88);
+
+      backdrop-filter:
+        blur(6px);
     }
 
     .modal.show {
@@ -694,13 +894,26 @@
     .modal-card {
       width: 100%;
       max-width: 510px;
-      padding: 31px 23px;
+
+      padding:
+        31px 23px;
+
       text-align: center;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: linear-gradient(145deg,#301f0f,#0f0a06);
-      box-shadow: 0 30px 100px #000;
-      animation: pop .35s ease;
+
+      border:
+        1px solid var(--border);
+
+      border-radius:
+        13px;
+
+      background:
+        linear-gradient(145deg,#301f0f,#0f0a06);
+
+      box-shadow:
+        0 30px 100px #000;
+
+      animation:
+        pop .35s ease;
     }
 
     @keyframes pop {
@@ -708,6 +921,7 @@
         opacity: 0;
         transform: scale(.9);
       }
+
       to {
         opacity: 1;
         transform: scale(1);
@@ -729,19 +943,41 @@
     }
 
     .team-code-display {
-      margin: 18px 0;
-      padding: 18px 10px;
-      border: 1px dashed var(--gold);
-      border-radius: 9px;
-      color: var(--gold-light);
-      background: rgba(0,0,0,.3);
-      font-family: "Courier New",monospace;
-      font-size: 35px;
-      font-weight: bold;
-      letter-spacing: 7px;
+      margin:
+        18px 0;
+
+      padding:
+        18px 10px;
+
+      border:
+        1px dashed var(--gold);
+
+      border-radius:
+        9px;
+
+      color:
+        var(--gold-light);
+
+      background:
+        rgba(0,0,0,.3);
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size:
+        35px;
+
+      font-weight:
+        bold;
+
+      letter-spacing:
+        7px;
     }
 
-    /* FINAL */
+    /* =====================================================
+       FINAL
+    ====================================================== */
 
     .final-card {
       text-align: center;
@@ -754,45 +990,71 @@
 
     .verse {
       max-width: 570px;
-      margin: 24px auto;
-      padding: 19px;
-      color: #dfcfb0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      font-style: italic;
-      line-height: 1.65;
+
+      margin:
+        24px auto;
+
+      padding:
+        19px;
+
+      color:
+        #dfcfb0;
+
+      border-top:
+        1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
+
+      font-style:
+        italic;
+
+      line-height:
+        1.65;
     }
 
     .hidden {
-      display: none !important;
+      display:
+        none !important;
     }
 
     @media (max-width:600px) {
+
       .screen {
-        padding: 13px 11px 30px;
+        padding:
+          13px 11px 30px;
       }
 
       .manuscript,
       .card {
-        padding-left: 17px;
-        padding-right: 17px;
+        padding-left:
+          17px;
+
+        padding-right:
+          17px;
       }
 
       .seals-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns:
+          repeat(2,1fr);
       }
 
       .station-actions {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
       .station-seal {
-        min-height: 125px;
+        min-height:
+          125px;
       }
 
       .team-code-display {
-        font-size: 29px;
-        letter-spacing: 5px;
+        font-size:
+          29px;
+
+        letter-spacing:
+          5px;
       }
     }
   </style>
@@ -800,426 +1062,414 @@
 
 <body>
 
-  <!-- =====================================================
-       PORTADA
-  ====================================================== -->
+<!-- =========================================================
+     PORTADA
+========================================================== -->
 
-  <section id="screenIntro" class="screen active">
-    <div class="container">
-      <div class="manuscript">
+<section id="screenIntro" class="screen active">
 
-        <div class="eyebrow">RISE PRESENTA</div>
+  <div class="container">
 
-        <h1>
-          El Enigma del<br>
-          Manuscrito Perdido
-        </h1>
+    <div class="manuscript">
 
-        <div class="divider">✦</div>
+      <div class="eyebrow">
+        RISE PRESENTA
+      </div>
 
-        <p class="intro">
-          Un antiguo manuscrito con las promesas de Dios para
-          <strong>RISE</strong> ha sido cerrado por un enemigo silencioso:
-          <strong>la duda y la apatía</strong>.
-        </p>
+      <h1>
+        El Enigma del<br>
+        Manuscrito Perdido
+      </h1>
 
-        <p class="intro">
-          Seis sellos protegen su mensaje.
-          Solo quienes trabajen juntos podrán recuperarlo.
-        </p>
+      <div class="divider">
+        ✦
+      </div>
 
-        <div class="seal-logo">R</div>
+      <p class="intro">
+        Un antiguo manuscrito con las promesas de Dios para
+        <strong>RISE</strong>
+        ha sido cerrado por un enemigo silencioso:
+        <strong>la duda y la apatía.</strong>
+      </p>
 
-        <div id="connectionIntro" class="connection">
-          <span class="connection-dot"></span>
-          <span>BUSCANDO EL MANUSCRITO...</span>
-        </div>
+      <p class="intro">
+        Seis sellos protegen su mensaje.
+        Solo quienes trabajen juntos podrán recuperarlo.
+      </p>
 
-        <div class="button-stack">
+      <div class="seal-logo">
+        R
+      </div>
 
-          <button class="btn" onclick="openCreateTeam()">
-            Crear equipo
-          </button>
+      <div
+        id="connectionIntro"
+        class="connection checking"
+      >
 
-          <button class="btn secondary" onclick="openJoinTeam()">
-            Unirme a un equipo
-          </button>
+        <span class="connection-dot"></span>
 
-        </div>
+        <span>
+          BUSCANDO EL MANUSCRITO...
+        </span>
 
       </div>
-    </div>
-  </section>
 
-
-  <!-- =====================================================
-       CREAR EQUIPO
-  ====================================================== -->
-
-  <section id="screenCreate" class="screen">
-    <div class="container">
-
-      <div class="card">
-
-        <div class="eyebrow">NUEVA EXPEDICIÓN</div>
-
-        <h2>Forma tu equipo</h2>
-
-        <p class="note">
-          Un integrante crea el equipo.
-          Los demás podrán entrar utilizando el código que recibirán.
-        </p>
-
-        <div class="field">
-          <label>Nombre del equipo</label>
-
-          <input
-            id="createTeamName"
-            class="input"
-            type="text"
-            maxlength="30"
-            placeholder="Ej. Los Valientes"
-            autocomplete="off"
-          >
-        </div>
+      <div class="button-stack">
 
         <button
-          id="createTeamButton"
           class="btn"
-          onclick="createTeam()"
+          onclick="openCreateTeam()"
         >
           Crear equipo
         </button>
 
-        <div id="createError" class="error-box"></div>
-
-        <br>
-
         <button
           class="btn secondary"
-          onclick="showScreen('screenIntro')"
+          onclick="openJoinTeam()"
         >
-          Volver
+          Unirme a un equipo
         </button>
 
       </div>
 
     </div>
-  </section>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       UNIRSE
-  ====================================================== -->
+<!-- =========================================================
+     CREAR EQUIPO
+========================================================== -->
 
-  <section id="screenJoin" class="screen">
-    <div class="container">
+<section id="screenCreate" class="screen">
 
-      <div class="card">
+  <div class="container">
 
-        <div class="eyebrow">UNIRSE A LA MISIÓN</div>
+    <div class="card">
 
-        <h2>Código del equipo</h2>
+      <div class="eyebrow">
+        NUEVA EXPEDICIÓN
+      </div>
 
-        <p class="note">
-          Introduce el código que aparece en el celular
-          del integrante que creó el equipo.
-        </p>
+      <h2>
+        Forma tu equipo
+      </h2>
 
-        <div class="field">
+      <p class="note">
+        Un integrante crea el equipo.
+        Los demás podrán entrar utilizando
+        el código que recibirán.
+      </p>
 
-          <input
-            id="joinTeamCode"
-            class="input code-team-input"
-            type="text"
-            maxlength="6"
-            placeholder="ABC123"
-            autocomplete="off"
-          >
+      <div class="field">
 
-        </div>
+        <label>
+          Nombre del equipo
+        </label>
 
-        <button
-          id="joinButton"
-          class="btn"
-          onclick="joinTeam()"
+        <input
+          id="createTeamName"
+          class="input"
+          type="text"
+          maxlength="30"
+          placeholder="Ej. Los Valientes"
+          autocomplete="off"
         >
-          Entrar al equipo
-        </button>
-
-        <div id="joinError" class="error-box"></div>
-
-        <br>
-
-        <button
-          class="btn secondary"
-          onclick="showScreen('screenIntro')"
-        >
-          Volver
-        </button>
 
       </div>
+
+      <button
+        id="createTeamButton"
+        class="btn"
+        onclick="createTeam()"
+      >
+        Crear equipo
+      </button>
+
+      <div
+        id="createError"
+        class="error-box"
+      ></div>
+
+      <br>
+
+      <button
+        class="btn secondary"
+        onclick="showScreen('screenIntro')"
+      >
+        Volver
+      </button>
 
     </div>
-  </section>
+
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       MAPA
-  ====================================================== -->
+<!-- =========================================================
+     UNIRSE A EQUIPO
+========================================================== -->
 
-  <section id="screenMap" class="screen">
+<section id="screenJoin" class="screen">
 
-    <div class="game-container">
+  <div class="container">
 
-      <div class="game-header">
+    <div class="card">
 
-        <div>
-          <div id="gameTeamName" class="team-title">
-            Equipo
-          </div>
+      <div class="eyebrow">
+        UNIRSE A LA MISIÓN
+      </div>
 
-          <div id="gameTeamCode" class="team-code">
-            CÓDIGO ------
-          </div>
-        </div>
+      <h2>
+        Código del equipo
+      </h2>
 
-        <div id="livesDisplay" class="lives">
-          ❤️ ❤️ ❤️
-        </div>
+      <p class="note">
+        Introduce el código que aparece
+        en el celular del integrante que creó el equipo.
+      </p>
+
+      <div class="field">
+
+        <input
+          id="joinTeamCode"
+          class="input code-team-input"
+          type="text"
+          maxlength="6"
+          placeholder="ABC123"
+          autocomplete="off"
+        >
 
       </div>
 
+      <button
+        id="joinButton"
+        class="btn"
+        onclick="joinTeam()"
+      >
+        Entrar al equipo
+      </button>
 
-      <div id="connectionGame" class="connection online">
-        <span class="connection-dot"></span>
-        <span>CONECTADO AL MANUSCRITO</span>
-      </div>
+      <div
+        id="joinError"
+        class="error-box"
+      ></div>
+
+      <br>
+
+      <button
+        class="btn secondary"
+        onclick="showScreen('screenIntro')"
+      >
+        Volver
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
 
 
-      <div class="status-grid">
+<!-- =========================================================
+     MAPA
+========================================================== -->
 
-        <div class="status-box">
-          <span>Fragmentos recuperados</span>
-          <strong id="progressText">0 / 6</strong>
-        </div>
+<section id="screenMap" class="screen">
 
-        <div class="status-box">
-          <span>Llamas de fe</span>
-          <strong id="livesText">3 / 3</strong>
-        </div>
+  <div class="game-container">
 
-      </div>
+    <div class="game-header">
 
-
-      <div class="map-card">
-
-        <div class="eyebrow">
-          MAPA DEL MANUSCRITO
-        </div>
-
-        <div class="map-title">
-          Los Seis Sellos
-        </div>
-
-        <p class="map-subtitle">
-          No existe un orden obligatorio.
-          Diríjanse a la estación indicada por sus líderes,
-          superen el reto y recuperen la palabra secreta.
-        </p>
+      <div>
 
         <div
-          id="centralManuscript"
-          class="central-manuscript"
-          data-progress="0 / 6"
+          id="gameTeamName"
+          class="team-title"
         >
-          📜
+          Equipo
         </div>
 
-        <div id="sealsGrid" class="seals-grid"></div>
-
-        <div class="map-footer">
-
-          <button
-            class="btn secondary small"
-            onclick="refreshTeam(true)"
-          >
-            ↻ Actualizar
-          </button>
-
-          <button
-            class="btn secondary small"
-            onclick="leaveDevice()"
-          >
-            Salir de este equipo
-          </button>
-
+        <div
+          id="gameTeamCode"
+          class="team-code"
+        >
+          CÓDIGO ------
         </div>
+
+      </div>
+
+      <div
+        id="livesDisplay"
+        class="lives"
+      >
+        ❤️ ❤️ ❤️
+      </div>
+
+    </div>
+
+
+    <div
+      id="connectionGame"
+      class="connection online"
+    >
+
+      <span class="connection-dot"></span>
+
+      <span>
+        CONECTADO AL MANUSCRITO
+      </span>
+
+    </div>
+
+
+    <div class="status-grid">
+
+      <div class="status-box">
+
+        <span>
+          Fragmentos recuperados
+        </span>
+
+        <strong id="progressText">
+          0 / 6
+        </strong>
+
+      </div>
+
+
+      <div class="status-box">
+
+        <span>
+          Llamas de fe
+        </span>
+
+        <strong id="livesText">
+          3 / 3
+        </strong>
 
       </div>
 
     </div>
 
-  </section>
 
+    <div class="map-card">
 
-  <!-- =====================================================
-       ESTACIÓN
-  ====================================================== -->
+      <div class="eyebrow">
+        MAPA DEL MANUSCRITO
+      </div>
 
-  <section id="screenStation" class="screen">
+      <div class="map-title">
+        Los Seis Sellos
+      </div>
 
-    <div class="container">
+      <p class="map-subtitle">
+        No existe un orden obligatorio.
+        Diríjanse a la estación indicada por sus líderes,
+        superen el reto y recuperen la palabra secreta.
+      </p>
 
-      <div class="card">
+      <div
+        id="centralManuscript"
+        class="central-manuscript"
+        data-progress="0 / 6"
+      >
+        📜
+      </div>
 
-        <div class="station-header">
+      <div
+        id="sealsGrid"
+        class="seals-grid"
+      ></div>
 
-          <div id="stationBigIcon" class="station-big-icon">
-            🔒
-          </div>
-
-          <div id="stationNumber" class="station-number">
-            SELLO I
-          </div>
-
-          <h2 id="stationTitle">
-            El Primer Sello
-          </h2>
-
-        </div>
-
-
-        <p id="stationDescription" class="station-description">
-          Superen el desafío físico de esta estación.
-        </p>
-
-
-        <div id="stationLockedContent">
-
-          <p class="note">
-            Cuando el líder de la estación les entregue la
-            <strong>palabra secreta</strong>, utilicen la hoja impresa
-            para convertir cada letra en un número.
-          </p>
-
-
-          <div class="field">
-
-            <input
-              id="stationCodeInput"
-              class="code-input"
-              type="text"
-              inputmode="numeric"
-              pattern="[0-9]*"
-              placeholder="CÓDIGO"
-              autocomplete="off"
-            >
-
-          </div>
-
-
-          <div class="station-actions">
-
-            <button
-              id="validateButton"
-              class="btn"
-              onclick="validateStationCode()"
-            >
-              Romper el sello
-            </button>
-
-            <button
-              id="hintButton"
-              class="btn secondary"
-              onclick="useHint()"
-            >
-              Solicitar pista · ❤️
-            </button>
-
-          </div>
-
-
-          <div id="hintBox" class="hint-box"></div>
-
-          <div id="stationMessage" class="message"></div>
-
-        </div>
-
-
-        <div id="stationCompletedContent" class="hidden">
-
-          <div class="success-box" style="display:block;">
-            ✨ Este fragmento ya fue recuperado por tu equipo.
-          </div>
-
-        </div>
-
-
-        <br>
+      <div class="map-footer">
 
         <button
-          class="btn secondary"
-          onclick="backToMap()"
+          id="refreshButton"
+          class="btn secondary small"
+          onclick="manualRefresh()"
         >
-          Volver al mapa
+          ↻ Actualizar
+        </button>
+
+        <button
+          class="btn secondary small"
+          onclick="leaveDevice()"
+        >
+          Salir de este equipo
         </button>
 
       </div>
 
     </div>
 
-  </section>
+  </div>
+
+</section>
 
 
-  <!-- =====================================================
-       GUARDIÁN
-  ====================================================== -->
+<!-- =========================================================
+     ESTACIÓN
+========================================================== -->
 
-  <section id="screenGuardian" class="screen">
+<section id="screenStation" class="screen">
 
-    <div class="container">
+  <div class="container">
 
-      <div class="card guardian-card">
+    <div class="card">
 
-        <div class="guardian-warning">
-          LAS LLAMAS SE HAN APAGADO
+      <div class="station-header">
+
+        <div
+          id="stationBigIcon"
+          class="station-big-icon"
+        >
+          🔒
         </div>
 
-        <div class="guardian-icon">
-          🕯️
+        <div
+          id="stationNumber"
+          class="station-number"
+        >
+          SELLO I
         </div>
 
-        <h2>
-          Busquen al Guardián
+        <h2 id="stationTitle">
+          El Primer Sello
         </h2>
 
-        <p class="intro">
-          La duda ha debilitado a su equipo.
-          Ya no pueden intentar romper más sellos.
-        </p>
+      </div>
 
-        <p class="intro">
-          Pero la misión aún no ha terminado.
-        </p>
 
-        <div class="divider">✦</div>
+      <p
+        id="stationDescription"
+        class="station-description"
+      >
+        Superen el desafío físico de esta estación.
+      </p>
 
-        <p class="intro">
-          Busquen físicamente a uno de los
-          <strong>Guardianes del Manuscrito</strong>.
-          Superen el desafío que les indique y recibirán
-          un código para restaurar una Llama de Fe.
+
+      <div id="stationLockedContent">
+
+        <p class="note">
+          Cuando el líder de la estación les entregue
+          la <strong>palabra secreta</strong>,
+          utilicen la hoja impresa para convertir
+          cada letra en un número.
         </p>
 
 
         <div class="field">
 
           <input
-            id="guardianCodeInput"
-            class="input code-team-input"
+            id="stationCodeInput"
+            class="code-input"
             type="text"
-            maxlength="20"
+            inputmode="numeric"
+            pattern="[0-9]*"
             placeholder="CÓDIGO"
             autocomplete="off"
           >
@@ -1227,2096 +1477,2912 @@
         </div>
 
 
-        <button
-          id="guardianButton"
-          class="btn"
-          onclick="redeemGuardianCode()"
-        >
-          Restaurar la llama
-        </button>
+        <div class="station-actions">
+
+          <button
+            id="validateButton"
+            class="btn"
+            onclick="validateStationCode()"
+          >
+            Romper el sello
+          </button>
+
+          <button
+            id="hintButton"
+            class="btn secondary"
+            onclick="useHint()"
+          >
+            Solicitar pista · ❤️
+          </button>
+
+        </div>
 
 
-        <div id="guardianMessage" class="message"></div>
+        <div
+          id="hintBox"
+          class="hint-box"
+        ></div>
+
+        <div
+          id="stationMessage"
+          class="message"
+        ></div>
 
       </div>
 
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       FINAL
-  ====================================================== -->
-
-  <section id="screenFinal" class="screen">
-
-    <div class="container">
-
-      <div class="manuscript final-card">
-
-        <div class="final-icon">
-          📜
-        </div>
-
-        <div class="eyebrow">
-          LOS SEIS SELLOS HAN SIDO ROTOS
-        </div>
-
-        <h1>
-          El Manuscrito<br>
-          ha sido recuperado
-        </h1>
-
-        <div class="divider">✦</div>
-
-        <p class="intro">
-          <strong id="finalTeamName"></strong>,
-          superaron los seis desafíos.
-        </p>
-
-        <p class="intro">
-          Trabajaron juntos, perseveraron y recuperaron
-          cada fragmento perdido.
-        </p>
-
-        <div class="verse">
-          “Me buscarán y me encontrarán,
-          cuando me busquen de todo corazón.”
-          <br><br>
-          <strong>Jeremías 29:13</strong>
-        </div>
-
-        <p class="intro">
-          Pero el verdadero mensaje del manuscrito
-          aún está por ser revelado...
-        </p>
-
-        <div class="seal-logo">
-          ✦
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- =====================================================
-       MODAL EQUIPO CREADO
-  ====================================================== -->
-
-  <div id="teamCreatedModal" class="modal">
-
-    <div class="modal-card">
-
-      <div class="modal-icon">
-        🔑
-      </div>
-
-      <div class="eyebrow">
-        EQUIPO CREADO
-      </div>
-
-      <h2 id="createdTeamName">
-        Los Valientes
-      </h2>
-
-      <p>
-        Este es el código secreto de su equipo.
-        Los demás integrantes pueden utilizarlo
-        para entrar desde otro celular.
-      </p>
 
       <div
-        id="createdTeamCode"
-        class="team-code-display"
+        id="stationCompletedContent"
+        class="hidden"
       >
-        ABC123
+
+        <div
+          class="success-box"
+          style="display:block;"
+        >
+          ✨ Este fragmento ya fue recuperado
+          por tu equipo.
+        </div>
+
       </div>
 
-      <p class="note">
-        Guárdenlo. Todos los celulares que utilicen este código
-        compartirán las mismas vidas y el mismo progreso.
-      </p>
+
+      <br>
 
       <button
-        class="btn"
-        onclick="enterCreatedTeam()"
+        class="btn secondary"
+        onclick="backToMap()"
       >
-        Entrar a la misión
+        Volver al mapa
       </button>
 
     </div>
 
   </div>
 
+</section>
 
-  <!-- =====================================================
-       MODAL SELLO ABIERTO
-  ====================================================== -->
 
-  <div id="sealOpenedModal" class="modal">
+<!-- =========================================================
+     GUARDIÁN
+========================================================== -->
 
-    <div class="modal-card">
+<section id="screenGuardian" class="screen">
 
-      <div class="modal-icon">
-        🔓
+  <div class="container">
+
+    <div class="card guardian-card">
+
+      <div class="guardian-warning">
+        LAS LLAMAS SE HAN APAGADO
       </div>
 
-      <div class="eyebrow">
-        EL SELLO HA CEDIDO
+      <div class="guardian-icon">
+        🕯️
       </div>
 
       <h2>
-        Fragmento recuperado
+        Busquen al Guardián
       </h2>
 
-      <p id="sealOpenedText">
-        Una nueva parte del manuscrito ha sido recuperada.
+      <p class="intro">
+        La duda ha debilitado a su equipo.
+        Ya no pueden intentar romper más sellos.
       </p>
 
+      <p class="intro">
+        Pero la misión aún no ha terminado.
+      </p>
+
+      <div class="divider">
+        ✦
+      </div>
+
+      <p class="intro">
+        Busquen físicamente a uno de los
+        <strong>Guardianes del Manuscrito</strong>.
+        Superen el desafío que les indique
+        y recibirán un código para restaurar
+        una Llama de Fe.
+      </p>
+
+
+      <div class="field">
+
+        <input
+          id="guardianCodeInput"
+          class="input code-team-input"
+          type="text"
+          maxlength="20"
+          placeholder="CÓDIGO"
+          autocomplete="off"
+        >
+
+      </div>
+
+
       <button
+        id="guardianButton"
         class="btn"
-        onclick="closeSealModal()"
+        onclick="redeemGuardianCode()"
       >
-        Regresar al manuscrito
+        Restaurar la llama
       </button>
+
+
+      <div
+        id="guardianMessage"
+        class="message"
+      ></div>
 
     </div>
 
   </div>
 
-
-  <script>
-
-    /* =========================================================
-       SUPABASE
-       La publishable key puede utilizarse en el navegador.
-       NO colocar aquí service_role ni claves secretas.
-    ========================================================== */
-
-    const SUPABASE_URL =
-      "https://wdbbubvmofmyhdtwcsry.supabase.co";
-
-    const SUPABASE_KEY =
-      "sb_publishable_NwnpwizxXFft8Ohh1F_n9Q_E5g-Yzla";
+</section>
 
 
-    /* =========================================================
-       DATOS VISUALES DE LAS ESTACIONES
+<!-- =========================================================
+     FINAL
+========================================================== -->
 
-       IMPORTANTE:
-       Aquí NO están los códigos correctos.
-       La validación ocurre en Supabase.
-    ========================================================== */
+<section id="screenFinal" class="screen">
 
-    const STATIONS = [
+  <div class="container">
 
-      {
-        number: 1,
-        roman: "I",
-        name: "El Primer Sello",
-        description:
-          "Superen el desafío preparado en esta estación. Cuando lo consigan, el líder les entregará una palabra secreta."
-      },
+    <div class="manuscript final-card">
 
-      {
-        number: 2,
-        roman: "II",
-        name: "El Sello del Espíritu",
-        description:
-          "Una nueva prueba protege este fragmento. Trabajen juntos hasta obtener la palabra que abre este sello."
-      },
+      <div class="final-icon">
+        📜
+      </div>
 
-      {
-        number: 3,
-        roman: "III",
-        name: "El Sello de la Búsqueda",
-        description:
-          "El manuscrito no se entrega fácilmente. Superen el reto y recuperen la palabra oculta."
-      },
+      <div class="eyebrow">
+        LOS SEIS SELLOS HAN SIDO ROTOS
+      </div>
 
-      {
-        number: 4,
-        roman: "IV",
-        name: "El Sello de la Vida",
-        description:
-          "Este fragmento espera a quienes perseveran. Completen el desafío de la estación para recibir la palabra."
-      },
+      <h1>
+        El Manuscrito<br>
+        ha sido recuperado
+      </h1>
 
-      {
-        number: 5,
-        roman: "V",
-        name: "La Piedra Angular",
-        description:
-          "El quinto sello protege otra parte del manuscrito. La cooperación será indispensable."
-      },
+      <div class="divider">
+        ✦
+      </div>
 
-      {
-        number: 6,
-        roman: "VI",
-        name: "El Último Sello",
-        description:
-          "Uno de los sellos más antiguos del manuscrito. Superen el desafío y descifren la palabra recibida."
-      }
+      <p class="intro">
+        <strong id="finalTeamName"></strong>,
+        superaron los seis desafíos.
+      </p>
 
-    ];
+      <p class="intro">
+        Trabajaron juntos, perseveraron
+        y recuperaron cada fragmento perdido.
+      </p>
 
+      <div class="verse">
+        “Me buscarán y me encontrarán,
+        cuando me busquen de todo corazón.”
+        <br><br>
+        <strong>
+          Jeremías 29:13
+        </strong>
+      </div>
 
-    /* =========================================================
-       ESTADO LOCAL
-    ========================================================== */
+      <p class="intro">
+        Pero el verdadero mensaje del manuscrito
+        aún está por ser revelado...
+      </p>
 
-    let currentTeamCode =
-      localStorage.getItem("rise_team_code") || "";
+      <div class="seal-logo">
+        ✦
+      </div>
 
-    let teamState = null;
+    </div>
 
-    let selectedStation = null;
+  </div>
 
-    let syncTimer = null;
-
-    let createdTeamTemporary = null;
+</section>
 
 
-    /* =========================================================
-       API SUPABASE
-    ========================================================== */
+<!-- =========================================================
+     MODAL EQUIPO CREADO
+========================================================== -->
 
-    async function supabaseRPC(functionName, params = {}) {
+<div
+  id="teamCreatedModal"
+  class="modal"
+>
 
-      const response = await fetch(
+  <div class="modal-card">
+
+    <div class="modal-icon">
+      🔑
+    </div>
+
+    <div class="eyebrow">
+      EQUIPO CREADO
+    </div>
+
+    <h2 id="createdTeamName">
+      Los Valientes
+    </h2>
+
+    <p>
+      Este es el código secreto de su equipo.
+      Los demás integrantes pueden utilizarlo
+      para entrar desde otro celular.
+    </p>
+
+    <div
+      id="createdTeamCode"
+      class="team-code-display"
+    >
+      ABC123
+    </div>
+
+    <p class="note">
+      Guárdenlo.
+      Todos los celulares que utilicen este código
+      compartirán las mismas vidas
+      y el mismo progreso.
+    </p>
+
+    <button
+      class="btn"
+      onclick="enterCreatedTeam()"
+    >
+      Entrar a la misión
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =========================================================
+     MODAL SELLO ABIERTO
+========================================================== -->
+
+<div
+  id="sealOpenedModal"
+  class="modal"
+>
+
+  <div class="modal-card">
+
+    <div class="modal-icon">
+      🔓
+    </div>
+
+    <div class="eyebrow">
+      EL SELLO HA CEDIDO
+    </div>
+
+    <h2>
+      Fragmento recuperado
+    </h2>
+
+    <p id="sealOpenedText">
+      Una nueva parte del manuscrito
+      ha sido recuperada.
+    </p>
+
+    <button
+      class="btn"
+      onclick="closeSealModal()"
+    >
+      Regresar al manuscrito
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* ============================================================
+   CONFIGURACIÓN SUPABASE
+
+   Esta es una PUBLISHABLE KEY.
+   Los códigos secretos de las estaciones NO están aquí.
+============================================================ */
+
+const SUPABASE_URL =
+  "https://wdbbubvmofmyhdtwcsry.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_NwnpwizxXFft8Ohh1F_n9Q_E5g-Yzla";
+
+
+/* ============================================================
+   ESTACIONES
+
+   SOLO información visual.
+   NO contiene respuestas.
+============================================================ */
+
+const STATIONS = [
+
+  {
+    number: 1,
+    roman: "I",
+    name: "El Primer Sello",
+
+    description:
+      "Superen el desafío preparado en esta estación. Cuando lo consigan, el líder les entregará una palabra secreta."
+  },
+
+  {
+    number: 2,
+    roman: "II",
+    name: "El Sello del Espíritu",
+
+    description:
+      "Una nueva prueba protege este fragmento. Trabajen juntos hasta obtener la palabra que abre este sello."
+  },
+
+  {
+    number: 3,
+    roman: "III",
+    name: "El Sello de la Búsqueda",
+
+    description:
+      "El manuscrito no se entrega fácilmente. Superen el reto y recuperen la palabra oculta."
+  },
+
+  {
+    number: 4,
+    roman: "IV",
+    name: "El Sello de la Vida",
+
+    description:
+      "Este fragmento espera a quienes perseveran. Completen el desafío de la estación para recibir la palabra."
+  },
+
+  {
+    number: 5,
+    roman: "V",
+    name: "La Piedra Angular",
+
+    description:
+      "El quinto sello protege otra parte del manuscrito. La cooperación será indispensable."
+  },
+
+  {
+    number: 6,
+    roman: "VI",
+    name: "El Último Sello",
+
+    description:
+      "Uno de los sellos más antiguos del manuscrito. Superen el desafío y descifren la palabra recibida."
+  }
+
+];
+
+
+/* ============================================================
+   ESTADO
+============================================================ */
+
+let currentTeamCode =
+  localStorage.getItem("rise_team_code") || "";
+
+let teamState = null;
+
+let selectedStation = null;
+
+let syncTimer = null;
+
+
+/* ============================================================
+   PETICIONES A SUPABASE
+
+   IMPORTANTE:
+   La publishable key se envía mediante "apikey".
+============================================================ */
+
+async function supabaseRPC(functionName, params = {}) {
+
+  const controller =
+    new AbortController();
+
+  const timeout =
+    setTimeout(
+      () => controller.abort(),
+      12000
+    );
+
+  try {
+
+    const response =
+      await fetch(
         `${SUPABASE_URL}/rest/v1/rpc/${functionName}`,
         {
           method: "POST",
 
           headers: {
             "Content-Type": "application/json",
-            "apikey": SUPABASE_KEY,
-            "Authorization": `Bearer ${SUPABASE_KEY}`
+            "apikey": SUPABASE_KEY
           },
 
-          body: JSON.stringify(params)
+          body:
+            JSON.stringify(params),
+
+          signal:
+            controller.signal
         }
       );
 
 
-      if (!response.ok) {
+    const rawText =
+      await response.text();
 
-        let details = "";
 
-        try {
-          const errorData = await response.json();
-          details =
-            errorData.message ||
-            errorData.hint ||
-            JSON.stringify(errorData);
-        } catch {
-          details = await response.text();
-        }
+    let data = null;
 
-        throw new Error(
-          details ||
-          `Error de conexión (${response.status})`
-        );
+
+    if (rawText) {
+
+      try {
+
+        data =
+          JSON.parse(rawText);
+
+      } catch {
+
+        data =
+          rawText;
       }
-
-
-      return await response.json();
     }
 
 
-    /* =========================================================
-       NAVEGACIÓN
-    ========================================================== */
+    if (!response.ok) {
 
-    function showScreen(id) {
+      let message =
+        `Error ${response.status}`;
+
+
+      if (
+        data &&
+        typeof data === "object"
+      ) {
+
+        message =
+          data.message ||
+          data.hint ||
+          data.details ||
+          message;
+
+      } else if (data) {
+
+        message =
+          String(data);
+      }
+
+
+      throw new Error(message);
+    }
+
+
+    return data;
+
+  } catch (error) {
+
+    if (
+      error.name ===
+      "AbortError"
+    ) {
+
+      throw new Error(
+        "La conexión con Supabase tardó demasiado."
+      );
+    }
+
+
+    throw error;
+
+  } finally {
+
+    clearTimeout(timeout);
+  }
+}
+
+
+/* ============================================================
+   NAVEGACIÓN
+============================================================ */
+
+function showScreen(id) {
+
+  document
+    .querySelectorAll(".screen")
+    .forEach(
+      screen => {
+
+        screen
+          .classList
+          .remove("active");
+      }
+    );
+
+
+  const target =
+    document.getElementById(id);
+
+
+  if (target) {
+
+    target
+      .classList
+      .add("active");
+  }
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+function openCreateTeam() {
+
+  clearBox("createError");
+
+  showScreen(
+    "screenCreate"
+  );
+
+
+  setTimeout(
+    () => {
 
       document
-        .querySelectorAll(".screen")
-        .forEach(screen => {
-          screen.classList.remove("active");
-        });
+        .getElementById(
+          "createTeamName"
+        )
+        .focus();
+
+    },
+    200
+  );
+}
 
 
-      const target =
-        document.getElementById(id);
+function openJoinTeam() {
+
+  clearBox("joinError");
+
+  showScreen(
+    "screenJoin"
+  );
 
 
-      if (target) {
-        target.classList.add("active");
-      }
-
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-    }
-
-
-    function openCreateTeam() {
-
-      clearBox("createError");
-
-      showScreen("screenCreate");
-
-      setTimeout(() => {
-        document
-          .getElementById("createTeamName")
-          .focus();
-      }, 250);
-    }
-
-
-    function openJoinTeam() {
-
-      clearBox("joinError");
-
-      showScreen("screenJoin");
-
-      setTimeout(() => {
-        document
-          .getElementById("joinTeamCode")
-          .focus();
-      }, 250);
-    }
-
-
-    /* =========================================================
-       CREAR EQUIPO
-    ========================================================== */
-
-    async function createTeam() {
-
-      const name =
-        document
-          .getElementById("createTeamName")
-          .value
-          .trim();
-
-
-      if (name.length < 2) {
-
-        showError(
-          "createError",
-          "Escribe un nombre para el equipo."
-        );
-
-        return;
-      }
-
-
-      const button =
-        document.getElementById("createTeamButton");
-
-
-      button.disabled = true;
-      button.textContent = "CREANDO EQUIPO...";
-
-
-      try {
-
-        const result =
-          await supabaseRPC(
-            "crear_equipo",
-            {
-              p_nombre: name
-            }
-          );
-
-
-        if (!result.ok) {
-
-          throw new Error(
-            translateError(result.error)
-          );
-        }
-
-
-        createdTeamTemporary = result;
-
-        currentTeamCode =
-          result.codigo_equipo;
-
-
-        localStorage.setItem(
-          "rise_team_code",
-          currentTeamCode
-        );
-
-
-        document
-          .getElementById("createdTeamName")
-          .textContent = result.nombre;
-
-
-        document
-          .getElementById("createdTeamCode")
-          .textContent = result.codigo_equipo;
-
-
-        document
-          .getElementById("teamCreatedModal")
-          .classList.add("show");
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        showError(
-          "createError",
-          "No pudimos crear el equipo. " +
-          error.message
-        );
-
-      } finally {
-
-        button.disabled = false;
-        button.textContent = "CREAR EQUIPO";
-      }
-    }
-
-
-    async function enterCreatedTeam() {
+  setTimeout(
+    () => {
 
       document
-        .getElementById("teamCreatedModal")
-        .classList.remove("show");
+        .getElementById(
+          "joinTeamCode"
+        )
+        .focus();
+
+    },
+    200
+  );
+}
 
 
-      await loadTeamAndEnter();
+/* ============================================================
+   CREAR EQUIPO
+============================================================ */
+
+async function createTeam() {
+
+  clearBox(
+    "createError"
+  );
+
+
+  const name =
+    document
+      .getElementById(
+        "createTeamName"
+      )
+      .value
+      .trim();
+
+
+  if (
+    name.length < 2
+  ) {
+
+    showError(
+      "createError",
+      "Escribe un nombre para el equipo."
+    );
+
+    return;
+  }
+
+
+  const button =
+    document.getElementById(
+      "createTeamButton"
+    );
+
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "CREANDO EQUIPO...";
+
+
+  try {
+
+    const result =
+      await supabaseRPC(
+        "crear_equipo",
+        {
+          p_nombre: name
+        }
+      );
+
+
+    if (
+      !result ||
+      result.ok !== true
+    ) {
+
+      throw new Error(
+        translateError(
+          result?.error
+        )
+      );
     }
 
 
-    /* =========================================================
-       UNIRSE A EQUIPO
-    ========================================================== */
-
-    async function joinTeam() {
-
-      const code =
-        document
-          .getElementById("joinTeamCode")
-          .value
-          .trim()
-          .toUpperCase();
+    currentTeamCode =
+      result.codigo_equipo;
 
 
-      if (code.length < 4) {
+    localStorage.setItem(
+      "rise_team_code",
+      currentTeamCode
+    );
 
-        showError(
-          "joinError",
-          "Introduce el código del equipo."
+
+    document
+      .getElementById(
+        "createdTeamName"
+      )
+      .textContent =
+        result.nombre;
+
+
+    document
+      .getElementById(
+        "createdTeamCode"
+      )
+      .textContent =
+        result.codigo_equipo;
+
+
+    document
+      .getElementById(
+        "teamCreatedModal"
+      )
+      .classList
+      .add("show");
+
+
+    setConnectionState(
+      true,
+      "CONECTADO AL MANUSCRITO"
+    );
+
+
+  } catch (error) {
+
+    console.error(
+      "Error creando equipo:",
+      error
+    );
+
+
+    showError(
+      "createError",
+      "No pudimos crear el equipo. " +
+      error.message
+    );
+
+
+    setConnectionState(
+      false,
+      "ERROR DE CONEXIÓN"
+    );
+
+
+  } finally {
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "CREAR EQUIPO";
+  }
+}
+
+
+async function enterCreatedTeam() {
+
+  document
+    .getElementById(
+      "teamCreatedModal"
+    )
+    .classList
+    .remove("show");
+
+
+  await loadTeamAndEnter();
+}
+
+
+/* ============================================================
+   UNIRSE A EQUIPO
+============================================================ */
+
+async function joinTeam() {
+
+  clearBox(
+    "joinError"
+  );
+
+
+  const code =
+    document
+      .getElementById(
+        "joinTeamCode"
+      )
+      .value
+      .trim()
+      .toUpperCase();
+
+
+  if (
+    code.length !== 6
+  ) {
+
+    showError(
+      "joinError",
+      "El código del equipo debe tener 6 caracteres."
+    );
+
+    return;
+  }
+
+
+  const button =
+    document.getElementById(
+      "joinButton"
+    );
+
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "BUSCANDO EQUIPO...";
+
+
+  try {
+
+    const result =
+      await supabaseRPC(
+        "obtener_equipo",
+        {
+          p_codigo_equipo: code
+        }
+      );
+
+
+    if (
+      !result ||
+      result.ok !== true
+    ) {
+
+      throw new Error(
+        translateError(
+          result?.error
+        )
+      );
+    }
+
+
+    currentTeamCode =
+      code;
+
+
+    localStorage.setItem(
+      "rise_team_code",
+      currentTeamCode
+    );
+
+
+    teamState =
+      result;
+
+
+    setConnectionState(
+      true,
+      "CONECTADO AL MANUSCRITO"
+    );
+
+
+    renderTeam();
+
+    startSync();
+
+    decideTeamScreen();
+
+
+  } catch (error) {
+
+    console.error(
+      "Error entrando al equipo:",
+      error
+    );
+
+
+    showError(
+      "joinError",
+      error.message
+    );
+
+
+  } finally {
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "ENTRAR AL EQUIPO";
+  }
+}
+
+
+/* ============================================================
+   CARGAR EQUIPO
+============================================================ */
+
+async function loadTeamAndEnter() {
+
+  if (!currentTeamCode) {
+
+    showScreen(
+      "screenIntro"
+    );
+
+    return;
+  }
+
+
+  try {
+
+    const result =
+      await supabaseRPC(
+        "obtener_equipo",
+        {
+          p_codigo_equipo:
+            currentTeamCode
+        }
+      );
+
+
+    if (
+      !result ||
+      result.ok !== true
+    ) {
+
+      if (
+        result?.error ===
+        "EQUIPO_NO_ENCONTRADO"
+      ) {
+
+        localStorage.removeItem(
+          "rise_team_code"
+        );
+
+        currentTeamCode = "";
+
+        teamState = null;
+
+        showScreen(
+          "screenIntro"
         );
 
         return;
       }
 
 
-      const button =
-        document.getElementById("joinButton");
-
-
-      button.disabled = true;
-      button.textContent = "BUSCANDO EQUIPO...";
-
-
-      try {
-
-        const result =
-          await supabaseRPC(
-            "obtener_equipo",
-            {
-              p_codigo_equipo: code
-            }
-          );
-
-
-        if (!result.ok) {
-
-          throw new Error(
-            translateError(result.error)
-          );
-        }
-
-
-        currentTeamCode = code;
-
-        localStorage.setItem(
-          "rise_team_code",
-          currentTeamCode
-        );
-
-
-        teamState = result;
-
-        renderTeam();
-
-        startSync();
-
-        decideTeamScreen();
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        showError(
-          "joinError",
-          error.message
-        );
-
-      } finally {
-
-        button.disabled = false;
-        button.textContent = "ENTRAR AL EQUIPO";
-      }
+      throw new Error(
+        translateError(
+          result?.error
+        )
+      );
     }
 
 
-    /* =========================================================
-       CARGAR EQUIPO
-    ========================================================== */
-
-    async function loadTeamAndEnter() {
-
-      if (!currentTeamCode) {
-        return;
-      }
+    teamState =
+      result;
 
 
-      try {
-
-        const result =
-          await supabaseRPC(
-            "obtener_equipo",
-            {
-              p_codigo_equipo:
-                currentTeamCode
-            }
-          );
+    setConnectionState(
+      true,
+      "CONECTADO AL MANUSCRITO"
+    );
 
 
-        if (!result.ok) {
+    renderTeam();
 
-          localStorage.removeItem(
-            "rise_team_code"
-          );
+    startSync();
 
-          currentTeamCode = "";
+    decideTeamScreen();
 
-          throw new Error(
-            translateError(result.error)
-          );
+
+  } catch (error) {
+
+    console.error(
+      "Error cargando equipo:",
+      error
+    );
+
+
+    setConnectionState(
+      false,
+      "SIN CONEXIÓN CON EL MANUSCRITO"
+    );
+
+
+    showScreen(
+      "screenIntro"
+    );
+  }
+}
+
+
+/* ============================================================
+   SINCRONIZACIÓN ENTRE DISPOSITIVOS
+============================================================ */
+
+function startSync() {
+
+  stopSync();
+
+
+  syncTimer =
+    setInterval(
+      () => {
+
+        refreshTeam(false);
+
+      },
+      4000
+    );
+}
+
+
+function stopSync() {
+
+  if (syncTimer) {
+
+    clearInterval(
+      syncTimer
+    );
+
+    syncTimer = null;
+  }
+}
+
+
+async function refreshTeam(
+  showFeedback = false
+) {
+
+  if (!currentTeamCode) {
+    return;
+  }
+
+
+  try {
+
+    const result =
+      await supabaseRPC(
+        "obtener_equipo",
+        {
+          p_codigo_equipo:
+            currentTeamCode
         }
+      );
 
 
-        teamState = result;
+    if (
+      !result ||
+      result.ok !== true
+    ) {
 
-        renderTeam();
-
-        startSync();
-
-        decideTeamScreen();
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        setConnectionState(
-          false,
-          "SIN CONEXIÓN CON EL MANUSCRITO"
-        );
-      }
+      return;
     }
 
 
-    /* =========================================================
-       SINCRONIZACIÓN
-
-       Cada pocos segundos consulta el estado del equipo.
-       Así dos celulares ven el mismo progreso.
-    ========================================================== */
-
-    function startSync() {
-
-      stopSync();
+    teamState =
+      result;
 
 
-      syncTimer =
-        setInterval(
-          async () => {
-
-            if (!currentTeamCode) {
-              return;
-            }
-
-            await refreshTeam(false);
-
-          },
-          4000
-        );
-    }
+    setConnectionState(
+      true,
+      "CONECTADO AL MANUSCRITO"
+    );
 
 
-    function stopSync() {
-
-      if (syncTimer) {
-
-        clearInterval(syncTimer);
-
-        syncTimer = null;
-      }
-    }
+    renderTeam();
 
 
-    async function refreshTeam(showFeedback = false) {
+    if (
+      teamState.finalizado === true
+    ) {
 
-      if (!currentTeamCode) {
-        return;
-      }
-
-
-      try {
-
-        const result =
-          await supabaseRPC(
-            "obtener_equipo",
-            {
-              p_codigo_equipo:
-                currentTeamCode
-            }
-          );
-
-
-        if (!result.ok) {
-          return;
-        }
-
-
-        teamState = result;
-
-        renderTeam();
-
-        setConnectionState(
-          true,
-          "CONECTADO AL MANUSCRITO"
+      const modal =
+        document.getElementById(
+          "sealOpenedModal"
         );
 
 
-        if (
-          teamState.finalizado &&
-          !document
-            .getElementById("sealOpenedModal")
-            .classList
-            .contains("show")
-        ) {
-
-          showFinal();
-          return;
-        }
-
-
-        if (
-          teamState.bloqueado ||
-          teamState.vidas <= 0
-        ) {
-
-          const activeScreen =
-            document.querySelector(
-              ".screen.active"
-            );
-
-          if (
-            activeScreen &&
-            activeScreen.id !==
-              "screenGuardian"
-          ) {
-
-            showScreen(
-              "screenGuardian"
-            );
-          }
-        }
-
-
-        if (showFeedback) {
-
-          const button =
-            event?.target;
-
-          if (button) {
-
-            const original =
-              button.textContent;
-
-            button.textContent =
-              "✓ ACTUALIZADO";
-
-            setTimeout(() => {
-              button.textContent =
-                original;
-            }, 900);
-          }
-        }
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        setConnectionState(
-          false,
-          "SIN CONEXIÓN"
-        );
-      }
-    }
-
-
-    /* =========================================================
-       DECIDIR PANTALLA
-    ========================================================== */
-
-    function decideTeamScreen() {
-
-      if (!teamState) {
-        return;
-      }
-
-
-      if (teamState.finalizado) {
+      if (
+        !modal.classList.contains(
+          "show"
+        )
+      ) {
 
         showFinal();
-        return;
       }
+
+      return;
+    }
+
+
+    if (
+      teamState.bloqueado === true ||
+      Number(teamState.vidas) <= 0
+    ) {
+
+      const activeScreen =
+        document.querySelector(
+          ".screen.active"
+        );
 
 
       if (
-        teamState.bloqueado ||
-        teamState.vidas <= 0
+        activeScreen &&
+        activeScreen.id !==
+          "screenGuardian"
       ) {
 
         showScreen(
           "screenGuardian"
         );
-
-        return;
-      }
-
-
-      showScreen(
-        "screenMap"
-      );
-    }
-
-
-    /* =========================================================
-       RENDER EQUIPO
-    ========================================================== */
-
-    function renderTeam() {
-
-      if (!teamState) {
-        return;
-      }
-
-
-      document
-        .getElementById("gameTeamName")
-        .textContent =
-          teamState.nombre;
-
-
-      document
-        .getElementById("gameTeamCode")
-        .textContent =
-          `CÓDIGO DE EQUIPO: ${teamState.codigo_equipo}`;
-
-
-      renderLives();
-
-
-      const completed =
-        getCompletedCount();
-
-
-      document
-        .getElementById("progressText")
-        .textContent =
-          `${completed} / 6`;
-
-
-      document
-        .getElementById("livesText")
-        .textContent =
-          `${teamState.vidas} / 3`;
-
-
-      document
-        .getElementById("centralManuscript")
-        .setAttribute(
-          "data-progress",
-          `${completed} / 6`
-        );
-
-
-      renderSeals();
-
-
-      if (selectedStation) {
-        renderSelectedStation();
       }
     }
 
 
-    function renderLives() {
-
-      const container =
-        document.getElementById(
-          "livesDisplay"
-        );
-
-
-      container.innerHTML = "";
-
-
-      for (let i = 0; i < 3; i++) {
-
-        const span =
-          document.createElement("span");
-
-
-        span.className =
-          "heart" +
-          (
-            i >= teamState.vidas
-              ? " off"
-              : ""
-          );
-
-
-        span.textContent = "❤️";
-
-        container.appendChild(span);
-      }
-    }
-
-
-    function getCompletedCount() {
-
-      if (
-        !teamState ||
-        !Array.isArray(
-          teamState.progreso
-        )
-      ) {
-
-        return 0;
-      }
-
-
-      return teamState.progreso.filter(
-        item => item.completada
-      ).length;
-    }
-
-
-    function getStationProgress(number) {
-
-      if (
-        !teamState ||
-        !Array.isArray(
-          teamState.progreso
-        )
-      ) {
-
-        return null;
-      }
-
-
-      return teamState.progreso.find(
-        item =>
-          Number(item.numero) ===
-          Number(number)
-      );
-    }
-
-
-    /* =========================================================
-       MAPA DE SELLOS
-    ========================================================== */
-
-    function renderSeals() {
-
-      const grid =
-        document.getElementById(
-          "sealsGrid"
-        );
-
-
-      grid.innerHTML = "";
-
-
-      STATIONS.forEach(station => {
-
-        const progress =
-          getStationProgress(
-            station.number
-          );
-
-
-        const completed =
-          progress?.completada === true;
-
-
-        const button =
-          document.createElement(
-            "button"
-          );
-
-
-        button.className =
-          "station-seal" +
-          (
-            completed
-              ? " done"
-              : ""
-          );
-
-
-        button.innerHTML = `
-
-          <span class="seal-icon">
-            ${completed ? "✨" : "🔒"}
-          </span>
-
-          <span class="seal-number">
-            SELLO ${station.roman}
-          </span>
-
-          <span class="seal-name">
-            ${
-              completed
-                ? "Fragmento recuperado"
-                : station.name
-            }
-          </span>
-
-        `;
-
-
-        button.addEventListener(
-          "click",
-          () => {
-            openStation(
-              station.number
-            );
-          }
-        );
-
-
-        grid.appendChild(button);
-      });
-    }
-
-
-    /* =========================================================
-       ABRIR ESTACIÓN
-    ========================================================== */
-
-    function openStation(number) {
-
-      if (!teamState) {
-        return;
-      }
-
-
-      if (
-        teamState.vidas <= 0 ||
-        teamState.bloqueado
-      ) {
-
-        showScreen(
-          "screenGuardian"
-        );
-
-        return;
-      }
-
-
-      selectedStation =
-        STATIONS.find(
-          item =>
-            item.number === number
-        );
-
-
-      renderSelectedStation();
-
-      showScreen(
-        "screenStation"
-      );
-
-
-      setTimeout(() => {
-
-        const progress =
-          getStationProgress(number);
-
-
-        if (!progress?.completada) {
-
-          document
-            .getElementById(
-              "stationCodeInput"
-            )
-            .focus();
-        }
-
-      }, 250);
-    }
-
-
-    function renderSelectedStation() {
-
-      if (!selectedStation) {
-        return;
-      }
-
-
-      const progress =
-        getStationProgress(
-          selectedStation.number
-        );
-
-
-      const completed =
-        progress?.completada === true;
-
-
-      document
-        .getElementById(
-          "stationNumber"
-        )
-        .textContent =
-          `SELLO ${selectedStation.roman}`;
-
-
-      document
-        .getElementById(
-          "stationTitle"
-        )
-        .textContent =
-          selectedStation.name;
-
-
-      document
-        .getElementById(
-          "stationDescription"
-        )
-        .textContent =
-          selectedStation.description;
-
-
-      document
-        .getElementById(
-          "stationBigIcon"
-        )
-        .textContent =
-          completed
-            ? "✨"
-            : "🔒";
-
-
-      document
-        .getElementById(
-          "stationLockedContent"
-        )
-        .classList
-        .toggle(
-          "hidden",
-          completed
-        );
-
-
-      document
-        .getElementById(
-          "stationCompletedContent"
-        )
-        .classList
-        .toggle(
-          "hidden",
-          !completed
-        );
-
-
-      const hintBox =
-        document.getElementById(
-          "hintBox"
-        );
-
-
-      if (
-        progress?.pista_usada
-      ) {
-
-        hintBox.textContent =
-          "La pista ya fue utilizada en esta estación.";
-
-        hintBox.classList.add(
-          "show"
-        );
-
-        document
-          .getElementById(
-            "hintButton"
-          )
-          .disabled = true;
-
-      } else {
-
-        hintBox.classList.remove(
-          "show"
-        );
-
-        hintBox.textContent = "";
-
-        document
-          .getElementById(
-            "hintButton"
-          )
-          .disabled = false;
-      }
-    }
-
-
-    function backToMap() {
-
-      selectedStation = null;
-
-      document
-        .getElementById(
-          "stationCodeInput"
-        )
-        .value = "";
-
-
-      setStationMessage(
-        "",
-        ""
-      );
-
-
-      showScreen(
-        "screenMap"
-      );
-    }
-
-
-    /* =========================================================
-       VALIDAR CÓDIGO
-
-       EL CÓDIGO CORRECTO NO ESTÁ EN ESTE ARCHIVO.
-       SUPABASE REALIZA LA COMPARACIÓN.
-    ========================================================== */
-
-    async function validateStationCode() {
-
-      if (
-        !selectedStation ||
-        !currentTeamCode
-      ) {
-
-        return;
-      }
-
-
-      const input =
-        document.getElementById(
-          "stationCodeInput"
-        );
-
-
-      const code =
-        input.value
-          .replace(/\D/g, "");
-
-
-      if (!code) {
-
-        setStationMessage(
-          "Escriban primero el código que descifraron.",
-          "error"
-        );
-
-        return;
-      }
-
+    if (showFeedback) {
 
       const button =
         document.getElementById(
-          "validateButton"
+          "refreshButton"
         );
 
 
-      button.disabled = true;
-      button.textContent =
-        "COMPROBANDO SELLO...";
-
-
-      try {
-
-        const result =
-          await supabaseRPC(
-            "validar_codigo",
-            {
-              p_codigo_equipo:
-                currentTeamCode,
-
-              p_estacion:
-                selectedStation.number,
-
-              p_codigo:
-                code
-            }
-          );
-
-
-        if (!result.ok) {
-
-          if (
-            result.error ===
-            "SIN_VIDAS"
-          ) {
-
-            teamState.vidas = 0;
-            teamState.bloqueado = true;
-
-            renderTeam();
-
-            showScreen(
-              "screenGuardian"
-            );
-
-            return;
-          }
-
-
-          throw new Error(
-            translateError(
-              result.error
-            )
-          );
-        }
-
-
-        if (result.correcto) {
-
-          await refreshTeam(false);
-
-
-          document
-            .getElementById(
-              "sealOpenedText"
-            )
-            .innerHTML =
-              `El <strong>Sello ${selectedStation.roman}</strong>
-              ha sido roto.<br><br>
-              Una nueva parte del manuscrito ha sido recuperada.`;
-
-
-          document
-            .getElementById(
-              "sealOpenedModal"
-            )
-            .classList
-            .add("show");
-
-
-          return;
-        }
-
-
-        teamState.vidas =
-          result.vidas;
-
-
-        teamState.bloqueado =
-          result.bloqueado === true;
-
-
-        renderLives();
-
-
-        document
-          .getElementById(
-            "livesText"
-          )
-          .textContent =
-            `${teamState.vidas} / 3`;
-
-
-        if (
-          result.costo_vida
-        ) {
-
-          setStationMessage(
-            `El código es incorrecto. Una Llama de Fe se ha apagado. Quedan ${result.vidas}.`,
-            "error"
-          );
-
-        } else {
-
-          const remainingFree =
-            Math.max(
-              0,
-              2 -
-              result.intentos_fallidos
-            );
-
-
-          if (
-            remainingFree > 0
-          ) {
-
-            setStationMessage(
-              `El sello no responde. Revisen el código. Todavía tienen ${remainingFree} intento gratuito en esta estación.`,
-              "error"
-            );
-
-          } else {
-
-            setStationMessage(
-              "El sello no responde. ⚠️ El próximo error consumirá una Llama de Fe.",
-              "error"
-            );
-          }
-        }
-
-
-        input.select();
-
-
-        if (
-          result.bloqueado ||
-          result.vidas <= 0
-        ) {
-
-          setTimeout(
-            () => {
-              showScreen(
-                "screenGuardian"
-              );
-            },
-            1700
-          );
-        }
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        setStationMessage(
-          "No pudimos consultar el manuscrito. Revisa la conexión e inténtalo nuevamente.",
-          "error"
-        );
-
-      } finally {
-
-        button.disabled = false;
+      if (button) {
 
         button.textContent =
-          "ROMPER EL SELLO";
-      }
-    }
-
-
-    /* =========================================================
-       PISTAS
-    ========================================================== */
-
-    async function useHint() {
-
-      if (
-        !selectedStation ||
-        !currentTeamCode
-      ) {
-
-        return;
-      }
-
-
-      if (
-        !confirm(
-          "Solicitar una pista apagará 1 Llama de Fe.\n\n¿El equipo desea continuar?"
-        )
-      ) {
-
-        return;
-      }
-
-
-      const button =
-        document.getElementById(
-          "hintButton"
-        );
-
-
-      button.disabled = true;
-      button.textContent =
-        "BUSCANDO PISTA...";
-
-
-      try {
-
-        const result =
-          await supabaseRPC(
-            "usar_pista",
-            {
-              p_codigo_equipo:
-                currentTeamCode,
-
-              p_estacion:
-                selectedStation.number
-            }
-          );
-
-
-        if (!result.ok) {
-
-          if (
-            result.error ===
-            "SIN_VIDAS"
-          ) {
-
-            await refreshTeam(false);
-
-            showScreen(
-              "screenGuardian"
-            );
-
-            return;
-          }
-
-
-          throw new Error(
-            translateError(
-              result.error
-            )
-          );
-        }
-
-
-        const hintBox =
-          document.getElementById(
-            "hintBox"
-          );
-
-
-        hintBox.textContent =
-          "✦ PISTA DEL MANUSCRITO ✦\n\n" +
-          result.pista;
-
-
-        hintBox.classList.add(
-          "show"
-        );
-
-
-        teamState.vidas =
-          result.vidas;
-
-
-        renderLives();
-
-
-        document
-          .getElementById(
-            "livesText"
-          )
-          .textContent =
-            `${teamState.vidas} / 3`;
-
-
-        if (
-          result.bloqueado ||
-          result.vidas <= 0
-        ) {
-
-          setTimeout(
-            () => {
-              showScreen(
-                "screenGuardian"
-              );
-            },
-            1800
-          );
-        }
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        setStationMessage(
-          error.message,
-          "error"
-        );
-
-        button.disabled = false;
-
-      } finally {
-
-        button.textContent =
-          "SOLICITAR PISTA · ❤️";
-      }
-    }
-
-
-    /* =========================================================
-       GUARDIÁN
-    ========================================================== */
-
-    async function redeemGuardianCode() {
-
-      const input =
-        document.getElementById(
-          "guardianCodeInput"
-        );
-
-
-      const code =
-        input.value
-          .trim()
-          .toUpperCase();
-
-
-      if (!code) {
-
-        setGuardianMessage(
-          "Introduce el código entregado por el Guardián.",
-          "error"
-        );
-
-        return;
-      }
-
-
-      const button =
-        document.getElementById(
-          "guardianButton"
-        );
-
-
-      button.disabled = true;
-
-      button.textContent =
-        "RESTAURANDO LA LLAMA...";
-
-
-      try {
-
-        const result =
-          await supabaseRPC(
-            "usar_codigo_guardian",
-            {
-              p_codigo_equipo:
-                currentTeamCode,
-
-              p_codigo_guardian:
-                code
-            }
-          );
-
-
-        if (!result.ok) {
-
-          throw new Error(
-            translateError(
-              result.error
-            )
-          );
-        }
-
-
-        setGuardianMessage(
-          "✨ LA LLAMA HA SIDO RESTAURADA. +1 VIDA",
-          "success"
-        );
-
-
-        input.value = "";
-
-
-        await refreshTeam(false);
+          "✓ ACTUALIZADO";
 
 
         setTimeout(
           () => {
-            showScreen(
-              "screenMap"
-            );
+
+            button.textContent =
+              "↻ ACTUALIZAR";
+
           },
-          1800
+          900
         );
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        setGuardianMessage(
-          error.message,
-          "error"
-        );
-
-      } finally {
-
-        button.disabled = false;
-
-        button.textContent =
-          "RESTAURAR LA LLAMA";
       }
     }
 
 
-    /* =========================================================
-       CERRAR MODAL DE SELLO
-    ========================================================== */
+  } catch (error) {
 
-    async function closeSealModal() {
+    console.error(
+      "Error sincronizando:",
+      error
+    );
+
+
+    setConnectionState(
+      false,
+      "SIN CONEXIÓN"
+    );
+  }
+}
+
+
+async function manualRefresh() {
+
+  const button =
+    document.getElementById(
+      "refreshButton"
+    );
+
+
+  if (button) {
+
+    button.disabled =
+      true;
+
+    button.textContent =
+      "ACTUALIZANDO...";
+  }
+
+
+  await refreshTeam(
+    true
+  );
+
+
+  if (button) {
+
+    setTimeout(
+      () => {
+
+        button.disabled =
+          false;
+
+      },
+      1000
+    );
+  }
+}
+
+
+/* ============================================================
+   DECIDIR PANTALLA
+============================================================ */
+
+function decideTeamScreen() {
+
+  if (!teamState) {
+    return;
+  }
+
+
+  if (
+    teamState.finalizado === true
+  ) {
+
+    showFinal();
+
+    return;
+  }
+
+
+  if (
+    teamState.bloqueado === true ||
+    Number(teamState.vidas) <= 0
+  ) {
+
+    showScreen(
+      "screenGuardian"
+    );
+
+    return;
+  }
+
+
+  showScreen(
+    "screenMap"
+  );
+}
+
+
+/* ============================================================
+   RENDER EQUIPO
+============================================================ */
+
+function renderTeam() {
+
+  if (!teamState) {
+    return;
+  }
+
+
+  document
+    .getElementById(
+      "gameTeamName"
+    )
+    .textContent =
+      teamState.nombre ||
+      "Equipo";
+
+
+  document
+    .getElementById(
+      "gameTeamCode"
+    )
+    .textContent =
+      `CÓDIGO DE EQUIPO: ${teamState.codigo_equipo || currentTeamCode}`;
+
+
+  renderLives();
+
+
+  const completed =
+    getCompletedCount();
+
+
+  document
+    .getElementById(
+      "progressText"
+    )
+    .textContent =
+      `${completed} / 6`;
+
+
+  document
+    .getElementById(
+      "livesText"
+    )
+    .textContent =
+      `${Number(teamState.vidas) || 0} / 3`;
+
+
+  document
+    .getElementById(
+      "centralManuscript"
+    )
+    .setAttribute(
+      "data-progress",
+      `${completed} / 6`
+    );
+
+
+  renderSeals();
+
+
+  if (selectedStation) {
+
+    renderSelectedStation();
+  }
+}
+
+
+function renderLives() {
+
+  const container =
+    document.getElementById(
+      "livesDisplay"
+    );
+
+
+  container.innerHTML =
+    "";
+
+
+  const lives =
+    Number(
+      teamState?.vidas || 0
+    );
+
+
+  for (
+    let i = 0;
+    i < 3;
+    i++
+  ) {
+
+    const span =
+      document.createElement(
+        "span"
+      );
+
+
+    span.className =
+      "heart" +
+      (
+        i >= lives
+          ? " off"
+          : ""
+      );
+
+
+    span.textContent =
+      "❤️";
+
+
+    container.appendChild(
+      span
+    );
+  }
+}
+
+
+function getCompletedCount() {
+
+  if (
+    !teamState ||
+    !Array.isArray(
+      teamState.progreso
+    )
+  ) {
+
+    return 0;
+  }
+
+
+  return teamState
+    .progreso
+    .filter(
+      item =>
+        item.completada === true
+    )
+    .length;
+}
+
+
+function getStationProgress(
+  number
+) {
+
+  if (
+    !teamState ||
+    !Array.isArray(
+      teamState.progreso
+    )
+  ) {
+
+    return null;
+  }
+
+
+  return teamState
+    .progreso
+    .find(
+      item =>
+        Number(item.numero) ===
+        Number(number)
+    ) || null;
+}
+
+
+/* ============================================================
+   MAPA DE SELLOS
+============================================================ */
+
+function renderSeals() {
+
+  const grid =
+    document.getElementById(
+      "sealsGrid"
+    );
+
+
+  grid.innerHTML =
+    "";
+
+
+  STATIONS.forEach(
+    station => {
+
+      const progress =
+        getStationProgress(
+          station.number
+        );
+
+
+      const completed =
+        progress?.completada ===
+        true;
+
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+
+      button.type =
+        "button";
+
+
+      button.className =
+        "station-seal" +
+        (
+          completed
+            ? " done"
+            : ""
+        );
+
+
+      button.innerHTML = `
+
+        <span class="seal-icon">
+          ${completed ? "✨" : "🔒"}
+        </span>
+
+        <span class="seal-number">
+          SELLO ${station.roman}
+        </span>
+
+        <span class="seal-name">
+          ${
+            completed
+              ? "Fragmento recuperado"
+              : station.name
+          }
+        </span>
+
+      `;
+
+
+      button.addEventListener(
+        "click",
+        () => {
+
+          openStation(
+            station.number
+          );
+        }
+      );
+
+
+      grid.appendChild(
+        button
+      );
+    }
+  );
+}
+
+
+/* ============================================================
+   ESTACIONES
+============================================================ */
+
+function openStation(
+  number
+) {
+
+  if (!teamState) {
+    return;
+  }
+
+
+  if (
+    Number(teamState.vidas) <= 0 ||
+    teamState.bloqueado === true
+  ) {
+
+    showScreen(
+      "screenGuardian"
+    );
+
+    return;
+  }
+
+
+  selectedStation =
+    STATIONS.find(
+      station =>
+        station.number ===
+        number
+    );
+
+
+  if (!selectedStation) {
+    return;
+  }
+
+
+  document
+    .getElementById(
+      "stationCodeInput"
+    )
+    .value =
+      "";
+
+
+  setStationMessage(
+    "",
+    ""
+  );
+
+
+  renderSelectedStation();
+
+
+  showScreen(
+    "screenStation"
+  );
+
+
+  setTimeout(
+    () => {
+
+      const progress =
+        getStationProgress(
+          number
+        );
+
+
+      if (
+        !progress?.completada
+      ) {
+
+        document
+          .getElementById(
+            "stationCodeInput"
+          )
+          .focus();
+      }
+
+    },
+    200
+  );
+}
+
+
+function renderSelectedStation() {
+
+  if (!selectedStation) {
+    return;
+  }
+
+
+  const progress =
+    getStationProgress(
+      selectedStation.number
+    );
+
+
+  const completed =
+    progress?.completada ===
+    true;
+
+
+  document
+    .getElementById(
+      "stationNumber"
+    )
+    .textContent =
+      `SELLO ${selectedStation.roman}`;
+
+
+  document
+    .getElementById(
+      "stationTitle"
+    )
+    .textContent =
+      selectedStation.name;
+
+
+  document
+    .getElementById(
+      "stationDescription"
+    )
+    .textContent =
+      selectedStation.description;
+
+
+  document
+    .getElementById(
+      "stationBigIcon"
+    )
+    .textContent =
+      completed
+        ? "✨"
+        : "🔒";
+
+
+  document
+    .getElementById(
+      "stationLockedContent"
+    )
+    .classList
+    .toggle(
+      "hidden",
+      completed
+    );
+
+
+  document
+    .getElementById(
+      "stationCompletedContent"
+    )
+    .classList
+    .toggle(
+      "hidden",
+      !completed
+    );
+
+
+  const hintBox =
+    document.getElementById(
+      "hintBox"
+    );
+
+
+  const hintButton =
+    document.getElementById(
+      "hintButton"
+    );
+
+
+  if (
+    progress?.pista_usada ===
+    true
+  ) {
+
+    hintBox.textContent =
+      "La pista de esta estación ya fue utilizada.";
+
+    hintBox
+      .classList
+      .add("show");
+
+
+    hintButton.disabled =
+      true;
+
+  } else {
+
+    hintBox.textContent =
+      "";
+
+    hintBox
+      .classList
+      .remove("show");
+
+
+    hintButton.disabled =
+      false;
+  }
+}
+
+
+function backToMap() {
+
+  selectedStation =
+    null;
+
+
+  document
+    .getElementById(
+      "stationCodeInput"
+    )
+    .value =
+      "";
+
+
+  setStationMessage(
+    "",
+    ""
+  );
+
+
+  showScreen(
+    "screenMap"
+  );
+}
+
+
+/* ============================================================
+   VALIDAR CÓDIGO DE ESTACIÓN
+
+   Las respuestas correctas NO están aquí.
+============================================================ */
+
+async function validateStationCode() {
+
+  if (
+    !selectedStation ||
+    !currentTeamCode
+  ) {
+
+    return;
+  }
+
+
+  const input =
+    document.getElementById(
+      "stationCodeInput"
+    );
+
+
+  const code =
+    input.value
+      .replace(
+        /\D/g,
+        ""
+      );
+
+
+  if (!code) {
+
+    setStationMessage(
+      "Escriban primero el código que descifraron.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const button =
+    document.getElementById(
+      "validateButton"
+    );
+
+
+  button.disabled =
+    true;
+
+
+  button.textContent =
+    "COMPROBANDO SELLO...";
+
+
+  try {
+
+    const result =
+      await supabaseRPC(
+        "validar_codigo",
+        {
+
+          p_codigo_equipo:
+            currentTeamCode,
+
+          p_estacion:
+            selectedStation.number,
+
+          p_codigo:
+            code
+        }
+      );
+
+
+    if (
+      !result ||
+      result.ok !== true
+    ) {
+
+      if (
+        result?.error ===
+        "SIN_VIDAS"
+      ) {
+
+        await refreshTeam(
+          false
+        );
+
+
+        showScreen(
+          "screenGuardian"
+        );
+
+        return;
+      }
+
+
+      throw new Error(
+        translateError(
+          result?.error
+        )
+      );
+    }
+
+
+    if (
+      result.correcto === true
+    ) {
+
+      const stationRoman =
+        selectedStation.roman;
+
+
+      await refreshTeam(
+        false
+      );
+
+
+      document
+        .getElementById(
+          "sealOpenedText"
+        )
+        .innerHTML =
+          `El <strong>Sello ${stationRoman}</strong>
+          ha sido roto.<br><br>
+          Una nueva parte del manuscrito ha sido recuperada.`;
+
 
       document
         .getElementById(
           "sealOpenedModal"
         )
         .classList
-        .remove("show");
+        .add("show");
 
 
-      selectedStation = null;
+      return;
+    }
 
 
-      await refreshTeam(false);
+    teamState.vidas =
+      Number(
+        result.vidas
+      );
+
+
+    teamState.bloqueado =
+      result.bloqueado ===
+      true;
+
+
+    renderLives();
+
+
+    document
+      .getElementById(
+        "livesText"
+      )
+      .textContent =
+        `${teamState.vidas} / 3`;
+
+
+    if (
+      result.costo_vida ===
+      true
+    ) {
+
+      setStationMessage(
+        `El código es incorrecto. Una Llama de Fe se ha apagado. Quedan ${teamState.vidas}.`,
+        "error"
+      );
+
+    } else {
+
+      const failed =
+        Number(
+          result.intentos_fallidos || 0
+        );
+
+
+      const remainingFree =
+        Math.max(
+          0,
+          2 - failed
+        );
 
 
       if (
-        teamState &&
-        teamState.finalizado
+        remainingFree > 0
       ) {
 
-        showFinal();
+        setStationMessage(
+          `El sello no responde. Revisen el código. Todavía tienen ${remainingFree} intento gratuito en esta estación.`,
+          "error"
+        );
 
       } else {
+
+        setStationMessage(
+          "El sello no responde. ⚠️ El próximo error consumirá una Llama de Fe.",
+          "error"
+        );
+      }
+    }
+
+
+    input.select();
+
+
+    if (
+      teamState.bloqueado ||
+      teamState.vidas <= 0
+    ) {
+
+      setTimeout(
+        () => {
+
+          showScreen(
+            "screenGuardian"
+          );
+
+        },
+        1700
+      );
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Error validando código:",
+      error
+    );
+
+
+    setStationMessage(
+      "No pudimos consultar el manuscrito. " +
+      error.message,
+      "error"
+    );
+
+
+  } finally {
+
+    button.disabled =
+      false;
+
+
+    button.textContent =
+      "ROMPER EL SELLO";
+  }
+}
+
+
+/* ============================================================
+   PISTAS
+============================================================ */
+
+async function useHint() {
+
+  if (
+    !selectedStation ||
+    !currentTeamCode
+  ) {
+
+    return;
+  }
+
+
+  const accepted =
+    confirm(
+      "Solicitar una pista apagará 1 Llama de Fe.\n\n¿El equipo desea continuar?"
+    );
+
+
+  if (!accepted) {
+    return;
+  }
+
+
+  const button =
+    document.getElementById(
+      "hintButton"
+    );
+
+
+  button.disabled =
+    true;
+
+
+  button.textContent =
+    "BUSCANDO PISTA...";
+
+
+  try {
+
+    const result =
+      await supabaseRPC(
+        "usar_pista",
+        {
+
+          p_codigo_equipo:
+            currentTeamCode,
+
+          p_estacion:
+            selectedStation.number
+        }
+      );
+
+
+    if (
+      !result ||
+      result.ok !== true
+    ) {
+
+      if (
+        result?.error ===
+        "SIN_VIDAS"
+      ) {
+
+        await refreshTeam(
+          false
+        );
+
+
+        showScreen(
+          "screenGuardian"
+        );
+
+        return;
+      }
+
+
+      throw new Error(
+        translateError(
+          result?.error
+        )
+      );
+    }
+
+
+    const hintBox =
+      document.getElementById(
+        "hintBox"
+      );
+
+
+    hintBox.textContent =
+      "✦ PISTA DEL MANUSCRITO ✦\n\n" +
+      result.pista;
+
+
+    hintBox
+      .classList
+      .add("show");
+
+
+    teamState.vidas =
+      Number(
+        result.vidas
+      );
+
+
+    renderLives();
+
+
+    document
+      .getElementById(
+        "livesText"
+      )
+      .textContent =
+        `${teamState.vidas} / 3`;
+
+
+    if (
+      result.bloqueado === true ||
+      teamState.vidas <= 0
+    ) {
+
+      setTimeout(
+        () => {
+
+          showScreen(
+            "screenGuardian"
+          );
+
+        },
+        1800
+      );
+    }
+
+
+  } catch (error) {
+
+    console.error(
+      "Error solicitando pista:",
+      error
+    );
+
+
+    setStationMessage(
+      error.message,
+      "error"
+    );
+
+
+    button.disabled =
+      false;
+
+
+  } finally {
+
+    button.textContent =
+      "SOLICITAR PISTA · ❤️";
+  }
+}
+
+
+/* ============================================================
+   GUARDIÁN
+============================================================ */
+
+async function redeemGuardianCode() {
+
+  const input =
+    document.getElementById(
+      "guardianCodeInput"
+    );
+
+
+  const code =
+    input.value
+      .trim()
+      .toUpperCase();
+
+
+  if (!code) {
+
+    setGuardianMessage(
+      "Introduce el código entregado por el Guardián.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  const button =
+    document.getElementById(
+      "guardianButton"
+    );
+
+
+  button.disabled =
+    true;
+
+
+  button.textContent =
+    "RESTAURANDO LA LLAMA...";
+
+
+  try {
+
+    const result =
+      await supabaseRPC(
+        "usar_codigo_guardian",
+        {
+
+          p_codigo_equipo:
+            currentTeamCode,
+
+          p_codigo_guardian:
+            code
+        }
+      );
+
+
+    if (
+      !result ||
+      result.ok !== true
+    ) {
+
+      throw new Error(
+        translateError(
+          result?.error
+        )
+      );
+    }
+
+
+    setGuardianMessage(
+      "✨ LA LLAMA HA SIDO RESTAURADA. +1 VIDA",
+      "success"
+    );
+
+
+    input.value =
+      "";
+
+
+    await refreshTeam(
+      false
+    );
+
+
+    setTimeout(
+      () => {
 
         showScreen(
           "screenMap"
         );
-      }
-    }
+
+      },
+      1700
+    );
 
 
-    /* =========================================================
-       FINAL
-    ========================================================== */
+  } catch (error) {
 
-    function showFinal() {
+    console.error(
+      "Error código guardián:",
+      error
+    );
 
-      if (!teamState) {
+
+    setGuardianMessage(
+      error.message,
+      "error"
+    );
+
+
+  } finally {
+
+    button.disabled =
+      false;
+
+
+    button.textContent =
+      "RESTAURAR LA LLAMA";
+  }
+}
+
+
+/* ============================================================
+   MODAL SELLO
+============================================================ */
+
+async function closeSealModal() {
+
+  document
+    .getElementById(
+      "sealOpenedModal"
+    )
+    .classList
+    .remove("show");
+
+
+  selectedStation =
+    null;
+
+
+  await refreshTeam(
+    false
+  );
+
+
+  if (
+    teamState &&
+    teamState.finalizado ===
+    true
+  ) {
+
+    showFinal();
+
+  } else {
+
+    showScreen(
+      "screenMap"
+    );
+  }
+}
+
+
+/* ============================================================
+   FINAL
+============================================================ */
+
+function showFinal() {
+
+  if (!teamState) {
+    return;
+  }
+
+
+  document
+    .getElementById(
+      "finalTeamName"
+    )
+    .textContent =
+      teamState.nombre ||
+      "Equipo";
+
+
+  showScreen(
+    "screenFinal"
+  );
+}
+
+
+/* ============================================================
+   SALIR DEL EQUIPO
+============================================================ */
+
+function leaveDevice() {
+
+  const accepted =
+    confirm(
+      "Esto solo cerrará el equipo en ESTE dispositivo.\n\nEl progreso guardado en Supabase NO se eliminará.\n\n¿Continuar?"
+    );
+
+
+  if (!accepted) {
+    return;
+  }
+
+
+  stopSync();
+
+
+  localStorage.removeItem(
+    "rise_team_code"
+  );
+
+
+  currentTeamCode =
+    "";
+
+  teamState =
+    null;
+
+  selectedStation =
+    null;
+
+
+  showScreen(
+    "screenIntro"
+  );
+
+
+  testConnection();
+}
+
+
+/* ============================================================
+   ESTADO DE CONEXIÓN
+============================================================ */
+
+function setConnectionState(
+  online,
+  text,
+  checking = false
+) {
+
+  [
+    "connectionIntro",
+    "connectionGame"
+  ]
+  .forEach(
+    id => {
+
+      const element =
+        document.getElementById(
+          id
+        );
+
+
+      if (!element) {
         return;
       }
 
 
-      document
-        .getElementById(
-          "finalTeamName"
-        )
-        .textContent =
-          teamState.nombre;
-
-
-      showScreen(
-        "screenFinal"
-      );
-    }
-
-
-    /* =========================================================
-       SALIR DEL EQUIPO EN ESTE DISPOSITIVO
-    ========================================================== */
-
-    function leaveDevice() {
-
-      if (
-        !confirm(
-          "Esto solo cerrará el equipo en ESTE dispositivo. El progreso guardado en Supabase no se eliminará.\n\n¿Continuar?"
-        )
-      ) {
-
-        return;
-      }
-
-
-      stopSync();
-
-
-      localStorage.removeItem(
-        "rise_team_code"
-      );
-
-
-      currentTeamCode = "";
-
-      teamState = null;
-
-      selectedStation = null;
-
-
-      showScreen(
-        "screenIntro"
-      );
-    }
-
-
-    /* =========================================================
-       CONEXIÓN
-    ========================================================== */
-
-    function setConnectionState(
-      online,
-      text
-    ) {
-
-      [
-        "connectionIntro",
-        "connectionGame"
-      ].forEach(id => {
-
-        const element =
-          document.getElementById(id);
-
-
-        if (!element) {
-          return;
-        }
-
-
-        element.classList.remove(
+      element
+        .classList
+        .remove(
           "online",
-          "offline"
+          "offline",
+          "checking"
         );
 
 
-        element.classList.add(
-          online
-            ? "online"
-            : "offline"
-        );
+      if (checking) {
 
-
-        const label =
-          element.querySelector(
-            "span:last-child"
+        element
+          .classList
+          .add(
+            "checking"
           );
-
-
-        if (label) {
-          label.textContent = text;
-        }
-      });
-    }
-
-
-    async function testConnection() {
-
-      try {
-
-        const response =
-          await fetch(
-            `${SUPABASE_URL}/rest/v1/`,
-            {
-              headers: {
-                "apikey":
-                  SUPABASE_KEY,
-
-                "Authorization":
-                  `Bearer ${SUPABASE_KEY}`
-              }
-            }
-          );
-
-
-        if (!response.ok) {
-          throw new Error();
-        }
-
-
-        setConnectionState(
-          true,
-          "CONECTADO AL MANUSCRITO"
-        );
-
-
-      } catch {
-
-        setConnectionState(
-          false,
-          "SIN CONEXIÓN CON EL MANUSCRITO"
-        );
-      }
-    }
-
-
-    /* =========================================================
-       MENSAJES
-    ========================================================== */
-
-    function showError(id,text) {
-
-      const box =
-        document.getElementById(id);
-
-
-      box.textContent = text;
-
-      box.style.display =
-        "block";
-    }
-
-
-    function clearBox(id) {
-
-      const box =
-        document.getElementById(id);
-
-
-      box.textContent = "";
-
-      box.style.display =
-        "none";
-    }
-
-
-    function setStationMessage(
-      text,
-      type
-    ) {
-
-      const element =
-        document.getElementById(
-          "stationMessage"
-        );
-
-
-      element.textContent =
-        text;
-
-
-      element.className =
-        "message" +
-        (
-          type
-            ? ` ${type}`
-            : ""
-        );
-    }
-
-
-    function setGuardianMessage(
-      text,
-      type
-    ) {
-
-      const element =
-        document.getElementById(
-          "guardianMessage"
-        );
-
-
-      element.textContent =
-        text;
-
-
-      element.className =
-        "message" +
-        (
-          type
-            ? ` ${type}`
-            : ""
-        );
-    }
-
-
-    function translateError(code) {
-
-      const errors = {
-
-        NOMBRE_INVALIDO:
-          "El nombre del equipo no es válido.",
-
-        NO_HAY_EVENTO_ACTIVO:
-          "La misión todavía no está activa.",
-
-        EQUIPO_NO_ENCONTRADO:
-          "No encontramos un equipo con ese código.",
-
-        EVENTO_NO_ACTIVO:
-          "Esta misión no está activa.",
-
-        ESTACION_NO_ENCONTRADA:
-          "No encontramos esta estación.",
-
-        SIN_VIDAS:
-          "Las Llamas de Fe se han apagado. Busquen al Guardián.",
-
-        RESCATE_NO_NECESARIO:
-          "El equipo todavía tiene vidas. No necesita un rescate.",
-
-        CODIGO_GUARDIAN_INVALIDO:
-          "El código del Guardián no es válido o ya fue utilizado."
-
-      };
-
-
-      return (
-        errors[code] ||
-        code ||
-        "Ha ocurrido un error."
-      );
-    }
-
-
-    /* =========================================================
-       FILTROS DE INPUT
-    ========================================================== */
-
-    document
-      .getElementById(
-        "stationCodeInput"
-      )
-      .addEventListener(
-        "input",
-        function() {
-
-          this.value =
-            this.value.replace(
-              /\D/g,
-              ""
-            );
-        }
-      );
-
-
-    document
-      .getElementById(
-        "stationCodeInput"
-      )
-      .addEventListener(
-        "keydown",
-        function(event) {
-
-          if (
-            event.key ===
-            "Enter"
-          ) {
-
-            validateStationCode();
-          }
-        }
-      );
-
-
-    document
-      .getElementById(
-        "joinTeamCode"
-      )
-      .addEventListener(
-        "input",
-        function() {
-
-          this.value =
-            this.value
-              .toUpperCase()
-              .replace(
-                /[^A-Z0-9]/g,
-                ""
-              );
-        }
-      );
-
-
-    document
-      .getElementById(
-        "guardianCodeInput"
-      )
-      .addEventListener(
-        "input",
-        function() {
-
-          this.value =
-            this.value
-              .toUpperCase();
-        }
-      );
-
-
-    /* =========================================================
-       ARRANQUE
-    ========================================================== */
-
-    async function init() {
-
-      await testConnection();
-
-
-      if (currentTeamCode) {
-
-        await loadTeamAndEnter();
 
       } else {
 
-        showScreen(
-          "screenIntro"
-        );
+        element
+          .classList
+          .add(
+            online
+              ? "online"
+              : "offline"
+          );
       }
+
+
+      const label =
+        element.querySelector(
+          "span:last-child"
+        );
+
+
+      if (label) {
+
+        label.textContent =
+          text;
+      }
+    }
+  );
+}
+
+
+/* ============================================================
+   PRUEBA REAL DE CONEXIÓN
+
+   En vez de consultar /rest/v1/ directamente,
+   consultamos una función RPC real de nuestro juego.
+
+   No importa que TEST-CONEXION no sea un equipo válido.
+   Si Supabase ejecuta obtener_equipo y devuelve JSON,
+   la comunicación funciona.
+============================================================ */
+
+async function testConnection() {
+
+  setConnectionState(
+    false,
+    "BUSCANDO EL MANUSCRITO...",
+    true
+  );
+
+
+  try {
+
+    const result =
+      await supabaseRPC(
+        "obtener_equipo",
+        {
+          p_codigo_equipo:
+            "TEST-CONEXION"
+        }
+      );
+
+
+    /*
+      La función puede responder:
+
+      { ok:false, error:"EQUIPO_NO_ENCONTRADO" }
+
+      Eso ES una respuesta válida de Supabase
+      y confirma que la conexión funciona.
+    */
+
+
+    if (
+      result &&
+      typeof result ===
+      "object"
+    ) {
+
+      setConnectionState(
+        true,
+        "CONECTADO AL MANUSCRITO"
+      );
+
+
+      return true;
     }
 
 
-    window.addEventListener(
-      "DOMContentLoaded",
-      init
+    throw new Error(
+      "Respuesta inesperada."
     );
 
 
-    window.addEventListener(
-      "online",
-      () => {
-        testConnection();
+  } catch (error) {
 
-        if (currentTeamCode) {
-          refreshTeam(false);
-        }
+    console.error(
+      "Prueba de conexión:",
+      error
+    );
+
+
+    setConnectionState(
+      false,
+      "SIN CONEXIÓN CON EL MANUSCRITO"
+    );
+
+
+    return false;
+  }
+}
+
+
+/* ============================================================
+   MENSAJES
+============================================================ */
+
+function showError(
+  id,
+  text
+) {
+
+  const box =
+    document.getElementById(
+      id
+    );
+
+
+  box.textContent =
+    text;
+
+
+  box.style.display =
+    "block";
+}
+
+
+function clearBox(id) {
+
+  const box =
+    document.getElementById(
+      id
+    );
+
+
+  box.textContent =
+    "";
+
+
+  box.style.display =
+    "none";
+}
+
+
+function setStationMessage(
+  text,
+  type
+) {
+
+  const element =
+    document.getElementById(
+      "stationMessage"
+    );
+
+
+  element.textContent =
+    text;
+
+
+  element.className =
+    "message" +
+    (
+      type
+        ? ` ${type}`
+        : ""
+    );
+}
+
+
+function setGuardianMessage(
+  text,
+  type
+) {
+
+  const element =
+    document.getElementById(
+      "guardianMessage"
+    );
+
+
+  element.textContent =
+    text;
+
+
+  element.className =
+    "message" +
+    (
+      type
+        ? ` ${type}`
+        : ""
+    );
+}
+
+
+/* ============================================================
+   TRADUCIR ERRORES
+============================================================ */
+
+function translateError(code) {
+
+  const errors = {
+
+    NOMBRE_INVALIDO:
+      "El nombre del equipo no es válido.",
+
+    NO_HAY_EVENTO_ACTIVO:
+      "La misión todavía no está activa.",
+
+    EQUIPO_NO_ENCONTRADO:
+      "No encontramos un equipo con ese código.",
+
+    EVENTO_NO_ACTIVO:
+      "Esta misión no está activa.",
+
+    ESTACION_NO_ENCONTRADA:
+      "No encontramos esta estación.",
+
+    SIN_VIDAS:
+      "Las Llamas de Fe se han apagado. Busquen al Guardián.",
+
+    RESCATE_NO_NECESARIO:
+      "El equipo todavía tiene vidas. No necesita un rescate.",
+
+    CODIGO_GUARDIAN_INVALIDO:
+      "El código del Guardián no es válido o ya fue utilizado.",
+
+    YA_COMPLETADA:
+      "Este sello ya fue recuperado.",
+
+    PISTA_YA_USADA:
+      "La pista de esta estación ya fue utilizada."
+
+  };
+
+
+  return (
+    errors[code] ||
+    code ||
+    "Ha ocurrido un error."
+  );
+}
+
+
+/* ============================================================
+   INPUT CÓDIGO ESTACIÓN
+============================================================ */
+
+document
+  .getElementById(
+    "stationCodeInput"
+  )
+  .addEventListener(
+    "input",
+    function() {
+
+      this.value =
+        this.value
+          .replace(
+            /\D/g,
+            ""
+          );
+    }
+  );
+
+
+document
+  .getElementById(
+    "stationCodeInput"
+  )
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+        validateStationCode();
       }
-    );
+    }
+  );
 
 
-    window.addEventListener(
-      "offline",
-      () => {
-        setConnectionState(
-          false,
-          "SIN CONEXIÓN"
-        );
+/* ============================================================
+   INPUT CÓDIGO EQUIPO
+============================================================ */
+
+document
+  .getElementById(
+    "joinTeamCode"
+  )
+  .addEventListener(
+    "input",
+    function() {
+
+      this.value =
+        this.value
+          .toUpperCase()
+          .replace(
+            /[^A-Z0-9]/g,
+            ""
+          );
+    }
+  );
+
+
+document
+  .getElementById(
+    "joinTeamCode"
+  )
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+        joinTeam();
       }
-    );
+    }
+  );
 
-  </script>
+
+/* ============================================================
+   INPUT NOMBRE EQUIPO
+============================================================ */
+
+document
+  .getElementById(
+    "createTeamName"
+  )
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+        createTeam();
+      }
+    }
+  );
+
+
+/* ============================================================
+   INPUT GUARDIÁN
+============================================================ */
+
+document
+  .getElementById(
+    "guardianCodeInput"
+  )
+  .addEventListener(
+    "input",
+    function() {
+
+      this.value =
+        this.value
+          .toUpperCase();
+    }
+  );
+
+
+document
+  .getElementById(
+    "guardianCodeInput"
+  )
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key ===
+        "Enter"
+      ) {
+
+        redeemGuardianCode();
+      }
+    }
+  );
+
+
+/* ============================================================
+   CONEXIÓN DEL NAVEGADOR
+============================================================ */
+
+window.addEventListener(
+  "online",
+  async () => {
+
+    await testConnection();
+
+
+    if (
+      currentTeamCode
+    ) {
+
+      await refreshTeam(
+        false
+      );
+    }
+  }
+);
+
+
+window.addEventListener(
+  "offline",
+  () => {
+
+    setConnectionState(
+      false,
+      "SIN CONEXIÓN A INTERNET"
+    );
+  }
+);
+
+
+/* ============================================================
+   AL VOLVER A LA PESTAÑA
+============================================================ */
+
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    if (
+      document.visibilityState ===
+      "visible" &&
+      currentTeamCode
+    ) {
+
+      refreshTeam(
+        false
+      );
+    }
+  }
+);
+
+
+window.addEventListener(
+  "focus",
+  () => {
+
+    if (
+      currentTeamCode
+    ) {
+
+      refreshTeam(
+        false
+      );
+    }
+  }
+);
+
+
+/* ============================================================
+   ARRANQUE
+============================================================ */
+
+async function init() {
+
+  await testConnection();
+
+
+  if (
+    currentTeamCode
+  ) {
+
+    await loadTeamAndEnter();
+
+  } else {
+
+    showScreen(
+      "screenIntro"
+    );
+  }
+}
+
+
+window.addEventListener(
+  "DOMContentLoaded",
+  init
+);
+
+</script>
 
 </body>
 </html>
