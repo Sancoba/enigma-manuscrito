@@ -11,14 +11,8 @@
 </head>
 <body>
 <div class="wrap">
-<section id="loginView" class="panel login">
-<div class="eyebrow">RISE · ACCESO RESTRINGIDO</div><h1 class="title">Control del Manuscrito</h1><p class="sub">Solo Guardianes y líderes autorizados.</p>
-<div class="field"><label>Correo</label><input id="email" class="input" type="email" autocomplete="username"></div>
-<div class="field"><label>Contraseña</label><input id="password" class="input" type="password" autocomplete="current-password"></div>
-<button id="loginBtn" class="btn" onclick="login()">ENTRAR AL CONTROL</button><div id="loginError" class="error"></div>
-</section>
-<section id="dashboardView" class="panel hidden">
-<div class="topbar"><div><div class="eyebrow" style="text-align:left">RISE · PANEL PRIVADO</div><h1 style="margin:5px 0;color:var(--light)">Control del Manuscrito</h1><div id="syncText" class="sync">CONECTANDO...</div></div><button class="btn secondary" onclick="logout()">CERRAR SESIÓN</button></div>
+<section id="dashboardView" class="panel">
+<div class="topbar"><div><div class="eyebrow" style="text-align:left">RISE · CONTROL EN VIVO</div><h1 style="margin:5px 0;color:var(--light)">Control del Manuscrito</h1><div id="syncText" class="sync">CONECTANDO...</div></div><button class="btn secondary" onclick="loadTeams()">↻ ACTUALIZAR</button></div>
 <div class="stats"><div class="stat"><span>Equipos</span><strong id="sTeams">0</strong></div><div class="stat"><span>Finalizados</span><strong id="sFinished">0</strong></div><div class="stat"><span>En juego</span><strong id="sPlaying">0</strong></div><div class="stat"><span>En Guardián</span><strong id="sBlocked">0</strong></div></div>
 <div class="tablewrap"><table><thead><tr><th>Puesto</th><th>Equipo</th><th>Sellos</th><th>Progreso</th><th>Llamas</th><th>Estado</th><th>Finalizó</th></tr></thead><tbody id="teamsBody"><tr><td colspan="7" class="empty">Cargando equipos...</td></tr></tbody></table></div>
 </section>
@@ -26,16 +20,11 @@
 <script>
 const SUPABASE_URL="https://wdbbubvmofmyhdtwcsry.supabase.co";
 const SUPABASE_KEY="sb_publishable_NwnpwizxXFft8Ohh1F_n9Q_E5g-Yzla";
-let accessToken=sessionStorage.getItem("rise_admin_access")||"";
 let timer=null;
-async function authRequest(path,body){const r=await fetch(SUPABASE_URL+path,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},body:JSON.stringify(body)});const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error_description||d.msg||d.message||"No fue posible iniciar sesión.");return d}
-async function rpc(name,params={}){const r=await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+accessToken},body:JSON.stringify(params)});const d=await r.json().catch(()=>null);if(r.status===401){logout();throw new Error("La sesión expiró.")}if(!r.ok)throw new Error(d?.message||d?.error||"Acceso no autorizado.");return d}
-async function login(){const b=document.getElementById("loginBtn"),e=document.getElementById("loginError");e.textContent="";b.disabled=true;b.textContent="VERIFICANDO...";try{const d=await authRequest("/auth/v1/token?grant_type=password",{email:document.getElementById("email").value.trim(),password:document.getElementById("password").value});accessToken=d.access_token;sessionStorage.setItem("rise_admin_access",accessToken);await openDashboard()}catch(err){e.textContent=err.message;sessionStorage.removeItem("rise_admin_access");accessToken=""}finally{b.disabled=false;b.textContent="ENTRAR AL CONTROL"}}
-async function openDashboard(){try{await loadTeams();document.getElementById("loginView").classList.add("hidden");document.getElementById("dashboardView").classList.remove("hidden");clearInterval(timer);timer=setInterval(loadTeams,3000)}catch(e){document.getElementById("loginError").textContent=e.message;sessionStorage.removeItem("rise_admin_access");accessToken=""}}
-function logout(){clearInterval(timer);timer=null;sessionStorage.removeItem("rise_admin_access");accessToken="";document.getElementById("dashboardView").classList.add("hidden");document.getElementById("loginView").classList.remove("hidden")}
+async function rpc(name,params={}){const r=await fetch(`${SUPABASE_URL}/rest/v1/rpc/${name}`,{method:"POST",headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer "+SUPABASE_KEY},body:JSON.stringify(params)});const d=await r.json().catch(()=>null);if(!r.ok)throw new Error(d?.message||d?.error||"No fue posible cargar el panel.");return d}
 function esc(v){const d=document.createElement("div");d.textContent=v??"";return d.innerHTML}
 function time(v){if(!v)return"—";return new Date(v).toLocaleTimeString("es-CO",{hour:"2-digit",minute:"2-digit",second:"2-digit"})}
 async function loadTeams(){try{const r=await rpc("panel_admin");if(!r?.ok)throw new Error(r?.error||"No autorizado");const teams=r.equipos||[];document.getElementById("sTeams").textContent=teams.length;document.getElementById("sFinished").textContent=teams.filter(x=>x.finalizado).length;document.getElementById("sPlaying").textContent=teams.filter(x=>!x.finalizado&&!x.bloqueado&&Number(x.vidas)>0).length;document.getElementById("sBlocked").textContent=teams.filter(x=>!x.finalizado&&(x.bloqueado||Number(x.vidas)<=0)).length;const body=document.getElementById("teamsBody");if(!teams.length){body.innerHTML='<tr><td colspan="7" class="empty">Todavía no hay equipos registrados.</td></tr>'}else body.innerHTML=teams.map(x=>{const rank=x.puesto==1?'🥇':x.puesto==2?'🥈':x.puesto==3?'🥉':(x.puesto||'—');const seals=(x.estaciones||[]).map(s=>`<span class="seal ${s.completada?'done':''}">${s.numero}</span>`).join('');let st=x.finalizado?'<span class="badge finished">FINALIZADO</span>':(x.bloqueado||Number(x.vidas)<=0)?'<span class="badge blocked">GUARDIÁN</span>':'<span class="badge playing">EN JUEGO</span>';return `<tr class="${x.puesto&&x.puesto<=3?'podium':''}"><td class="rank">${rank}</td><td><div class="team">${esc(x.nombre)}</div><div class="code">${esc(x.codigo_equipo)}</div></td><td><div class="seals">${seals}</div></td><td>${x.completadas}/6</td><td>${x.vidas}/3</td><td>${st}</td><td>${time(x.finalizado_en)}</td></tr>`}).join('');document.getElementById("syncText").textContent="● EN VIVO · "+new Date().toLocaleTimeString("es-CO") }catch(e){document.getElementById("syncText").textContent="SIN CONEXIÓN · "+e.message}}
-document.getElementById("password").addEventListener("keydown",e=>{if(e.key==="Enter")login()});if(accessToken)openDashboard();
+loadTeams();timer=setInterval(loadTeams,3000);
 </script>
 </body></html>
