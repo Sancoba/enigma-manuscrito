@@ -1759,6 +1759,19 @@ h2{font-size:clamp(30px,6vw,46px);color:var(--gold-light);text-shadow:0 4px 24px
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
+
+
+/* ============================================================
+   FINAL RANKING — RISE
+============================================================ */
+.final-rank-badge{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin:6px auto 18px;padding:10px 18px;border:1px solid rgba(245,211,140,.48);border-radius:999px;background:rgba(216,173,88,.09);color:var(--gold-light);font-family:Arial,sans-serif;font-size:11px;font-weight:900;letter-spacing:2.2px;text-transform:uppercase;box-shadow:0 0 28px rgba(216,173,88,.08)}
+.final-message-card{max-width:610px;margin:22px auto;padding:22px 20px;border:1px solid rgba(216,173,88,.28);border-radius:12px;background:linear-gradient(145deg,rgba(216,173,88,.08),rgba(0,0,0,.18));box-shadow:inset 0 1px rgba(255,255,255,.03)}
+.final-message-title{margin:0 0 12px;color:var(--gold-light);font-size:clamp(22px,5vw,31px);line-height:1.15;text-transform:uppercase}
+.final-message-text{margin:0;color:#eadfc9;font-size:clamp(16px,3.8vw,19px);line-height:1.7;font-style:italic}
+.final-message-ref{display:block;margin-top:14px;color:var(--gold);font-family:Arial,sans-serif;font-size:12px;font-weight:900;letter-spacing:1.2px}
+.final-accent{color:var(--gold-light);font-weight:800;text-shadow:0 0 18px rgba(245,213,141,.12)}
+@media(max-width:600px){.final-card{padding-top:34px!important;padding-bottom:38px!important}.final-message-card{padding:18px 15px}.final-icon{font-size:58px}.final-card h1{font-size:clamp(31px,10vw,45px)}}
+
 </style>
 </head>
 
@@ -2460,13 +2473,17 @@ Jeremías 29:13
 </div>
 
 
-<p class="intro">
+<div id="finalRankBadge" class="final-rank-badge">
+RESULTADO DE LA MISIÓN
+</div>
 
-Pero el verdadero mensaje del manuscrito
-aún está por ser revelado...
-
-</p>
-
+<div id="finalMessageCard" class="final-message-card">
+  <h3 id="finalMessageTitle" class="final-message-title">PERSEVEREN HASTA EL FINAL</h3>
+  <p id="finalMessageText" class="final-message-text">
+    Sigan adelante con fe. Haber llegado hasta aquí también hace parte de la misión.
+  </p>
+  <strong id="finalMessageRef" class="final-message-ref">1 TIMOTEO 6:12</strong>
+</div>
 
 <div class="seal-logo">
 ✦
@@ -2858,6 +2875,9 @@ async function supabaseRPC(
 ============================================================ */
 
 function showScreen(id) {
+
+  const alreadyActive = document.getElementById(id)?.classList.contains("active");
+  if (alreadyActive) return;
 
   document
     .querySelectorAll(
@@ -3461,12 +3481,12 @@ async function refreshTeam(
         );
 
 
+      const finalAlreadyVisible =
+        document.getElementById("screenFinal")?.classList.contains("active");
+
       if (
-        !modal
-          .classList
-          .contains(
-            "show"
-          )
+        !modal.classList.contains("show") &&
+        !finalAlreadyVisible
       ) {
 
         showFinal();
@@ -4901,26 +4921,69 @@ async function closeSealModal() {
    FINAL
 ============================================================ */
 
-function showFinal() {
+let finalRankLoadedFor = "";
 
-  if (!teamState) {
-    return;
+async function showFinal() {
+
+  if (!teamState) return;
+
+  document.getElementById("finalTeamName").textContent =
+    teamState.nombre || "Equipo";
+
+  showScreen("screenFinal");
+
+  const teamKey = teamState.codigo_equipo || currentTeamCode;
+  if (finalRankLoadedFor === teamKey) return;
+  finalRankLoadedFor = teamKey;
+
+  const badge = document.getElementById("finalRankBadge");
+  const title = document.getElementById("finalMessageTitle");
+  const text = document.getElementById("finalMessageText");
+  const ref = document.getElementById("finalMessageRef");
+
+  // Mensaje seguro mientras Supabase confirma el orden real de llegada.
+  badge.textContent = "RESULTADO DE LA MISIÓN";
+  title.textContent = "PERSEVEREN HASTA EL FINAL";
+  text.textContent = "Peleen la buena batalla de la fe; sigan adelante con propósito y no se cansen de hacer el bien.";
+  ref.textContent = "1 TIMOTEO 6:12";
+
+  try {
+    const result = await supabaseRPC("obtener_puesto_equipo", {
+      p_codigo_equipo: currentTeamCode
+    });
+
+    if (!result || result.ok !== true) return;
+
+    const puesto = Number(result.puesto || 0);
+
+    if (puesto === 1) {
+      badge.textContent = "🥇 PRIMER PUESTO";
+      title.textContent = "PERMANEZCAN FUERTES Y CONSTANTES";
+      text.textContent = "“Por lo tanto, mis amados hermanos, permanezcan fuertes y constantes. Trabajen siempre para el Señor con entusiasmo, porque ustedes saben que nada de lo que hacen para el Señor es inútil.”";
+      ref.textContent = "1 CORINTIOS 15:58 · NTV";
+    }
+    else if (puesto === 2) {
+      badge.textContent = "🥈 SEGUNDO PUESTO";
+      title.textContent = "NO ESTÁN LEJOS DEL REINO DE DIOS";
+      text.textContent = "“Al ver Jesús que el hombre había contestado sabiamente, le dijo: No estás lejos del reino de Dios.”";
+      ref.textContent = "MARCOS 12:34";
+    }
+    else if (puesto === 3) {
+      badge.textContent = "🥉 TERCER PUESTO";
+      title.textContent = "CORRAN PARA GANAR";
+      text.textContent = "“¿No se dan cuenta de que en una carrera todos corren, pero sólo una persona se lleva el premio? ¡Así que corran para ganar! Todos los atletas se entrenan con disciplina. Lo hacen para ganar un premio que se desvanecerá, pero nosotros lo hacemos por un premio eterno. Por eso yo corro cada paso con propósito. No solo doy golpes al aire.”";
+      ref.textContent = "1 CORINTIOS 9:24-26";
+    }
+    else {
+      badge.textContent = "MISIÓN CUMPLIDA";
+      title.textContent = "SIGAN PELEANDO LA BUENA BATALLA";
+      text.textContent = "“Pelea la buena batalla de la fe; echa mano de la vida eterna.” Que esta carrera no termine aquí: sigan buscando a Dios con todo el corazón.";
+      ref.textContent = "1 TIMOTEO 6:12";
+    }
   }
-
-
-  document
-    .getElementById(
-      "finalTeamName"
-    )
-    .textContent =
-      teamState.nombre ||
-      "Equipo";
-
-
-  showScreen(
-    "screenFinal"
-  );
-
+  catch (error) {
+    console.error("No se pudo consultar el puesto final:", error);
+  }
 }
 
 
@@ -5603,7 +5666,11 @@ window.addEventListener(
         successChime(); if(navigator.vibrate) navigator.vibrate([45,35,80]);
       }
       if(m.type==='attributes'&&m.target.id==='screenFinal'&&m.target.classList.contains('active')){
-        setTimeout(successChime,120);setTimeout(successChime,520); if(navigator.vibrate) navigator.vibrate([70,50,70,50,140]);
+        if(!sessionStorage.getItem('rise_final_fx_played')){
+          sessionStorage.setItem('rise_final_fx_played','1');
+          setTimeout(successChime,120);
+          if(navigator.vibrate) navigator.vibrate([70,50,120]);
+        }
       }
     }
   });
